@@ -52,32 +52,64 @@ public class Budget {
         return mBudgetId;
     }
 
+    public void setBudgetId(int budgetId) {
+        mBudgetId = budgetId;
+    }
+
     public int getUserId() {
         return mUserId;
+    }
+
+    public void setUserId(int userId) {
+        mUserId = userId;
     }
 
     public int getHousingId() {
         return mHousingId;
     }
 
+    public void setHousingId(int housingId) {
+        mHousingId = housingId;
+    }
+
     public int getGivingId() {
         return mGivingId;
+    }
+
+    public void setGivingId(int givingId) {
+        mGivingId = givingId;
     }
 
     public int getPersonalId() {
         return mPersonalId;
     }
 
+    public void setPersonalId(int personalId) {
+        mPersonalId = personalId;
+    }
+
     public int getTransportationId() {
         return mTransportationId;
+    }
+
+    public void setTransportationId(int transportationId) {
+        mTransportationId = transportationId;
     }
 
     public int getFoodId() {
         return mFoodId;
     }
 
+    public void setFoodId(int foodId) {
+        mFoodId = foodId;
+    }
+
     public int getOtherId() {
         return mOtherId;
+    }
+
+    public void setOtherId(int otherId) {
+        mOtherId = otherId;
     }
 
     public int getPaycheckFrequency() {

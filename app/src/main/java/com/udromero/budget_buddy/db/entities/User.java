@@ -25,6 +25,10 @@ public class User {
         this.firstTimeLogin = firstTimeLogin;
     }
 
+    public void setUserId(int userId) {
+        mUserId = userId;
+    }
+
     public int getUserId() {
         return mUserId;
     }

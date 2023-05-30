@@ -34,6 +34,10 @@ public class Housing {
         mOtherRecurring = otherRecurring;
     }
 
+    public void setHousingId(int housingId) {
+        mHousingId = housingId;
+    }
+
     public int getHousingId() {
         return mHousingId;
     }

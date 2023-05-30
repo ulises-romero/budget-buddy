@@ -13,4 +13,13 @@
         android:layout_height="match_parent"
         android:text="@string/settings" />
 
+    <Button
+        android:id="@+id/settingsLogoutButton"
+        android:layout_width="130dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/logout"
+        android:textSize="18sp" />
+
 </FrameLayout>

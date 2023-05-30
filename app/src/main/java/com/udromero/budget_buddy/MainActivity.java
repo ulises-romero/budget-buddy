@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 switchFragment(new MyBudgetFragment());
             } else if(id == R.id.settings){
                 switchFragment(new SettingsFragment());
+
             }
 
             return true;

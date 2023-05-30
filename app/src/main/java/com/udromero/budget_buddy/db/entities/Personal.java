@@ -47,6 +47,10 @@ public class Personal {
         mOtherRecurring = otherRecurring;
     }
 
+    public void setPersonalId(int personalId) {
+        mPersonalId = personalId;
+    }
+
     public int getPersonalId() {
         return mPersonalId;
     }

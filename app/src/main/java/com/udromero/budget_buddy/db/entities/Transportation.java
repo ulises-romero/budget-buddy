@@ -44,6 +44,10 @@ public class Transportation {
         mOtherRecurring = otherRecurring;
     }
 
+    public void setTransportationId(int transportationId) {
+        mTransportationId = transportationId;
+    }
+
     public int getTransportationId() {
         return mTransportationId;
     }

@@ -23,9 +23,19 @@
 
     <string name="registerCreateAccount">Create Account</string>
     <string name="registerPasswordHint">Create Password</string>
+    <string name="registerFirstNameHint">Enter First Name</string>
+    <string name="registerLastNameHint">Enter Last Name</string>
     <string name="registerNameHint">Name</string>
     <string name="registerPhoneHint">Phone Number</string>
     <string name="registerAddressHint">Address</string>
     <string name="notifications">Notifications</string>
     <string name="back">&lt;</string>
+    <string name="blank" />
+    <string name="missingFirstNameField">Missing Required Field: Please enter your first name.</string>
+    <string name="missingAllRequiredFields">Missing Required Fields: Please populate all fields.</string>
+    <string name="missingLastNameField">Missing Required Field: Please enter your last name.</string>
+    <string name="missingEmailAddressField">Missing Required Field: Please enter a valid email address.</string>
+    <string name="missingPasswordField">Missing Required Field: Please enter a password.</string>
+    <string name="invalidEmailPrompt">Oops we couldn\'t find a user with that email, please try again.</string>
+    <string name="invalidCredentialsPrompt">Invalid credentials, please try again.</string>
 </resources>

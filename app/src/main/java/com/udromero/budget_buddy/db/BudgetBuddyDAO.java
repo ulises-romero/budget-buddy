@@ -1,5 +1,7 @@
 package com.udromero.budget_buddy.db;
 
+import android.app.Person;
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -89,7 +91,7 @@ public interface BudgetBuddyDAO {
     void delete(Housing...housings);
 
     @Query("SELECT * FROM " + BudgetBuddyDatabase.HOUSING_TABLE + " WHERE mHousingId = :housingId")
-    Giving getHousingExpensesById(int housingId);
+    Housing getHousingExpensesById(int housingId);
 
     // Other
     @Insert
@@ -102,7 +104,7 @@ public interface BudgetBuddyDAO {
     void delete(Other...others);
 
     @Query("SELECT * FROM " + BudgetBuddyDatabase.OTHER_TABLE + " WHERE mOtherId = :otherId")
-    Giving getOtherExpensesById(int otherId);
+    Other getOtherExpensesById(int otherId);
 
     // Personal
     @Insert
@@ -115,7 +117,7 @@ public interface BudgetBuddyDAO {
     void delete(Personal...personals);
 
     @Query("SELECT * FROM " + BudgetBuddyDatabase.PERSONAL_TABLE + " WHERE mPersonalId= :personalId")
-    Giving getPersonalExpensesById(int personalId);
+    Personal getPersonalExpensesById(int personalId);
 
     // Transportation
     @Insert
@@ -128,7 +130,7 @@ public interface BudgetBuddyDAO {
     void delete(Transportation...transportations);
 
     @Query("SELECT * FROM " + BudgetBuddyDatabase.TRANSPORTATION_TABLE + " WHERE mTransportationId= :transportationId")
-    Giving getTransportationExpensesById(int transportationId);
+    Transportation getTransportationExpensesById(int transportationId);
 
 
 }

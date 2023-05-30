@@ -35,6 +35,10 @@ public class Food {
         mOtherReccuring = otherReccuring;
     }
 
+    public void setFoodId(int foodId) {
+        mFoodId = foodId;
+    }
+
     public int getFoodId() {
         return mFoodId;
     }

@@ -36,6 +36,10 @@ public class Giving {
         mOtherReccurring = otherReccurring;
     }
 
+    public void setGivingId(int givingId) {
+        mGivingId = givingId;
+    }
+
     public int getGivingId() {
         return mGivingId;
     }

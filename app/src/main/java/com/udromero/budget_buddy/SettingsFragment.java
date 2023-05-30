@@ -1,5 +1,12 @@
 package com.udromero.budget_buddy;
 
+import static com.udromero.budget_buddy.Constants.LOGGED_IN_KEY;
+import static com.udromero.budget_buddy.Constants.PREFERENCES_KEY;
+import static com.udromero.budget_buddy.Constants.USER_ID_KEY;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +14,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.udromero.budget_buddy.login.LoginActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,10 +65,40 @@ public class SettingsFragment extends Fragment {
         }
     }
 
+    SharedPreferences userSharedPreferences;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
+        Button logoutButton = view.findViewById(R.id.settingsLogoutButton);
+
+        getPrefs();
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logoutUser();
+            }
+        });
+
+        return view;
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        // return inflater.inflate(R.layout.fragment_settings, container, false);
+    }
+
+    private void logoutUser(){
+        SharedPreferences.Editor editor = userSharedPreferences.edit();
+        editor.putInt(USER_ID_KEY, -1);
+        editor.putBoolean(LOGGED_IN_KEY, false);
+        editor.apply();
+
+        Intent intent = new Intent(this.getActivity().getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+    }
+
+    private void getPrefs() {
+        userSharedPreferences = this.getActivity().getSharedPreferences(PREFERENCES_KEY, Context.MODE_PRIVATE);
     }
 }
