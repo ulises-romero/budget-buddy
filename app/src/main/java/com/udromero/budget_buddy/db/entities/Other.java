@@ -25,6 +25,10 @@ public class Other {
         mOtherRecurring = otherRecurring;
     }
 
+    public void setOtherId(int otherId) {
+        mOtherId = otherId;
+    }
+
     public int getOtherId() {
         return mOtherId;
     }
