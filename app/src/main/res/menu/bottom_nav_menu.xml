@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Overview"
+        android:icon="@drawable/ic_baseline_bar_chart_24"
+        android:id="@+id/overview"/>
+    <item android:title="Monthly"
+        android:icon="@drawable/ic_baseline_calendar_month_24"
+        android:id="@+id/monthly"/>
+    <item android:title="Budget"
+        android:icon="@drawable/ic_baseline_attach_money_24"
+        android:id="@+id/budget"/>
+    <item android:title="Settings"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:id="@+id/settings"/>
+</menu>

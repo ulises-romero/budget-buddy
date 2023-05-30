@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">budget-buddy</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="settings">Settings Page</string>
+    <string name="overview">Overview Page</string>
+    <string name="monthly">Monthly Page</string>
+    <string name="budget">Budget Page</string>
+</resources>
