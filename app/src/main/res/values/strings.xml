@@ -5,4 +5,27 @@
     <string name="overview">Overview Page</string>
     <string name="monthly">Monthly Page</string>
     <string name="budget">Budget Page</string>
+
+    <!-- Common Strings -->
+    <string name="logout">Logout</string>
+    <string name="profilePage">Profile Page</string>
+
+    <!-- Splash Screen String -->
+    <string name="lumos_logo">Lumos Logo</string>
+    <string name="lumos">LUMOS</string>
+
+    <!-- Login/Register Strings -->
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+
+    <string name="loginEmailHint">Enter Email</string>
+    <string name="loginPasswordHint">Enter Password</string>
+
+    <string name="registerCreateAccount">Create Account</string>
+    <string name="registerPasswordHint">Create Password</string>
+    <string name="registerNameHint">Name</string>
+    <string name="registerPhoneHint">Phone Number</string>
+    <string name="registerAddressHint">Address</string>
+    <string name="notifications">Notifications</string>
+    <string name="back">&lt;</string>
 </resources>
