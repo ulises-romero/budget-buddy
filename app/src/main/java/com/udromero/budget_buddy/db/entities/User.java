@@ -15,14 +15,14 @@ public class User {
     private String mPassword_hash;
     private String mFirstName;
     private String mLastName;
-    private int firstTimeLogin; // 1 = new user, 0 = existing user (used to decide whether to take through initialization process)
+    private String mFirstTimeLogin; // 1 = new user, 0 = existing user (used to decide whether to take through initialization process)
 
-    public User(String email, String password_hash, String firstName, String lastName, int firstTimeLogin) {
+    public User(String email, String password_hash, String firstName, String lastName, String firstTimeLogin) {
         mEmail = email;
         mPassword_hash = password_hash;
         mFirstName = firstName;
         mLastName = lastName;
-        this.firstTimeLogin = firstTimeLogin;
+        mFirstTimeLogin = firstTimeLogin;
     }
 
     public void setUserId(int userId) {
@@ -65,12 +65,12 @@ public class User {
         mLastName = lastName;
     }
 
-    public int getFirstTimeLogin() {
-        return firstTimeLogin;
+    public String getFirstTimeLogin() {
+        return mFirstTimeLogin;
     }
 
-    public void setFirstTimeLogin(int firstTimeLogin) {
-        this.firstTimeLogin = firstTimeLogin;
+    public void setFirstTimeLogin(String firstTimeLogin) {
+        mFirstTimeLogin = firstTimeLogin;
     }
 
     @NonNull
@@ -82,7 +82,7 @@ public class User {
                 ", mPassword_hash='" + mPassword_hash + '\'' +
                 ", mFirstName='" + mFirstName + '\'' +
                 ", mLastName='" + mLastName + '\'' +
-                ", firstTimeLogin=" + firstTimeLogin +
+                ", mFirstTimeLogin='" + mFirstTimeLogin + '\'' +
                 '}';
     }
 }

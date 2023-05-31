@@ -112,12 +112,15 @@ public class LoginActivity extends AppCompatActivity {
 
     private void checkForUserInDatabase(){
         mUser = mBudgetBuddyDAO.getUserByEmail(mEmail);
+
+        if(mUser == null){
+            mErrorResponse.setText(R.string.invalidEmailPrompt);
+        }
+
         if(mUser != null && verifyValidCredentials()){
             updateSharedPreferences();
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
-        } else {
-            mErrorResponse.setText(R.string.invalidEmailPrompt);
         }
     }
 
@@ -145,6 +148,7 @@ public class LoginActivity extends AppCompatActivity {
     private void getDataBase(){
         mBudgetBuddyDAO = Room.databaseBuilder(this, BudgetBuddyDatabase.class, BudgetBuddyDatabase.DATABASE_NAME)
                 .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
                 .build()
                 .BudgetBuddyDAO();
     }

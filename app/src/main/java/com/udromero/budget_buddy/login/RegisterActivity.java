@@ -76,7 +76,6 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private boolean getUserCredentials(){
@@ -103,11 +102,15 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
 
-        mUser = new User(mEmail, mPassword, mFirstName, mLastName, 1);
-        insertNewUserIntoDatabase();
+        if(!checkExistingUser()){
+            mUser = new User(mEmail, mPassword, mFirstName, mLastName, "y");
+            insertNewUserIntoDatabase();
+            return true;
+        }
 
         // User credentials successfully pulled as non-empty strings
-        return true;
+        mErrorResponse.setText(R.string.dupeEmailPrompt);
+        return false;
     }
 
     private void getDataBase(){
@@ -119,5 +122,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void insertNewUserIntoDatabase(){
         mBudgetBuddyDAO.insert(mUser);
+    }
+
+    private boolean checkExistingUser(){
+        User dupeUserCheck = mBudgetBuddyDAO.getUserByEmail(mEmail);
+        return dupeUserCheck != null;
     }
 }

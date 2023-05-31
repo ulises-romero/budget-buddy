@@ -1,7 +1,5 @@
 package com.udromero.budget_buddy.db;
 
-import android.app.Person;
-
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -38,6 +36,17 @@ public interface BudgetBuddyDAO {
     @Query("DELETE FROM " + BudgetBuddyDatabase.USER_TABLE + " WHERE mUserId=:userId")
     void deleteUserById(int userId);
 
+    @Query("UPDATE " + BudgetBuddyDatabase.USER_TABLE + " SET mFirstName=:firstName WHERE mUserId=:userId")
+    void updateUserFirstNameById(String firstName, int userId);
+
+    @Query("UPDATE " + BudgetBuddyDatabase.USER_TABLE + " SET mLastName=:lastName WHERE mUserId=:userId")
+    void updateUserLastNameById(String lastName, int userId);
+
+    @Query("UPDATE " + BudgetBuddyDatabase.USER_TABLE + " SET mEmail=:email WHERE mUserId=:userId")
+    void updateUserEmailById(String email, int userId);
+
+    @Query("UPDATE " + BudgetBuddyDatabase.USER_TABLE + " SET mPassword_hash=:password WHERE mUserId=:userId")
+    void updateUserPasswordById(String password, int userId);
 
     // Budget
     @Insert
