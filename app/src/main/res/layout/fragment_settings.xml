@@ -1,25 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SettingsFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/settingsTextView"
-        android:gravity="center"
+    android:layout_height="match_parent">
+    <FrameLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/settings" />
+        tools:context=".SettingsFragment">
 
-    <Button
-        android:id="@+id/settingsLogoutButton"
-        android:layout_width="130dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="@string/logout"
-        android:textSize="18sp" />
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:id="@+id/settingsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:text="@string/settings"
+            android:textSize="40sp" />
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/settingsUserInfoDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:gravity="center"
+            android:text="@string/settingsUserInfoDisplay"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/settingsNameDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:text="@string/settingsNameDisplay" />
+
+        <TextView
+            android:id="@+id/settingsEmailDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:gravity="center"
+            android:text="@string/settingsEmailDisplay" />
+
+        <TextView
+            android:id="@+id/settingsPasswordDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="160dp"
+            android:gravity="center"
+            android:text="@string/settingsPasswordDisplay" />
+
+        <TextView
+            android:id="@+id/settingsUpdateUserInfoDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="190dp"
+            android:gravity="center"
+            android:text="@string/settingsUpdateUserInfoDisplay"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/settingsFirstNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="220dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="@string/settingsUpdateFirstNameHint"
+            android:inputType="text"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/settingsLastNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="260dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="@string/settingsUpdateLastNameHint"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/settingsEmailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="@string/settingsUpdateEmailHint"
+            android:inputType="text"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/settingsPasswordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="340dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="@string/settingsUpdatePasswordHint"
+            android:inputType="text"
+            android:textSize="15sp"/>
+
+        <Button
+            android:id="@+id/settingsUpdateUserInfo"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="390dp"
+            android:text="@string/updateUserInfo"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/settingsResetBudgetButton"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="450dp"
+            android:text="@string/settingsResetBudget"
+            android:backgroundTint="#FF0000"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/settingsLogoutButton"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="510dp"
+            android:text="@string/logout"
+            android:textSize="18sp" />
+    </FrameLayout>
+</ScrollView>

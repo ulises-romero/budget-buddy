@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">budget-buddy</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="settings">Settings Page</string>
-    <string name="overview">Overview Page</string>
-    <string name="monthly">Monthly Page</string>
-    <string name="budget">Budget Page</string>
+    <string name="settings">Settings</string>
+    <string name="overview">Overview</string>
+    <string name="monthly">Monthly Overview</string>
+    <string name="budget">My Budget</string>
 
     <!-- Common Strings -->
     <string name="logout">Logout</string>
@@ -37,5 +37,24 @@
     <string name="missingEmailAddressField">Missing Required Field: Please enter a valid email address.</string>
     <string name="missingPasswordField">Missing Required Field: Please enter a password.</string>
     <string name="invalidEmailPrompt">Oops we couldn\'t find a user with that email, please try again.</string>
-    <string name="invalidCredentialsPrompt">Invalid credentials, please try again.</string>
+    <string name="invalidCredentialsPrompt">Wrong password, please try again.</string>
+    <string name="settingsResetBudget">Reset Budget</string>
+    <string name="updateUserInfo">Update Info</string>
+
+    <string name="settingsNameDisplay">Name: %1$s</string>
+    <string name="settingsEmailDisplay">Email: %1$s</string>
+    <string name="settingsPasswordDisplay">Password: %1$s</string>
+    <string name="settingsUserInfoDisplay">User Information</string>
+    <string name="settingsUpdateUserInfoDisplay">Update Information</string>
+
+    <string name="settingsUpdateFirstNameHint">Change First Name</string>
+    <string name="settingsUpdateLastNameHint">Change Last Name</string>
+    <string name="settingsUpdatePasswordHint">Change Password</string>
+    <string name="settingsUpdateEmailHint">Change Email</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome">Welcome, %1$s</string>
+    <string name="welcomePrompt">Thank you for choosing Budget Buddy!\nBefore you begin your journey of financial responsibility, please respond to the following questions as accurately as possible.</string>
+    <string name ="Proceed">Proceed</string>
+    <string name="dupeEmailPrompt">A user with that email already exists. Please use another email address.</string>
 </resources>
