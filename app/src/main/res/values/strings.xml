@@ -55,6 +55,31 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcome">Welcome, %1$s</string>
     <string name="welcomePrompt">Thank you for choosing Budget Buddy!\nBefore you begin your journey of financial responsibility, please respond to the following questions as accurately as possible.</string>
-    <string name ="Proceed">Proceed</string>
+    <string name="Proceed">Proceed</string>
     <string name="dupeEmailPrompt">A user with that email already exists. Please use another email address.</string>
+
+    <string name="income">Income</string>
+    <string name="housing">Housing</string>
+    <string name="food">Food</string>
+    <string name="personal">Personal</string>
+    <string name="giving">Giving</string>
+    <string name="transportation">Transportation</string>
+    <string name="other">Other</string>
+    <string name="ezexpense">EzExpense</string>
+    <string name="save">save</string>
+    <string name="paycheckFrequencyPrompt">How frequently are you paid?</string>
+    <string name="budgetInitPrompt">At a minimum please populate these fields.\nThen we can initiate the budget overview page.</string>
+    <string name="monthlyMonth">Monthly</string>
+    <string name="bi_weekly">Bi-Weekly</string>
+    <string name="weekly">Weekly</string>
+
+    <string name="incomeIncomeDisplay">Income: $%1$s</string>
+    <string name="incomePaymentFrequencyDisplay">Payment Frequency: %1$s</string>
+    <string name="incomeNextPaydayDisplay">Next Payday: %1$s</string>
+    <string name="current_information">Current Information</string>
+
+    <string name="incomeIncomeInputPrompt">%1$s Income</string>
+    <string name="incomeEnterIncomeAmountHint">Enter Income Amount (ex: 1500.00)</string>
+    <string name="next">next</string>
+    <string name="next_paycheck_date">Next Paycheck Date?</string>
 </resources>

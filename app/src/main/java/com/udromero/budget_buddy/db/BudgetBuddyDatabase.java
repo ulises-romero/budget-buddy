@@ -13,7 +13,7 @@ import com.udromero.budget_buddy.db.entities.Personal;
 import com.udromero.budget_buddy.db.entities.Transportation;
 import com.udromero.budget_buddy.db.entities.User;
 
-@Database(entities = {Budget.class, Food.class, Giving.class, Housing.class, Other.class, Personal.class, Transportation.class, User.class}, version = 3)
+@Database(entities = {Budget.class, Food.class, Giving.class, Housing.class, Other.class, Personal.class, Transportation.class, User.class}, version = 4)
 @TypeConverters({Converters.class})
 public abstract class BudgetBuddyDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "BUDGET_BUDDY_DATABASE";

@@ -1,5 +1,6 @@
 package com.udromero.budget_buddy;
 
+import static com.udromero.budget_buddy.Constants.BUDGET_ID_KEY;
 import static com.udromero.budget_buddy.Constants.LOGGED_IN_KEY;
 import static com.udromero.budget_buddy.Constants.PREFERENCES_KEY;
 import static com.udromero.budget_buddy.Constants.USER_ID_KEY;
@@ -25,52 +26,7 @@ import com.udromero.budget_buddy.db.BudgetBuddyDatabase;
 import com.udromero.budget_buddy.db.entities.User;
 import com.udromero.budget_buddy.login.LoginActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SettingsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SettingsFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public SettingsFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SettingsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SettingsFragment newInstance(String param1, String param2) {
-        SettingsFragment fragment = new SettingsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     SharedPreferences userSharedPreferences;
 
@@ -92,6 +48,8 @@ public class SettingsFragment extends Fragment {
 
     int mUserId;
     User mUser;
+
+    int mBudgetId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -132,7 +90,9 @@ public class SettingsFragment extends Fragment {
         resetBudgetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                mBudgetBuddyDAO.updateUserFirstTimeLogin("y", mUserId);
+                mBudgetBuddyDAO.deleteBudgetByBudgetId(mBudgetId);
+                logoutUser();
             }
         });
 
@@ -144,14 +104,13 @@ public class SettingsFragment extends Fragment {
         });
 
         return view;
-        // Inflate the layout for this fragment
-        // return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 
     private void logoutUser(){
         SharedPreferences.Editor editor = userSharedPreferences.edit();
         editor.putInt(USER_ID_KEY, -1);
         editor.putBoolean(LOGGED_IN_KEY, false);
+        editor.putInt(BUDGET_ID_KEY, -1);
         editor.apply();
 
         Intent intent = new Intent(this.getActivity().getApplicationContext(), LoginActivity.class);
@@ -161,6 +120,7 @@ public class SettingsFragment extends Fragment {
     private void getPrefs() {
         userSharedPreferences = this.getActivity().getSharedPreferences(PREFERENCES_KEY, Context.MODE_PRIVATE);
         mUserId = userSharedPreferences.getInt(USER_ID_KEY, -1);
+        mBudgetId = userSharedPreferences.getInt(BUDGET_ID_KEY, -1);
         mUser = mBudgetBuddyDAO.getUserByUserId(mUserId);
 
         if(mUser == null){

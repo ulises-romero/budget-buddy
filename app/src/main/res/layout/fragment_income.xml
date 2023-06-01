@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".budget.IncomeFragment">
+
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:id="@+id/incomeCurrentInfoDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:text="@string/current_information"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/incomeIncomeDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="80dp"
+            android:text="@string/incomeIncomeDisplay"
+            android:textAlignment="textStart"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/incomePaymentFrequencyDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:textAlignment="textStart"
+            android:layout_marginStart="50dp"
+
+            android:text="@string/incomePaymentFrequencyDisplay"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/incomePaydayInfoDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:textAlignment="textStart"
+            android:layout_marginStart="50dp"
+
+            android:text="@string/incomeNextPaydayDisplay"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/incomePromptDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+            android:text="@string/budgetInitPrompt"
+            android:textColor="#FF0000"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/incomePaycheckFrequencyDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="190dp"
+            android:gravity="center"
+            android:text="@string/paycheckFrequencyPrompt"
+            android:textSize="25sp" />
+
+        <RadioGroup
+            android:id="@+id/incomeRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="230dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButtonWeekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="20dp"
+                android:text="@string/weekly"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonBiWeekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="20dp"
+                android:text="@string/bi_weekly"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonMonthly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/monthlyMonth"/>
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/incomeNextButton"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="285dp"
+            android:text="@string/next"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/incomePaydayDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="285dp"
+            android:gravity="center"
+            android:text="When's payday?"
+            android:textSize="25sp" />
+
+        <RadioGroup
+            android:id="@+id/incomeWeekBasedPayDayRadioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="325dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButtonSunday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sun"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonMonday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mon"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonTuesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tues"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonWednesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wed"/>
+            <RadioButton
+                android:id="@+id/radioButtonThursday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thurs"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonFriday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fri"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonSaturday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sat"/>
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/incomeMonthlyPaydayRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="325dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButtonStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="20dp"
+                android:text="Start of month"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="20dp"
+                android:text="End of month"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonSpecificDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set Date"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/incomeWhatToDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="500dp"
+            android:gravity="center"
+            android:text=""
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/incomeIncomeInputDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="380dp"
+            android:gravity="center"
+            android:text="@string/incomeIncomeInputPrompt"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/incomeIncomeInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="420dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="@string/incomeEnterIncomeAmountHint"
+            android:inputType="numberDecimal"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/incomeNextPaycheckDateDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="465dp"
+            android:gravity="center"
+            android:text="@string/next_paycheck_date"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/incomeSetPayDateButton"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="510dp"
+            android:text="Set Date"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/incomeSaveButton"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="580dp"
+            android:text="@string/save"
+            android:textSize="18sp" />
+
+
+
+    </FrameLayout>
+</ScrollView>

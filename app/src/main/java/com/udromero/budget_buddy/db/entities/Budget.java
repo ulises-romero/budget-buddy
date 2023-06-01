@@ -28,15 +28,13 @@ public class Budget {
     private String mTotalRecurringExpenses;
 
     // Other Optional Attributes
-    private String mMonthlyIncome = nullString;
-    private String mBiweeklyIncome = nullString;
-    private String mWeeklyIncome = nullString;
+    private String mIncome = nullString;
     private String mExpenseCategories = nullString;
     private String mMonthlyPayday = nullString;
     private String mBiweeklyPayday = nullString;
     private String mWeeklyPayday = nullString;
 
-    public Budget(int userId, int paycheckFrequency) {
+    public Budget(int userId) {
         mUserId = userId;
         mHousingId = nullInt;
         mGivingId = nullInt;
@@ -44,7 +42,7 @@ public class Budget {
         mTransportationId = nullInt;
         mFoodId = nullInt;
         mOtherId = nullInt;
-        mPaycheckFrequency = paycheckFrequency;
+        mPaycheckFrequency = 0;
         mTotalRecurringExpenses = "0";
     }
 
@@ -128,28 +126,12 @@ public class Budget {
         mTotalRecurringExpenses = totalRecurringExpenses;
     }
 
-    public String getMonthlyIncome() {
-        return mMonthlyIncome;
+    public String getIncome() {
+        return mIncome;
     }
 
-    public void setMonthlyIncome(String monthlyIncome) {
-        mMonthlyIncome = monthlyIncome;
-    }
-
-    public String getBiweeklyIncome() {
-        return mBiweeklyIncome;
-    }
-
-    public void setBiweeklyIncome(String biweeklyIncome) {
-        mBiweeklyIncome = biweeklyIncome;
-    }
-
-    public String getWeeklyIncome() {
-        return mWeeklyIncome;
-    }
-
-    public void setWeeklyIncome(String weeklyIncome) {
-        mWeeklyIncome = weeklyIncome;
+    public void setIncome(String income) {
+        mIncome = income;
     }
 
     public String getExpenseCategories() {
@@ -198,9 +180,7 @@ public class Budget {
                 ", mOtherId=" + mOtherId +
                 ", mPaycheckFrequency=" + mPaycheckFrequency +
                 ", mTotalRecurringExpenses='" + mTotalRecurringExpenses + '\'' +
-                ", mMonthlyIncome='" + mMonthlyIncome + '\'' +
-                ", mBiweeklyIncome='" + mBiweeklyIncome + '\'' +
-                ", mWeeklyIncome='" + mWeeklyIncome + '\'' +
+                ", mIncome='" + mIncome + '\'' +
                 ", mExpenseCategories='" + mExpenseCategories + '\'' +
                 ", mMonthlyPayday='" + mMonthlyPayday + '\'' +
                 ", mBiweeklyPayday='" + mBiweeklyPayday + '\'' +
