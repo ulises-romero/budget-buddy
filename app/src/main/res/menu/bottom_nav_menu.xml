@@ -4,8 +4,8 @@
     <item android:title="Overview"
         android:icon="@drawable/ic_baseline_bar_chart_24"
         android:id="@+id/overview"/>
-    <item android:title="Monthly"
-        android:icon="@drawable/ic_baseline_calendar_month_24"
+    <item android:title="EzExpense"
+        android:icon="@drawable/ic_baseline_trending_down_24"
         android:id="@+id/monthly"/>
     <item android:title="Budget"
         android:icon="@drawable/ic_baseline_attach_money_24"

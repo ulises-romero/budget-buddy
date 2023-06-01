@@ -48,6 +48,15 @@ public interface BudgetBuddyDAO {
     @Query("UPDATE " + BudgetBuddyDatabase.USER_TABLE + " SET mPassword_hash=:password WHERE mUserId=:userId")
     void updateUserPasswordById(String password, int userId);
 
+    @Query("SELECT mFirstTimeLogin FROM " + BudgetBuddyDatabase.USER_TABLE + " WHERE mUserId=:userId")
+    String getUserFirstTimeLogin(int userId);
+
+    @Query("UPDATE " + BudgetBuddyDatabase.USER_TABLE + " SET mFirstTimeLogin=:firstTimeLogin WHERE mUserId=:userId")
+    void updateUserFirstTimeLogin(String firstTimeLogin, int userId);
+
+    @Query("DELETE FROM " + BudgetBuddyDatabase.USER_TABLE + " WHERE mUserId=:userId")
+    void deleteUserByUserId(int userId);
+
     // Budget
     @Insert
     void insert(Budget...budgets);
@@ -60,6 +69,18 @@ public interface BudgetBuddyDAO {
 
     @Query("SELECT * FROM " + BudgetBuddyDatabase.BUDGET_TABLE + " WHERE mBudgetId = :budgetId")
     Budget getBudgetById(int budgetId);
+
+    @Query("SELECT * FROM " + BudgetBuddyDatabase.BUDGET_TABLE + " WHERE mUserId = :userId")
+    Budget getBudgetByUserId(int userId);
+
+    @Query("DELETE FROM " + BudgetBuddyDatabase.BUDGET_TABLE + " WHERE mBudgetId=:budgetId")
+    void deleteBudgetByBudgetId(int budgetId);
+
+    @Query("UPDATE " + BudgetBuddyDatabase.BUDGET_TABLE + " SET mPaycheckFrequency=:paycheckFreq WHERE mBudgetId=:budgetId")
+    void updateBudgetPayCheckFrequency(int paycheckFreq, int budgetId);
+
+    @Query("UPDATE " + BudgetBuddyDatabase.BUDGET_TABLE + " SET mIncome=:income WHERE mUserId=:userId")
+    void updateBudgetIncomeByUserId(String income, int userId);
 
     // [TABLES/ENTITIES/EXPENSE CATEGORIES]
 

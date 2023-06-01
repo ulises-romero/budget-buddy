@@ -116,6 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void getDataBase(){
         mBudgetBuddyDAO = Room.databaseBuilder(this, BudgetBuddyDatabase.class, BudgetBuddyDatabase.DATABASE_NAME)
                 .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
                 .build()
                 .BudgetBuddyDAO();
     }

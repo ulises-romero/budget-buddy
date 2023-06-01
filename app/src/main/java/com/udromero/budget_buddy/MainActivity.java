@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             if(id == R.id.overview){
                 switchFragment(new OverviewFragment());
             } else if(id == R.id.monthly){
-                switchFragment(new MonthlyViewFragment());
+                switchFragment(new QuickExpenseFragment());
             } else if(id == R.id.budget){
                 switchFragment(new MyBudgetFragment());
             } else if(id == R.id.settings){
