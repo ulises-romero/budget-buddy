@@ -82,4 +82,5 @@
     <string name="incomeEnterIncomeAmountHint">Enter Income Amount (ex: 1500.00)</string>
     <string name="next">next</string>
     <string name="next_paycheck_date">Next Paycheck Date?</string>
+    <string name="update">Update</string>
 </resources>

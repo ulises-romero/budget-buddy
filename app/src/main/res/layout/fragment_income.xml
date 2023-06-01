@@ -61,6 +61,15 @@
             android:textColor="#FF0000"
             android:textSize="12sp" />
 
+        <Button
+            android:id="@+id/incomeUpdateButton"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="150dp"
+            android:text="@string/update"
+            android:textSize="18sp" />
+
         <TextView
             android:id="@+id/incomePaycheckFrequencyDisplay"
             android:layout_width="match_parent"
