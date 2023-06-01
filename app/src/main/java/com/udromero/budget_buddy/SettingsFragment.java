@@ -1,9 +1,12 @@
 package com.udromero.budget_buddy;
 
 import static com.udromero.budget_buddy.Constants.BUDGET_ID_KEY;
+import static com.udromero.budget_buddy.Constants.DAY_PAYDAY_INT_KEY;
 import static com.udromero.budget_buddy.Constants.LOGGED_IN_KEY;
+import static com.udromero.budget_buddy.Constants.MONTH_PAYDAY_INT_KEY;
 import static com.udromero.budget_buddy.Constants.PREFERENCES_KEY;
 import static com.udromero.budget_buddy.Constants.USER_ID_KEY;
+import static com.udromero.budget_buddy.Constants.YEAR_PAYDAY_INT_KEY;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +26,7 @@ import android.widget.Toast;
 
 import com.udromero.budget_buddy.db.BudgetBuddyDAO;
 import com.udromero.budget_buddy.db.BudgetBuddyDatabase;
+import com.udromero.budget_buddy.db.entities.Budget;
 import com.udromero.budget_buddy.db.entities.User;
 import com.udromero.budget_buddy.login.LoginActivity;
 
@@ -91,7 +95,14 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mBudgetBuddyDAO.updateUserFirstTimeLogin("y", mUserId);
+                Budget budget = mBudgetBuddyDAO.getBudgetByUserId(mUserId);
+                mBudgetId = budget.getBudgetId();
                 mBudgetBuddyDAO.deleteBudgetByBudgetId(mBudgetId);
+                SharedPreferences.Editor editor = userSharedPreferences.edit();
+                editor.putInt(MONTH_PAYDAY_INT_KEY, 0);
+                editor.putInt(DAY_PAYDAY_INT_KEY, 0);
+                editor.putInt(YEAR_PAYDAY_INT_KEY, 0);
+                editor.apply();
                 logoutUser();
             }
         });
