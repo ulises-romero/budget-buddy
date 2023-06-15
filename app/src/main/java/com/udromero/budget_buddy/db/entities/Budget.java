@@ -16,16 +16,24 @@ public class Budget {
 
     // Foreign Keys (pass in -1 to show a table needs to be added or not)
     private int mUserId;
-    private int mHousingId;
     private int mGivingId;
-    private int mPersonalId;
-    private int mTransportationId;
+    private int mSavingsId;
+    private int mHousingId;
     private int mFoodId;
+    private int mTransportationId;
+    private int mPersonalId;
+    private int mLifestyleId;
+    private int mHealthId;
+    private int mInsuranceId;
+    private int mDebtId;
+
     private int mOtherId;
 
     // Non-null Attributes
     private int mPaycheckFrequency; // must be value of 7, 14, or 30
     private String mTotalRecurringExpenses;
+    private String mTotalPlannedExpenses;
+    private String mTotalSpent;
 
     // Other Optional Attributes
     private String mIncome = nullString;
@@ -34,16 +42,24 @@ public class Budget {
     private String mBiweeklyPayday = nullString;
     private String mWeeklyPayday = nullString;
 
-    public Budget(int userId) {
+    public Budget(int userId, int givingId, int savingsId, int housingId, int foodId, int transportationId, int personalId, int lifestyleId, int healthId, int insuranceId, int debtId) {
         mUserId = userId;
-        mHousingId = nullInt;
-        mGivingId = nullInt;
-        mPersonalId = nullInt;
-        mTransportationId = nullInt;
-        mFoodId = nullInt;
+        mGivingId = givingId;
+        mSavingsId = savingsId;
+        mHousingId = housingId;
+        mFoodId = foodId;
+        mTransportationId = transportationId;
+        mPersonalId = personalId;
+        mLifestyleId = lifestyleId;
+        mHealthId = healthId;
+        mInsuranceId = insuranceId;
+        mDebtId = debtId;
         mOtherId = nullInt;
+
         mPaycheckFrequency = 0;
         mTotalRecurringExpenses = "0";
+        mTotalPlannedExpenses = "0";
+        mTotalSpent = "0";
     }
 
     public int getBudgetId() {
@@ -62,14 +78,6 @@ public class Budget {
         mUserId = userId;
     }
 
-    public int getHousingId() {
-        return mHousingId;
-    }
-
-    public void setHousingId(int housingId) {
-        mHousingId = housingId;
-    }
-
     public int getGivingId() {
         return mGivingId;
     }
@@ -78,12 +86,28 @@ public class Budget {
         mGivingId = givingId;
     }
 
-    public int getPersonalId() {
-        return mPersonalId;
+    public int getSavingsId() {
+        return mSavingsId;
     }
 
-    public void setPersonalId(int personalId) {
-        mPersonalId = personalId;
+    public void setSavingsId(int savingsId) {
+        mSavingsId = savingsId;
+    }
+
+    public int getHousingId() {
+        return mHousingId;
+    }
+
+    public void setHousingId(int housingId) {
+        mHousingId = housingId;
+    }
+
+    public int getFoodId() {
+        return mFoodId;
+    }
+
+    public void setFoodId(int foodId) {
+        mFoodId = foodId;
     }
 
     public int getTransportationId() {
@@ -94,12 +118,44 @@ public class Budget {
         mTransportationId = transportationId;
     }
 
-    public int getFoodId() {
-        return mFoodId;
+    public int getPersonalId() {
+        return mPersonalId;
     }
 
-    public void setFoodId(int foodId) {
-        mFoodId = foodId;
+    public void setPersonalId(int personalId) {
+        mPersonalId = personalId;
+    }
+
+    public int getLifestyleId() {
+        return mLifestyleId;
+    }
+
+    public void setLifestyleId(int lifestyleId) {
+        mLifestyleId = lifestyleId;
+    }
+
+    public int getHealthId() {
+        return mHealthId;
+    }
+
+    public void setHealthId(int healthId) {
+        mHealthId = healthId;
+    }
+
+    public int getInsuranceId() {
+        return mInsuranceId;
+    }
+
+    public void setInsuranceId(int insuranceId) {
+        mInsuranceId = insuranceId;
+    }
+
+    public int getDebtId() {
+        return mDebtId;
+    }
+
+    public void setDebtId(int debtId) {
+        mDebtId = debtId;
     }
 
     public int getOtherId() {
@@ -124,6 +180,22 @@ public class Budget {
 
     public void setTotalRecurringExpenses(String totalRecurringExpenses) {
         mTotalRecurringExpenses = totalRecurringExpenses;
+    }
+
+    public String getTotalPlannedExpenses() {
+        return mTotalPlannedExpenses;
+    }
+
+    public void setTotalPlannedExpenses(String totalPlannedExpenses) {
+        mTotalPlannedExpenses = totalPlannedExpenses;
+    }
+
+    public String getTotalSpent() {
+        return mTotalSpent;
+    }
+
+    public void setTotalSpent(String totalSpent) {
+        mTotalSpent = totalSpent;
     }
 
     public String getIncome() {
@@ -172,14 +244,21 @@ public class Budget {
         return "Budget{" +
                 "mBudgetId=" + mBudgetId +
                 ", mUserId=" + mUserId +
-                ", mHousingId=" + mHousingId +
                 ", mGivingId=" + mGivingId +
-                ", mPersonalId=" + mPersonalId +
-                ", mTransportationId=" + mTransportationId +
+                ", mSavingsId=" + mSavingsId +
+                ", mHousingId=" + mHousingId +
                 ", mFoodId=" + mFoodId +
+                ", mTransportationId=" + mTransportationId +
+                ", mPersonalId=" + mPersonalId +
+                ", mLifestyleId=" + mLifestyleId +
+                ", mHealthId=" + mHealthId +
+                ", mInsuranceId=" + mInsuranceId +
+                ", mDebtId=" + mDebtId +
                 ", mOtherId=" + mOtherId +
                 ", mPaycheckFrequency=" + mPaycheckFrequency +
                 ", mTotalRecurringExpenses='" + mTotalRecurringExpenses + '\'' +
+                ", mTotalPlannedExpenses='" + mTotalPlannedExpenses + '\'' +
+                ", mTotalSpent='" + mTotalSpent + '\'' +
                 ", mIncome='" + mIncome + '\'' +
                 ", mExpenseCategories='" + mExpenseCategories + '\'' +
                 ", mMonthlyPayday='" + mMonthlyPayday + '\'' +

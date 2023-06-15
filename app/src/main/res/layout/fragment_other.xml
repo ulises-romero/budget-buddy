@@ -5,10 +5,86 @@
     android:layout_height="match_parent"
     tools:context=".budget.OtherFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/savingsPageLogo"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="52dp"
+        android:contentDescription="@string/page_logo"
+        android:src="@drawable/add" />
+
+    <Button
+        android:id="@+id/givingRefreshButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:layout_gravity="right"
+        android:background="@drawable/ic_baseline_refresh_24"
+        android:layout_marginTop="55dp"/>
+
+    <Button
+        android:id="@+id/otherAddButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:layout_gravity="right"
+        android:background="@drawable/ic_baseline_add_circle_24"
+        android:layout_marginTop="120dp"/>
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/givingErrorDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="150dp"
+        android:gravity="center"
+        android:text="@string/blank"
+        android:textColor="#FF0000"
+        android:textSize="12sp" />
+
+    <!-- Percent Ranges -->
+
+    <TextView
+        android:id="@+id/givingIncomeTotalPercentageRangeDisplay"
+        android:layout_marginTop="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Remaining Income:"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/givingUserIncomeCalculatedRangeDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="125dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/variableString"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/givingPlannedAmountDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:paddingEnd="135dp"
+        android:layout_marginTop="165dp"
+        android:text="Planned"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/givingRecurringDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="165dp"
+        android:paddingEnd="15dp"
+        android:text="@string/recurring"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="20sp" />
 
 </FrameLayout>

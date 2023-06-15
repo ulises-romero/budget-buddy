@@ -12,11 +12,22 @@ import com.udromero.budget_buddy.db.entities.Giving;
 import com.udromero.budget_buddy.db.entities.Housing;
 import com.udromero.budget_buddy.db.entities.Other;
 import com.udromero.budget_buddy.db.entities.Personal;
+import com.udromero.budget_buddy.db.entities.Savings;
 import com.udromero.budget_buddy.db.entities.Transportation;
 import com.udromero.budget_buddy.db.entities.User;
 
 @Dao
 public interface BudgetBuddyDAO {
+
+    @Query("DELETE FROM " + BudgetBuddyDatabase.USER_TABLE)
+    void nukeUserTable();
+
+    @Query("DELETE FROM " + BudgetBuddyDatabase.BUDGET_TABLE)
+    void nukeBudgetTable();
+
+    @Query("DELETE FROM " + BudgetBuddyDatabase.GIVING_TABLE)
+    void nukeGivingTable();
+
     // Users
     @Insert
     void insert(User...users);
@@ -82,7 +93,61 @@ public interface BudgetBuddyDAO {
     @Query("UPDATE " + BudgetBuddyDatabase.BUDGET_TABLE + " SET mIncome=:income WHERE mUserId=:userId")
     void updateBudgetIncomeByUserId(String income, int userId);
 
+    @Query("UPDATE " + BudgetBuddyDatabase.BUDGET_TABLE + " SET mGivingId=:givingId WHERE mUserId=:userId")
+    void updateBudgetGivingIdByUserId(int givingId, int userId);
+
     // [TABLES/ENTITIES/EXPENSE CATEGORIES]
+
+    // [GIVING]
+    @Insert
+    void insert(Giving...givings);
+
+    @Update
+    void update(Giving...givings);
+
+    @Delete
+    void delete(Giving...givings);
+
+    @Query("SELECT * FROM " + BudgetBuddyDatabase.GIVING_TABLE + " WHERE mUserId = :userId")
+    Giving getGivingExpensesByUserId(int userId);
+
+    // Church
+
+    @Query("UPDATE " + BudgetBuddyDatabase.GIVING_TABLE + " SET mChurchPlanned=:churchPlanned WHERE mUserId=:userId")
+    void updateChurchPlannedByUserId(String churchPlanned, int userId);
+
+    @Query("UPDATE " + BudgetBuddyDatabase.GIVING_TABLE + " SET mChurchRecurring=:churchRecurring WHERE mUserId=:userId")
+    void updateChurchRecurringByUserId(int churchRecurring, int userId);
+
+    // Charity
+
+    @Query("UPDATE " + BudgetBuddyDatabase.GIVING_TABLE + " SET mCharityPlanned=:charityPlanned WHERE mUserId=:userId")
+    void updateCharityPlannedByUserId(String charityPlanned, int userId);
+
+    @Query("UPDATE " + BudgetBuddyDatabase.GIVING_TABLE + " SET mCharityRecurring=:charityRecurring WHERE mUserId=:userId")
+    void updateCharityRecurringByUserId(int charityRecurring, int userId);
+
+    // Giving Total
+
+    @Query("UPDATE " + BudgetBuddyDatabase.GIVING_TABLE + " SET mTotalPlanned=:totalPlanned WHERE mUserId=:userId")
+    void updateGivingTotalPlannedByUserId(String totalPlanned, int userId);
+
+    @Query("UPDATE " + BudgetBuddyDatabase.GIVING_TABLE + " SET mTotalRecurring=:totalRecurring WHERE mUserId=:userId")
+    void updateGivingRecurringTotalByUserId(String totalRecurring, int userId);
+
+    // [SAVINGS]
+    @Insert
+    void insert(Savings...savings);
+
+    @Update
+    void update(Savings...savings);
+
+    @Delete
+    void delete(Savings...savings);
+
+    @Query("SELECT * FROM " + BudgetBuddyDatabase.SAVINGS_TABLE + " WHERE mUserId = :userId")
+    Savings getSavingsExpensesByUserId(int userId);
+
 
     // Food
     @Insert
@@ -97,19 +162,6 @@ public interface BudgetBuddyDAO {
     @Query("SELECT * FROM " + BudgetBuddyDatabase.FOOD_TABLE + " WHERE mFoodId = :foodId")
     Food getFoodExpensesById(int foodId);
 
-    // Giving
-    @Insert
-    void insert(Giving...givings);
-
-    @Update
-    void update(Giving...givings);
-
-    @Delete
-    void delete(Giving...givings);
-
-    @Query("SELECT * FROM " + BudgetBuddyDatabase.GIVING_TABLE + " WHERE mGivingId = :givingId")
-    Giving getGivingExpensesById(int givingId);
-
     // Housing
     @Insert
     void insert(Housing...housings);
@@ -122,19 +174,6 @@ public interface BudgetBuddyDAO {
 
     @Query("SELECT * FROM " + BudgetBuddyDatabase.HOUSING_TABLE + " WHERE mHousingId = :housingId")
     Housing getHousingExpensesById(int housingId);
-
-    // Other
-    @Insert
-    void insert(Other...others);
-
-    @Update
-    void update(Other...others);
-
-    @Delete
-    void delete(Other...others);
-
-    @Query("SELECT * FROM " + BudgetBuddyDatabase.OTHER_TABLE + " WHERE mOtherId = :otherId")
-    Other getOtherExpensesById(int otherId);
 
     // Personal
     @Insert

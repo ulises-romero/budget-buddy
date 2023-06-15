@@ -10,13 +10,12 @@ import android.view.ViewGroup;
 
 import com.udromero.budget_buddy.R;
 
-public class OtherFragment extends Fragment {
+public class LifestyleFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_other, container, false);
-
-        return view;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_lifestyle, container, false);
     }
 }

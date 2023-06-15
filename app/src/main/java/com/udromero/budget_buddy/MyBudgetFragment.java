@@ -1,5 +1,8 @@
 package com.udromero.budget_buddy;
 
+import static com.udromero.budget_buddy.Constants.TAB_INDEX_KEY;
+import static com.udromero.budget_buddy.Constants.TAB_NAME_KEY;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 

@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="red">#FF0000</color>
+    <color name="orange">#FFA200</color>
+    <color name="yellow">#FBFF00</color>
+    <color name="green">#00FF2A</color>
+    <color name="gray">#9A9A9A</color>
+
+<!--    <item name="red" type="id">FF00000</item>-->
 </resources>

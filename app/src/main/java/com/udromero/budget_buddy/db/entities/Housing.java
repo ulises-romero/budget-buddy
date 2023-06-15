@@ -1,5 +1,7 @@
 package com.udromero.budget_buddy.db.entities;
 
+import static com.udromero.budget_buddy.Constants.zeroString;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -12,58 +14,187 @@ public class Housing {
     private int mHousingId;
 
     // Non-null Attributes
-    private String mTotal;
-    private String mRecurring_total;
+    private String mTotalPlanned;
+    private String mTotalRecurring;
+    private String mTotalSpent;
 
     // Other Attributes
-    private String mMortgageRent;
+    private String mMortgageRentPlanned;
+    private String mMortgageRentSpent;
     private int mMortgageRentRecurring;
-    private String mUtilities;
-    private int mUtilitiesRecurring;
-    private String mOther;
-    private String mOtherRecurring;
 
-    public Housing(String total, String recurring_total, String mortgageRent, int mortgageRentRecurring, String utilities, int utilitiesRecurring, String other, String otherRecurring) {
-        mTotal = total;
-        mRecurring_total = recurring_total;
-        mMortgageRent = mortgageRent;
+    private String mWaterPlanned;
+    private String mWaterSpent;
+    private int mWaterRecurring;
+
+    private String mNaturalGasPlanned;
+    private String mNaturalGasSpent;
+    private int mNaturalGasRecurring;
+
+    private String mElectricityPlanned;
+    private String mElectricitySpent;
+    private int mElectricityRecurring;
+
+    private String mCableInternetPlanned;
+    private String mCableInternetSpent;
+    private int mCableInternetRecurring;
+
+    private String mOtherHousingExpenses;
+
+    public Housing(String mortgageRentPlanned, int mortgageRentRecurring, String waterPlanned, int waterRecurring, String naturalGasPlanned, int naturalGasRecurring, String electricityPlanned, int electricityRecurring, String cableInternetPlanned, int cableInternetRecurring, String otherHousingExpenses) {
+        mMortgageRentPlanned = mortgageRentPlanned;
         mMortgageRentRecurring = mortgageRentRecurring;
-        mUtilities = utilities;
-        mUtilitiesRecurring = utilitiesRecurring;
-        mOther = other;
-        mOtherRecurring = otherRecurring;
+        mWaterPlanned = waterPlanned;
+        mWaterRecurring = waterRecurring;
+        mNaturalGasPlanned = naturalGasPlanned;
+        mNaturalGasRecurring = naturalGasRecurring;
+        mElectricityPlanned = electricityPlanned;
+        mElectricityRecurring = electricityRecurring;
+        mCableInternetPlanned = cableInternetPlanned;
+        mCableInternetRecurring = cableInternetRecurring;
+        mOtherHousingExpenses = otherHousingExpenses;
+
+        // Populate remaining member variables accordingly
+        mTotalPlanned = calculateTotalPlanned();
+        mTotalRecurring = calculateTotalRecurring();
+
+        // Set all spent values to "0"
+        mTotalSpent = "0";
+        mMortgageRentSpent = "0";
+        mWaterSpent = zeroString;
+        mNaturalGasSpent = zeroString;
+        mElectricitySpent = zeroString;
+        mCableInternetSpent = zeroString;
     }
 
-    public void setHousingId(int housingId) {
-        mHousingId = housingId;
+    private String calculateTotalPlanned(){
+        String result;
+
+        double mortgageRent = 0;
+        double water = 0;
+        double naturalGas = 0;
+        double electricity = 0;
+        double cableInternent = 0;
+
+        if(!mMortgageRentPlanned.isEmpty()){
+            mortgageRent = Double.parseDouble(mMortgageRentPlanned);
+        }
+
+        if(!mWaterPlanned.isEmpty()){
+            water = Double.parseDouble(mWaterPlanned);
+        }
+
+        if(!mNaturalGasPlanned.isEmpty()){
+            naturalGas = Double.parseDouble(mNaturalGasPlanned);
+        }
+
+        if(!mElectricityPlanned.isEmpty()){
+            electricity = Double.parseDouble(mElectricityPlanned);
+        }
+
+        if(!mCableInternetPlanned.isEmpty()){
+            cableInternent = Double.parseDouble(mCableInternetPlanned);
+        }
+
+        double total = mortgageRent + water + naturalGas + electricity + cableInternent;
+        result = String.valueOf(total);
+
+        return result;
+    }
+
+    public String calculateTotalRecurring(){
+        String result;
+
+        // Amount's for each sub-category
+        double mortgageRentAmount = 0;
+        double waterAmount = 0;
+        double naturalGasAmount = 0;
+        double electricityAmount = 0;
+        double cableInternetAmount = 0;
+
+        // For each sub-category check whether it's a reccuring expense
+        if(mMortgageRentRecurring == 1){
+            mortgageRentAmount = Double.parseDouble(mMortgageRentPlanned);
+        }
+
+        if(mWaterRecurring == 1){
+            waterAmount = Double.parseDouble(mWaterPlanned);
+        }
+
+        if(mNaturalGasRecurring == 1){
+            naturalGasAmount = Double.parseDouble(mWaterPlanned);
+        }
+
+        if(mElectricityRecurring == 1){
+            electricityAmount = Double.parseDouble(mElectricityPlanned);
+        }
+
+        if(mCableInternetRecurring == 1){
+            cableInternetAmount = Double.parseDouble(mCableInternetPlanned);
+        }
+
+        // Check for no reccuring fields being equal to 1, if so just set result = "0"
+        if(mMortgageRentRecurring == 0 && mWaterRecurring == 0 && mNaturalGasRecurring == 0 &&
+        mElectricityRecurring == 0 && mCableInternetRecurring == 0){
+            result = "0";
+        } else {
+            // add up all amounts into the total
+            double total = mortgageRentAmount + waterAmount + naturalGasAmount + electricityAmount +
+                    cableInternetAmount;
+
+            // set result string to string value of total
+            result = String.valueOf(total);
+        }
+
+        return result;
     }
 
     public int getHousingId() {
         return mHousingId;
     }
 
-    public String getTotal() {
-        return mTotal;
+    public void setHousingId(int housingId) {
+        mHousingId = housingId;
     }
 
-    public void setTotal(String total) {
-        mTotal = total;
+    public String getTotalPlanned() {
+        return mTotalPlanned;
     }
 
-    public String getRecurring_total() {
-        return mRecurring_total;
+    public void setTotalPlanned(String totalPlanned) {
+        mTotalPlanned = totalPlanned;
     }
 
-    public void setRecurring_total(String recurring_total) {
-        mRecurring_total = recurring_total;
+    public String getTotalRecurring() {
+        return mTotalRecurring;
     }
 
-    public String getMortgageRent() {
-        return mMortgageRent;
+    public void setTotalRecurring(String totalRecurring) {
+        mTotalRecurring = totalRecurring;
     }
 
-    public void setMortgageRent(String mortgageRent) {
-        mMortgageRent = mortgageRent;
+    public String getTotalSpent() {
+        return mTotalSpent;
+    }
+
+    public void setTotalSpent(String totalSpent) {
+        mTotalSpent = totalSpent;
+    }
+
+    public String getMortgageRentPlanned() {
+        return mMortgageRentPlanned;
+    }
+
+    public void setMortgageRentPlanned(String mortgageRentPlanned) {
+        mMortgageRentPlanned = mortgageRentPlanned;
+    }
+
+    public String getMortgageRentSpent() {
+        return mMortgageRentSpent;
+    }
+
+    public void setMortgageRentSpent(String mortgageRentSpent) {
+        mMortgageRentSpent = mortgageRentSpent;
     }
 
     public int getMortgageRentRecurring() {
@@ -74,36 +205,108 @@ public class Housing {
         mMortgageRentRecurring = mortgageRentRecurring;
     }
 
-    public String getUtilities() {
-        return mUtilities;
+    public String getWaterPlanned() {
+        return mWaterPlanned;
     }
 
-    public void setUtilities(String utilities) {
-        mUtilities = utilities;
+    public void setWaterPlanned(String waterPlanned) {
+        mWaterPlanned = waterPlanned;
     }
 
-    public int getUtilitiesRecurring() {
-        return mUtilitiesRecurring;
+    public String getWaterSpent() {
+        return mWaterSpent;
     }
 
-    public void setUtilitiesRecurring(int utilitiesRecurring) {
-        mUtilitiesRecurring = utilitiesRecurring;
+    public void setWaterSpent(String waterSpent) {
+        mWaterSpent = waterSpent;
     }
 
-    public String getOther() {
-        return mOther;
+    public int getWaterRecurring() {
+        return mWaterRecurring;
     }
 
-    public void setOther(String other) {
-        mOther = other;
+    public void setWaterRecurring(int waterRecurring) {
+        mWaterRecurring = waterRecurring;
     }
 
-    public String getOtherRecurring() {
-        return mOtherRecurring;
+    public String getNaturalGasPlanned() {
+        return mNaturalGasPlanned;
     }
 
-    public void setOtherRecurring(String otherRecurring) {
-        mOtherRecurring = otherRecurring;
+    public void setNaturalGasPlanned(String naturalGasPlanned) {
+        mNaturalGasPlanned = naturalGasPlanned;
+    }
+
+    public String getNaturalGasSpent() {
+        return mNaturalGasSpent;
+    }
+
+    public void setNaturalGasSpent(String naturalGasSpent) {
+        mNaturalGasSpent = naturalGasSpent;
+    }
+
+    public int getNaturalGasRecurring() {
+        return mNaturalGasRecurring;
+    }
+
+    public void setNaturalGasRecurring(int naturalGasRecurring) {
+        mNaturalGasRecurring = naturalGasRecurring;
+    }
+
+    public String getElectricityPlanned() {
+        return mElectricityPlanned;
+    }
+
+    public void setElectricityPlanned(String electricityPlanned) {
+        mElectricityPlanned = electricityPlanned;
+    }
+
+    public String getElectricitySpent() {
+        return mElectricitySpent;
+    }
+
+    public void setElectricitySpent(String electricitySpent) {
+        mElectricitySpent = electricitySpent;
+    }
+
+    public int getElectricityRecurring() {
+        return mElectricityRecurring;
+    }
+
+    public void setElectricityRecurring(int electricityRecurring) {
+        mElectricityRecurring = electricityRecurring;
+    }
+
+    public String getCableInternetPlanned() {
+        return mCableInternetPlanned;
+    }
+
+    public void setCableInternetPlanned(String cableInternetPlanned) {
+        mCableInternetPlanned = cableInternetPlanned;
+    }
+
+    public String getCableInternetSpent() {
+        return mCableInternetSpent;
+    }
+
+    public void setCableInternetSpent(String cableInternetSpent) {
+        mCableInternetSpent = cableInternetSpent;
+    }
+
+    public int getCableInternetRecurring() {
+        return mCableInternetRecurring;
+    }
+
+    public void setCableInternetRecurring(int cableInternetRecurring) {
+        mCableInternetRecurring = cableInternetRecurring;
+    }
+
+    public String getOtherHousingExpenses() {
+        return mOtherHousingExpenses;
+    }
+
+    public void setOtherHousingExpenses(String otherHousingExpenses) {
+        mOtherHousingExpenses = otherHousingExpenses;
     }
 
     @NonNull
@@ -111,14 +314,25 @@ public class Housing {
     public String toString() {
         return "Housing{" +
                 "mHousingId=" + mHousingId +
-                ", mTotal='" + mTotal + '\'' +
-                ", mRecurring_total='" + mRecurring_total + '\'' +
-                ", mMortgageRent='" + mMortgageRent + '\'' +
+                ", mTotalPlanned='" + mTotalPlanned + '\'' +
+                ", mTotalRecurring='" + mTotalRecurring + '\'' +
+                ", mTotalSpent='" + mTotalSpent + '\'' +
+                ", mMortgageRentPlanned='" + mMortgageRentPlanned + '\'' +
+                ", mMortgageRentSpent='" + mMortgageRentSpent + '\'' +
                 ", mMortgageRentRecurring=" + mMortgageRentRecurring +
-                ", mUtilities='" + mUtilities + '\'' +
-                ", mUtilitiesRecurring=" + mUtilitiesRecurring +
-                ", mOther='" + mOther + '\'' +
-                ", mOtherRecurring='" + mOtherRecurring + '\'' +
+                ", mWaterPlanned='" + mWaterPlanned + '\'' +
+                ", mWaterSpent='" + mWaterSpent + '\'' +
+                ", mWaterRecurring=" + mWaterRecurring +
+                ", mNaturalGasPlanned='" + mNaturalGasPlanned + '\'' +
+                ", mNaturalGasSpent='" + mNaturalGasSpent + '\'' +
+                ", mNaturalGasRecurring=" + mNaturalGasRecurring +
+                ", mElectricityPlanned='" + mElectricityPlanned + '\'' +
+                ", mElectricitySpent='" + mElectricitySpent + '\'' +
+                ", mElectricityRecurring=" + mElectricityRecurring +
+                ", mCableInternetPlanned='" + mCableInternetPlanned + '\'' +
+                ", mCableInternetSpent='" + mCableInternetSpent + '\'' +
+                ", mCableInternetRecurring=" + mCableInternetRecurring +
+                ", mOtherHousingExpenses='" + mOtherHousingExpenses + '\'' +
                 '}';
     }
 }
