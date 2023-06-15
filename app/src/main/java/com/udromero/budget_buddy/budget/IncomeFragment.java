@@ -33,6 +33,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.udromero.budget_buddy.MainActivity;
 import com.udromero.budget_buddy.R;
 import com.udromero.budget_buddy.db.BudgetBuddyDAO;
 import com.udromero.budget_buddy.db.BudgetBuddyDatabase;
@@ -93,7 +94,6 @@ public class IncomeFragment extends Fragment {
 
         getPrefs();
 
-        mSwitchDisplay = view.findViewById(R.id.incomeWhatToDisplay);
         mPayDayDisplay = view.findViewById(R.id.incomePaydayDisplay);
         mIncomePromptDisplay = view.findViewById(R.id.incomePromptDisplay);
         mCurrentIncomeDisplay = view.findViewById(R.id.incomeIncomeDisplay);
@@ -136,6 +136,7 @@ public class IncomeFragment extends Fragment {
 
         mUpdateButton.setVisibility(View.INVISIBLE);
 
+        grabLatestUserInfo();
         if(mBudget.getPaycheckFrequency() == 0){
             mNextButton.setVisibility(View.VISIBLE);
             mSaveButton.setVisibility(View.INVISIBLE);
@@ -165,6 +166,10 @@ public class IncomeFragment extends Fragment {
             public void onClick(View v) {
                 updateUserInfo();
                 grabLatestUserInfo();
+
+                if(mBudget.getPaycheckFrequency() == 0){
+                    return;
+                }
 
                 populateCurrentInformation();
                 updatePaydayRadioGroupsToShow();
@@ -365,7 +370,7 @@ public class IncomeFragment extends Fragment {
                     updateUserInfo();
                     grabLatestUserInfo();
                 } else {
-                    mIncomePromptDisplay.setText("PAYCHECK DATE DENIED: You're attempting to set your next paycheck date to a past date.");
+                    mIncomePromptDisplay.setText(R.string.badPayDatePrompt);
                 }
             }
         }, currYear, currMonth, currDay);
@@ -386,12 +391,21 @@ public class IncomeFragment extends Fragment {
             if(mUser.getFirstTimeLogin().equals("y")) {
                 hideAllItems();
                 mUpdateButton.setVisibility(View.INVISIBLE);
-                mNextButton.setVisibility(View.VISIBLE);
+                if (mBudget.getPaycheckFrequency() == 0) {
+                    mNextButton.setVisibility(View.VISIBLE);
+                } else {
+                    mNextButton.setVisibility(View.INVISIBLE);
+                }
+
                 mPaycheckFrequencyGroup.setVisibility(View.VISIBLE);
                 mPaycheckFrequencyDisplay.setVisibility(View.VISIBLE);
             } else {
                 mUpdateButton.setVisibility(View.INVISIBLE);
-                mNextButton.setVisibility(View.VISIBLE);
+                if (mBudget.getPaycheckFrequency() == 0) {
+                    mNextButton.setVisibility(View.VISIBLE);
+                } else {
+                    mNextButton.setVisibility(View.INVISIBLE);
+                }
                 showAllItems();
             }
         }
@@ -401,9 +415,7 @@ public class IncomeFragment extends Fragment {
         mPaycheckFrequencyDisplay.setVisibility(View.INVISIBLE);
         mPaycheckFrequencyGroup.setVisibility(View.INVISIBLE);
         mPayDayDisplay.setVisibility(View.INVISIBLE);
-
         mSaveButton.setVisibility(View.INVISIBLE);
-//        mIncomePromptDisplay.setVisibility(View.INVISIBLE);
         mIncomeField.setVisibility(View.INVISIBLE);
         mEnterIncomePromptDisplay.setVisibility(View.INVISIBLE);
         mSetDateButton.setVisibility(View.INVISIBLE);
@@ -416,9 +428,7 @@ public class IncomeFragment extends Fragment {
         mPaycheckFrequencyDisplay.setVisibility(View.VISIBLE);
         mPaycheckFrequencyGroup.setVisibility(View.VISIBLE);
         mPayDayDisplay.setVisibility(View.VISIBLE);
-
         mSaveButton.setVisibility(View.VISIBLE);
-//        mIncomePromptDisplay.setVisibility(View.VISIBLE);
         mIncomeField.setVisibility(View.VISIBLE);
         mEnterIncomePromptDisplay.setVisibility(View.VISIBLE);
         mSetDateButton.setVisibility(View.VISIBLE);

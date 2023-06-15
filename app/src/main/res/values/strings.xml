@@ -68,7 +68,7 @@
     <string name="ezexpense">EzExpense</string>
     <string name="save">save</string>
     <string name="paycheckFrequencyPrompt">How frequently are you paid?</string>
-    <string name="budgetInitPrompt">At a minimum please populate these fields.\nThen we can initiate the budget overview page.</string>
+    <string name="budgetInitPrompt">At a minimum please populate these fields. Then we can initiate the budget overview page.</string>
     <string name="monthlyMonth">Monthly</string>
     <string name="bi_weekly">Bi-Weekly</string>
     <string name="weekly">Weekly</string>
@@ -78,9 +78,33 @@
     <string name="incomeNextPaydayDisplay">Next Payday: %1$s</string>
     <string name="current_information">Current Information</string>
 
-    <string name="incomeIncomeInputPrompt">%1$s Income</string>
-    <string name="incomeEnterIncomeAmountHint">Enter Income Amount (ex: 1500.00)</string>
+    <string name="incomeIncomeInputPrompt">%1$s Income:</string>
+    <string name="incomeEnterIncomeAmountHint">Enter Amount</string>
     <string name="next">next</string>
     <string name="next_paycheck_date">Next Paycheck Date?</string>
     <string name="update">Update</string>
+    <string name="badPayDatePrompt">PAYCHECK DATE DENIED: You\'re attempting to set your next paycheck date to a past date.</string>
+    <string name="savings">savings</string>
+    <string name="lifestyle">lifestyle</string>
+    <string name="health">health</string>
+    <string name="insurance">insurance</string>
+    <string name="debt">debt</string>
+
+    <string name="givingRangeDisplay">Goal: 10–15%</string>
+    <string name="givingCalculatedRangeDisplay">($%1$s–$%2$s)</string>
+    <string name="page_logo">Page Logo</string>
+    <string name="missingIncomeWarning">WARNING: Please provide your income amount via the \'Income\' tab to continue.</string>
+    <string name="churchInput">Church:</string>
+
+    <string name="inputHint">%1$s%2$s</string>
+    <string name="charity">Charity:</string>
+    <string name="enterPlannedBudgetAmount">Enter Amount</string>
+    <string name="recurring">Recurring?</string>
+
+    <string name="rangeCheck">Range Check: %1$s</string>
+    <string name="total">Total: $%1$s</string>
+    <string name="previous">Previous: $%1$s</string>
+    <string name="givingErrorPrompt">"Please provide your income on the income tab before continuing."</string>
+
+    <string name="variableString">$%1$s</string>
 </resources>

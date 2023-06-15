@@ -68,6 +68,9 @@ public class LoginActivity extends AppCompatActivity {
         // Get user shared preferences
         getPrefs();
 
+        // [WARNING] NUKE COMMAND
+        // nukeTables();
+
         // Check if user is already logged in, if yes, send to landing page
         checkLoggedIn();
 
@@ -159,5 +162,11 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
+    }
+
+    private void nukeTables(){
+        mBudgetBuddyDAO.nukeBudgetTable();
+        mBudgetBuddyDAO.nukeUserTable();
+        mBudgetBuddyDAO.nukeGivingTable();
     }
 }

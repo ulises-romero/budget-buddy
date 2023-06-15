@@ -11,61 +11,148 @@ public class Giving {
     @PrimaryKey(autoGenerate = true)
     private int mGivingId;
 
+    private int mUserId;
+
     // Non-null Attributes
-    private String mTotal;
-    private String mRecurring_total;
+    private String mTotalPlanned;
+    private String mTotalRecurring;
+    private String mTotalSpent;
 
     // Other Attributes
-    private String mChurch;
+    private String mChurchPlanned; // amount planned to be spent
+    private String mChurchSpent; // total spent
     private int mChurchRecurring; // set to 1 if reoccurring else set 0 if not a recurring payment
 
-    private String mCharity;
-    private int mCharityReccuring;
+    private String mCharityPlanned;
+    private String mCharitySpent;
+    private int mCharityRecurring;
 
-    private String mOther;
-    private String mOtherReccurring;
+    private String mOtherGivingExpenses; // split on "," then split each string on "-". EX: "donations-200.00,other-300.00-[r]"
 
-    public Giving(String total, String recurring_total, String church, int churchRecurring, String charity, int charityReccuring, String other, String otherReccurring) {
-        mTotal = total;
-        mRecurring_total = recurring_total;
-        mChurch = church;
+
+    public Giving(int userId, String totalPlanned, String totalRecurring, String totalSpent, String churchPlanned, String churchSpent, int churchRecurring, String charityPlanned, String charitySpent,
+                  int charityRecurring, String otherGivingExpenses) {
+        mUserId = userId;
+        mChurchPlanned = churchPlanned;
         mChurchRecurring = churchRecurring;
-        mCharity = charity;
-        mCharityReccuring = charityReccuring;
-        mOther = other;
-        mOtherReccurring = otherReccurring;
+        mCharityPlanned = charityPlanned;
+        mCharityRecurring = charityRecurring;
+        mOtherGivingExpenses = otherGivingExpenses;
+
+        // Populate remaining member variables accordingly
+        mTotalPlanned = totalPlanned;
+        mTotalRecurring = totalRecurring;
+
+        // Set all spent values to "0"
+        mCharitySpent = "0";
+        mChurchSpent = "0";
+        mTotalSpent = "0";
+    }
+
+//    public String calculateTotalPlanned(){
+//        String result;
+//
+//        double church = 0;
+//        double charity = 0;
+//
+//        if(!mChurchPlanned.isEmpty()){
+//            church = Double.parseDouble(mChurchPlanned);
+//        }
+//
+//        if(!mCharityPlanned.isEmpty()){
+//            charity = Double.parseDouble(mCharityPlanned);
+//        }
+//
+//        double total = church + charity;
+//        result = String.valueOf(total);
+//
+//        return result;
+//    }
+//
+//    public String calculateTotalRecurring(){
+//        String result;
+//
+//        // Amount's for each sub-category
+//        double charityAmount = 0;
+//        double churchAmount = 0;
+//
+//        // For each sub-category check whether it's a reccuring expense
+//        if(mCharityRecurring == 1){
+//            charityAmount = Double.parseDouble(mCharityPlanned);
+//        }
+//
+//        if(mChurchRecurring == 1){
+//            churchAmount = Double.parseDouble(mChurchPlanned);
+//        }
+//
+//        // Check for no reccuring fields being equal to 1, if so just set result = "0"
+//        if(mChurchRecurring == 0 && mCharityRecurring == 0){
+//            result = "0";
+//        } else {
+//            // add up all amounts into the total
+//            double total = charityAmount + churchAmount;
+//
+//            // set result string to string value of total
+//            result = String.valueOf(total);
+//        }
+//
+//        return result;
+//    }
+
+    public int getGivingId() {
+        return mGivingId;
     }
 
     public void setGivingId(int givingId) {
         mGivingId = givingId;
     }
 
-    public int getGivingId() {
-        return mGivingId;
+    public int getUserId() {
+        return mUserId;
     }
 
-    public String getTotal() {
-        return mTotal;
+    public void setUserId(int userId) {
+        mUserId = userId;
     }
 
-    public void setTotal(String total) {
-        mTotal = total;
+    public String getTotalPlanned() {
+        return mTotalPlanned;
     }
 
-    public String getRecurring_total() {
-        return mRecurring_total;
+    public void setTotalPlanned(String totalPlanned) {
+        mTotalPlanned = totalPlanned;
     }
 
-    public void setRecurring_total(String recurring_total) {
-        mRecurring_total = recurring_total;
+    public String getTotalRecurring() {
+        return mTotalRecurring;
     }
 
-    public String getChurch() {
-        return mChurch;
+    public void setTotalRecurring(String totalRecurring) {
+        mTotalRecurring = totalRecurring;
     }
 
-    public void setChurch(String church) {
-        mChurch = church;
+    public String getTotalSpent() {
+        return mTotalSpent;
+    }
+
+    public void setTotalSpent(String totalSpent) {
+        mTotalSpent = totalSpent;
+    }
+
+    public String getChurchPlanned() {
+        return mChurchPlanned;
+    }
+
+    public void setChurchPlanned(String churchPlanned) {
+        mChurchPlanned = churchPlanned;
+    }
+
+    public String getChurchSpent() {
+        return mChurchSpent;
+    }
+
+    public void setChurchSpent(String churchSpent) {
+        mChurchSpent = churchSpent;
     }
 
     public int getChurchRecurring() {
@@ -76,36 +163,36 @@ public class Giving {
         mChurchRecurring = churchRecurring;
     }
 
-    public String getCharity() {
-        return mCharity;
+    public String getCharityPlanned() {
+        return mCharityPlanned;
     }
 
-    public void setCharity(String charity) {
-        mCharity = charity;
+    public void setCharityPlanned(String charityPlanned) {
+        mCharityPlanned = charityPlanned;
     }
 
-    public int getCharityReccuring() {
-        return mCharityReccuring;
+    public String getCharitySpent() {
+        return mCharitySpent;
     }
 
-    public void setCharityReccuring(int charityReccuring) {
-        mCharityReccuring = charityReccuring;
+    public void setCharitySpent(String charitySpent) {
+        mCharitySpent = charitySpent;
     }
 
-    public String getOther() {
-        return mOther;
+    public int getCharityRecurring() {
+        return mCharityRecurring;
     }
 
-    public void setOther(String other) {
-        mOther = other;
+    public void setCharityRecurring(int charityRecurring) {
+        mCharityRecurring = charityRecurring;
     }
 
-    public String getOtherReccurring() {
-        return mOtherReccurring;
+    public String getOtherGivingExpenses() {
+        return mOtherGivingExpenses;
     }
 
-    public void setOtherReccurring(String otherReccurring) {
-        mOtherReccurring = otherReccurring;
+    public void setOtherGivingExpenses(String otherGivingExpenses) {
+        mOtherGivingExpenses = otherGivingExpenses;
     }
 
     @NonNull
@@ -113,14 +200,17 @@ public class Giving {
     public String toString() {
         return "Giving{" +
                 "mGivingId=" + mGivingId +
-                ", mTotal='" + mTotal + '\'' +
-                ", mRecurring_total='" + mRecurring_total + '\'' +
-                ", mChurch='" + mChurch + '\'' +
+                ", mUserId=" + mUserId +
+                ", mTotalPlanned='" + mTotalPlanned + '\'' +
+                ", mTotalRecurring='" + mTotalRecurring + '\'' +
+                ", mTotalSpent='" + mTotalSpent + '\'' +
+                ", mChurchPlanned='" + mChurchPlanned + '\'' +
+                ", mChurchSpent='" + mChurchSpent + '\'' +
                 ", mChurchRecurring=" + mChurchRecurring +
-                ", mCharity='" + mCharity + '\'' +
-                ", mCharityReccuring=" + mCharityReccuring +
-                ", mOther='" + mOther + '\'' +
-                ", mOtherReccurring='" + mOtherReccurring + '\'' +
+                ", mCharityPlanned='" + mCharityPlanned + '\'' +
+                ", mCharitySpent='" + mCharitySpent + '\'' +
+                ", mCharityRecurring=" + mCharityRecurring +
+                ", mOtherGivingExpenses='" + mOtherGivingExpenses + '\'' +
                 '}';
     }
 }

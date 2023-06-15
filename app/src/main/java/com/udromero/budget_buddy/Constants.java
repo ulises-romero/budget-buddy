@@ -10,9 +10,27 @@ public class Constants {
     public static final String USER_ID_KEY = "com.udromero.budget_buddy.USER_ID_KEY";
     public static final String FIRST_TIME_LOGIN_KEY = "com.udromero.budget_buddy.FIRST_TIME_LOGIN_KEY";
     public static final String BUDGET_ID_KEY = "com.udromero.budget_buddy.BUDGET_ID_KEY";
-    public static final String LAND_PAGE_ID_KEY = "com.udromero.budget_buddy.LAND_PAGE_ID_KEY";
+    public static final String GIVING_ID_KEY = "com.udromero.budget_buddy.GIVING_ID_KEY";
+    public static final String SAVINGS_ID_KEY = "com.udromero.budget_buddy.SAVINGS_ID_KEY";
 
     public static final String MONTH_PAYDAY_INT_KEY = "com.udromero.budget_buddy.MONTH_PAYDAY_INT_KEY";
     public static final String DAY_PAYDAY_INT_KEY = "com.udromero.budget_buddy.DAY_PAYDAY_INT_KEY";
     public static final String YEAR_PAYDAY_INT_KEY = "com.udromero.budget_buddy.YEAR_PAYDAY_INT_KEY";
+
+    public static final String GIVING = "GIVING";
+    public static final String SAVINGS = "SAVINGS";
+    public static final String HOUSING = "HOUSING";
+    public static final String FOOD = "FOOD";
+    public static final String TRANSPORTATION = "TRANSPORTATION";
+    public static final String PERSONAL = "PERSONAL";
+    public static final String LIFESTYLE = "LIFESTYLE";
+    public static final String HEALTH = "HEALTH";
+    public static final String INSURANCE = "INSURANCE";
+    public static final String DEBT = "DEBT";
+    public static final String OTHER = "OTHER";
+
+    public static final String zeroString = "0";
+
+    public static final String TAB_INDEX_KEY = "com.udromero.budget_buddy.TAB_INDEX_KEY";
+    public static final String TAB_NAME_KEY = "com.udromero.budget_buddy.TAB_NAME_KEY";
 }

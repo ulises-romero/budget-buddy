@@ -2,6 +2,7 @@ package com.udromero.budget_buddy;
 
 import static com.udromero.budget_buddy.Constants.BUDGET_ID_KEY;
 import static com.udromero.budget_buddy.Constants.DAY_PAYDAY_INT_KEY;
+import static com.udromero.budget_buddy.Constants.GIVING_ID_KEY;
 import static com.udromero.budget_buddy.Constants.LOGGED_IN_KEY;
 import static com.udromero.budget_buddy.Constants.MONTH_PAYDAY_INT_KEY;
 import static com.udromero.budget_buddy.Constants.PREFERENCES_KEY;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 import com.udromero.budget_buddy.db.BudgetBuddyDAO;
 import com.udromero.budget_buddy.db.BudgetBuddyDatabase;
 import com.udromero.budget_buddy.db.entities.Budget;
+import com.udromero.budget_buddy.db.entities.Giving;
 import com.udromero.budget_buddy.db.entities.User;
 import com.udromero.budget_buddy.login.LoginActivity;
 
@@ -50,10 +52,14 @@ public class SettingsFragment extends Fragment {
     String newEmail;
     String newPassword;
 
-    int mUserId;
     User mUser;
+    int mUserId;
 
+    Budget mBudget;
     int mBudgetId;
+
+    Giving mGiving;
+    int mGivingId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,6 +104,10 @@ public class SettingsFragment extends Fragment {
                 Budget budget = mBudgetBuddyDAO.getBudgetByUserId(mUserId);
                 mBudgetId = budget.getBudgetId();
                 mBudgetBuddyDAO.deleteBudgetByBudgetId(mBudgetId);
+
+                mGiving = mBudgetBuddyDAO.getGivingExpensesByUserId(mUserId);
+                mBudgetBuddyDAO.delete(mGiving);
+
                 SharedPreferences.Editor editor = userSharedPreferences.edit();
                 editor.putInt(MONTH_PAYDAY_INT_KEY, 0);
                 editor.putInt(DAY_PAYDAY_INT_KEY, 0);
@@ -119,9 +129,7 @@ public class SettingsFragment extends Fragment {
 
     private void logoutUser(){
         SharedPreferences.Editor editor = userSharedPreferences.edit();
-        editor.putInt(USER_ID_KEY, -1);
         editor.putBoolean(LOGGED_IN_KEY, false);
-        editor.putInt(BUDGET_ID_KEY, -1);
         editor.apply();
 
         Intent intent = new Intent(this.getActivity().getApplicationContext(), LoginActivity.class);

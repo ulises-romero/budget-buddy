@@ -1,14 +1,397 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".budget.GivingFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/givingFrameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        tools:context=".budget.GivingFragment">
 
-</FrameLayout>
+        <!-- Logo & Error Display -->
+
+        <ImageView
+            android:id="@+id/givingPageLogo"
+            android:layout_marginTop="50dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_baseline_handshake_24"
+            android:contentDescription="@string/page_logo" />
+
+        <Button
+            android:id="@+id/givingRefreshButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="right"
+            android:background="@drawable/ic_baseline_refresh_24"
+            android:layout_marginTop="55dp"/>
+
+        <TextView
+            android:id="@+id/givingErrorDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+            android:text="@string/blank"
+            android:textColor="#FF0000"
+            android:textSize="12sp" />
+
+        <!-- Percent Ranges -->
+
+        <TextView
+            android:id="@+id/givingIncomeTotalPercentageRangeDisplay"
+            android:layout_marginTop="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/givingRangeDisplay"
+            android:textSize="18sp" />
+
+        <!-- Top Bar -->
+
+        <TextView
+            android:id="@+id/givingUserIncomeCalculatedRangeDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="125dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/givingCalculatedRangeDisplay"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/givingPlannedAmountDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingEnd="135dp"
+            android:layout_marginTop="165dp"
+            android:text="Planned"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/givingRecurringDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="165dp"
+            android:paddingEnd="15dp"
+            android:text="@string/recurring"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <!-- Church -->
+
+        <TextView
+            android:id="@+id/givingChurchDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="205dp"
+            android:text="Church:"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/givingChurchPlannedInputEditText"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="193dp"
+            android:layout_marginEnd="125dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="@string/inputHint"
+            android:inputType="numberDecimal"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/givingChurchRecurringCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="193dp"
+            android:layout_marginEnd="40dp" />
+
+        <!-- Charity -->
+
+        <TextView
+            android:id="@+id/givingCharityDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="245dp"
+            android:text="@string/charity"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/givingCharityPlannedInputEditText"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="233dp"
+            android:layout_marginEnd="125dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="@string/inputHint"
+            android:inputType="numberDecimal"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/givingCharityRecurringCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="233dp"
+            android:layout_marginEnd="40dp" />
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/givingSaveButton"
+            android:layout_width="100dp"
+            android:layout_height="65dp"
+            android:layout_gravity="right"
+            android:layout_marginEnd="14dp"
+            android:layout_marginTop="290dp"
+            android:text="@string/save"
+            android:textSize="15sp" />
+
+        <!-- Summary Section -->
+
+        <Button
+            android:id="@+id/givingRangeButton"
+            android:layout_width="18dp"
+            android:layout_height="25dp"
+            android:layout_gravity="left"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="296dp"
+            android:text="@string/save"
+            android:enabled="false"
+            android:backgroundTint="#FF0000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/givingRangeCheckDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="297dp"
+            android:text="@string/rangeCheck"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/givingTotalDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="327dp"
+            android:paddingStart="15dp"
+            android:text="@string/total"
+            android:textAlignment="textStart"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/givingOtherErrorDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="348dp"
+            android:paddingStart="15dp"
+            android:textStyle="bold"
+            android:text=""
+            android:textColor="#FF0000"
+            android:textAlignment="textStart"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/givingAddOtherDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="360dp"
+            android:paddingStart="15dp"
+            android:textStyle="bold"
+            android:text="Additional Sub-cateogry: "
+            android:textColor="#000000"
+            android:textAlignment="textStart"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/givingTestDisplay"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="50dp"
+            android:text=""
+            android:textSize="8sp" />
+
+        <TextView
+            android:id="@+id/givingTitleDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="390dp"
+            android:text="Title:"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/givingOtherTitleInputEditText"
+            android:layout_width="wrap_content"
+            android:maxWidth="220dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="376dp"
+            android:layout_marginStart="50dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="Enter Title"
+            android:inputType="textPersonName"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/givingPlannedDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="420dp"
+            android:text="Planned:"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/givingOtherPlannedInputEditText"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="411dp"
+            android:layout_marginStart="77dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="Amount"
+            android:inputType="numberDecimal"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/givingOtherRecurringDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="165dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="420dp"
+            android:text="Recurring?"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/givingOtherRecurringCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginStart="235dp"
+            android:layout_marginTop="408dp" />
+
+        <Button
+            android:id="@+id/givingAddButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="393dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/ic_baseline_add_circle_24"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/givingUpdateButton"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="370dp"
+            android:text="save"
+            android:visibility="invisible"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/givingDeleteButton"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="410dp"
+            android:text="delete"
+            android:backgroundTint="#FF0000"
+            android:visibility="invisible"
+            android:textSize="9sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="450dp">
+            <TableLayout
+                android:id="@+id/givingOtherTableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+
+                android:shrinkColumns="1,2,3,4,5"
+                android:stretchColumns="1,2,3,4,5">
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="105dp"
+                        android:layout_column="1"
+                        android:textColor="#000000"
+                        android:gravity="left"
+                        android:padding="8dp"
+                        android:text="Title"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_column="1"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:textColor="#000000"
+                        android:text="PA($)"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_column="1"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:textColor="#000000"
+                        android:text="R"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_column="1"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Update/Delete"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+
+
+                </TableRow>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/givingOtherRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableLayout>
+        </LinearLayout>
+    </FrameLayout>
+</ScrollView>

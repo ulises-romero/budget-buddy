@@ -1,5 +1,7 @@
 package com.udromero.budget_buddy.db.entities;
 
+import static com.udromero.budget_buddy.Constants.zeroString;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -11,72 +13,170 @@ public class Personal {
     @PrimaryKey(autoGenerate = true)
     private int mPersonalId;
 
-    // Non-null Attributes
-    private String mTotal;
-    private String mRecurring_total;
+    // Budget Totals
+    private String mTotalPlanned;
+    private String mTotalRecurring;
+    private String mTotalSpent;
 
-    // Other Attributes
-    private String mClothing;
+    // Attributes
+    private String mClothingPlanned;
+    private String mClothingSpent;
     private int mClothingRecurring;
-    private String mPhone;
-    private int mPhoneRecurring;
-    private String mEntertainment;
-    private int mEntertainmentRecurring;
-    private String mGifts;
-    private int mGiftsRecurring;
-    private String mSubscriptions;
-    private int mSubscriptionsRecurring;
-    private String mOther;
-    private String mOtherRecurring;
 
-    public Personal(String total, String recurring_total, String clothing, int clothingRecurring, String phone, int phoneRecurring, String entertainment,
-                    int entertainmentRecurring, String gifts, int giftsRecurring, String subscriptions, int subscriptionsRecurring, String other, String otherRecurring) {
-        mTotal = total;
-        mRecurring_total = recurring_total;
-        mClothing = clothing;
+    private String mPhonePlanned;
+    private String mPhoneSpent;
+    private int mPhoneRecurring;
+
+    private String mFunMoneyPlanned;
+    private String mFunMoneySpent;
+    private int mFunMoneyRecurring;
+
+    private String mHairCosmeticsPlanned;
+    private String mHairCosmeticsSpent;
+    private int mHairCosmeticsRecurring;
+
+    private String mOtherPersonalExpenses;
+
+    public Personal(String totalPlanned, String totalRecurring, String totalSpent, String clothingPlanned, String clothingSpent, int clothingRecurring, String phonePlanned, String phoneSpent, int phoneRecurring, String funMoneyPlanned, String funMoneySpent, int funMoneyRecurring, String hairCosmeticsPlanned, String hairCosmeticsSpent, int hairCosmeticsRecurring, String otherPersonalExpenses) {
+        mClothingPlanned = clothingPlanned;
         mClothingRecurring = clothingRecurring;
-        mPhone = phone;
+        mPhonePlanned = phonePlanned;
         mPhoneRecurring = phoneRecurring;
-        mEntertainment = entertainment;
-        mEntertainmentRecurring = entertainmentRecurring;
-        mGifts = gifts;
-        mGiftsRecurring = giftsRecurring;
-        mSubscriptions = subscriptions;
-        mSubscriptionsRecurring = subscriptionsRecurring;
-        mOther = other;
-        mOtherRecurring = otherRecurring;
+        mFunMoneyPlanned = funMoneyPlanned;
+        mFunMoneyRecurring = funMoneyRecurring;
+        mHairCosmeticsPlanned = hairCosmeticsPlanned;
+        mHairCosmeticsRecurring = hairCosmeticsRecurring;
+        mOtherPersonalExpenses = otherPersonalExpenses;
+
+        // Populate remaining member variables accordingly
+        mTotalPlanned = calculateTotalPlanned();
+        mTotalRecurring = calculateTotalRecurring();
+
+        // Set all spent values to "0"
+        mTotalSpent = "0";
+        mClothingSpent = zeroString;
+        mPhoneSpent = zeroString;
+        mFunMoneySpent = zeroString;
+        mHairCosmeticsSpent = zeroString;
     }
 
-    public void setPersonalId(int personalId) {
-        mPersonalId = personalId;
+    private String calculateTotalPlanned(){
+        String result;
+
+        double clothing = 0;
+        double phone = 0;
+        double funMoney = 0;
+        double hairCosmetics = 0;
+
+        if(!mClothingPlanned.isEmpty()){
+            clothing = Double.parseDouble(mClothingPlanned);
+        }
+
+        if(!mPhonePlanned.isEmpty()){
+            phone = Double.parseDouble(mPhonePlanned);
+        }
+
+        if(!mFunMoneyPlanned.isEmpty()){
+            funMoney = Double.parseDouble(mFunMoneyPlanned);
+        }
+
+        if(!mHairCosmeticsPlanned.isEmpty()){
+            hairCosmetics = Double.parseDouble(mHairCosmeticsPlanned);
+        }
+
+        double total = clothing + phone + funMoney + hairCosmetics;
+        result = String.valueOf(total);
+
+        return result;
+    }
+
+    public String calculateTotalRecurring(){
+        String result;
+
+        // Amount's for each sub-category
+        double clothingAmount = 0;
+        double phoneAmount = 0;
+        double entertainmentAmount = 0;
+        double hairCosmeticsAmount = 0;
+
+        // For each sub-category check whether it's a recurring expense
+        if(mClothingRecurring == 1){
+            clothingAmount = Double.parseDouble(mClothingPlanned);
+        }
+
+        if(mPhoneRecurring == 1){
+            phoneAmount = Double.parseDouble(mPhonePlanned);
+        }
+
+        if(mFunMoneyRecurring == 1){
+            entertainmentAmount = Double.parseDouble(mFunMoneyPlanned);
+        }
+
+        if(mHairCosmeticsRecurring == 1){
+            hairCosmeticsAmount = Double.parseDouble(mHairCosmeticsPlanned);
+        }
+
+        // Check for no recurring fields being equal to 1, if so just set result = "0"
+        if(mClothingRecurring == 0 && mPhoneRecurring == 0 &&
+        mFunMoneyRecurring == 0 && mHairCosmeticsRecurring == 0){
+            result = "0";
+        } else {
+            // add up all amounts into the total
+            double total = clothingAmount + phoneAmount + entertainmentAmount + hairCosmeticsAmount;
+
+            // set result string to string value of total
+            result = String.valueOf(total);
+        }
+
+        return result;
     }
 
     public int getPersonalId() {
         return mPersonalId;
     }
 
-    public String getTotal() {
-        return mTotal;
+    public void setPersonalId(int personalId) {
+        mPersonalId = personalId;
     }
 
-    public void setTotal(String total) {
-        mTotal = total;
+    public String getTotalPlanned() {
+        return mTotalPlanned;
     }
 
-    public String getRecurring_total() {
-        return mRecurring_total;
+    public void setTotalPlanned(String totalPlanned) {
+        mTotalPlanned = totalPlanned;
     }
 
-    public void setRecurring_total(String recurring_total) {
-        mRecurring_total = recurring_total;
+    public String getTotalRecurring() {
+        return mTotalRecurring;
     }
 
-    public String getClothing() {
-        return mClothing;
+    public void setTotalRecurring(String totalRecurring) {
+        mTotalRecurring = totalRecurring;
     }
 
-    public void setClothing(String clothing) {
-        mClothing = clothing;
+    public String getTotalSpent() {
+        return mTotalSpent;
+    }
+
+    public void setTotalSpent(String totalSpent) {
+        mTotalSpent = totalSpent;
+    }
+
+    public String getClothingPlanned() {
+        return mClothingPlanned;
+    }
+
+    public void setClothingPlanned(String clothingPlanned) {
+        mClothingPlanned = clothingPlanned;
+    }
+
+    public String getClothingSpent() {
+        return mClothingSpent;
+    }
+
+    public void setClothingSpent(String clothingSpent) {
+        mClothingSpent = clothingSpent;
     }
 
     public int getClothingRecurring() {
@@ -87,12 +187,20 @@ public class Personal {
         mClothingRecurring = clothingRecurring;
     }
 
-    public String getPhone() {
-        return mPhone;
+    public String getPhonePlanned() {
+        return mPhonePlanned;
     }
 
-    public void setPhone(String phone) {
-        mPhone = phone;
+    public void setPhonePlanned(String phonePlanned) {
+        mPhonePlanned = phonePlanned;
+    }
+
+    public String getPhoneSpent() {
+        return mPhoneSpent;
+    }
+
+    public void setPhoneSpent(String phoneSpent) {
+        mPhoneSpent = phoneSpent;
     }
 
     public int getPhoneRecurring() {
@@ -103,68 +211,60 @@ public class Personal {
         mPhoneRecurring = phoneRecurring;
     }
 
-    public String getEntertainment() {
-        return mEntertainment;
+    public String getFunMoneyPlanned() {
+        return mFunMoneyPlanned;
     }
 
-    public void setEntertainment(String entertainment) {
-        mEntertainment = entertainment;
+    public void setFunMoneyPlanned(String funMoneyPlanned) {
+        mFunMoneyPlanned = funMoneyPlanned;
     }
 
-    public int getEntertainmentRecurring() {
-        return mEntertainmentRecurring;
+    public String getFunMoneySpent() {
+        return mFunMoneySpent;
     }
 
-    public void setEntertainmentRecurring(int entertainmentRecurring) {
-        mEntertainmentRecurring = entertainmentRecurring;
+    public void setFunMoneySpent(String funMoneySpent) {
+        mFunMoneySpent = funMoneySpent;
     }
 
-    public String getGifts() {
-        return mGifts;
+    public int getFunMoneyRecurring() {
+        return mFunMoneyRecurring;
     }
 
-    public void setGifts(String gifts) {
-        mGifts = gifts;
+    public void setFunMoneyRecurring(int funMoneyRecurring) {
+        mFunMoneyRecurring = funMoneyRecurring;
     }
 
-    public int getGiftsRecurring() {
-        return mGiftsRecurring;
+    public String getHairCosmeticsPlanned() {
+        return mHairCosmeticsPlanned;
     }
 
-    public void setGiftsRecurring(int giftsRecurring) {
-        mGiftsRecurring = giftsRecurring;
+    public void setHairCosmeticsPlanned(String hairCosmeticsPlanned) {
+        mHairCosmeticsPlanned = hairCosmeticsPlanned;
     }
 
-    public String getSubscriptions() {
-        return mSubscriptions;
+    public String getHairCosmeticsSpent() {
+        return mHairCosmeticsSpent;
     }
 
-    public void setSubscriptions(String subscriptions) {
-        mSubscriptions = subscriptions;
+    public void setHairCosmeticsSpent(String hairCosmeticsSpent) {
+        mHairCosmeticsSpent = hairCosmeticsSpent;
     }
 
-    public int getSubscriptionsRecurring() {
-        return mSubscriptionsRecurring;
+    public int getHairCosmeticsRecurring() {
+        return mHairCosmeticsRecurring;
     }
 
-    public void setSubscriptionsRecurring(int subscriptionsRecurring) {
-        mSubscriptionsRecurring = subscriptionsRecurring;
+    public void setHairCosmeticsRecurring(int hairCosmeticsRecurring) {
+        mHairCosmeticsRecurring = hairCosmeticsRecurring;
     }
 
-    public String getOther() {
-        return mOther;
+    public String getOtherPersonalExpenses() {
+        return mOtherPersonalExpenses;
     }
 
-    public void setOther(String other) {
-        mOther = other;
-    }
-
-    public String getOtherRecurring() {
-        return mOtherRecurring;
-    }
-
-    public void setOtherRecurring(String otherRecurring) {
-        mOtherRecurring = otherRecurring;
+    public void setOtherPersonalExpenses(String otherPersonalExpenses) {
+        mOtherPersonalExpenses = otherPersonalExpenses;
     }
 
     @NonNull
@@ -172,20 +272,22 @@ public class Personal {
     public String toString() {
         return "Personal{" +
                 "mPersonalId=" + mPersonalId +
-                ", mTotal='" + mTotal + '\'' +
-                ", mRecurring_total='" + mRecurring_total + '\'' +
-                ", mClothing='" + mClothing + '\'' +
+                ", mTotalPlanned='" + mTotalPlanned + '\'' +
+                ", mTotalRecurring='" + mTotalRecurring + '\'' +
+                ", mTotalSpent='" + mTotalSpent + '\'' +
+                ", mClothingPlanned='" + mClothingPlanned + '\'' +
+                ", mClothingSpent='" + mClothingSpent + '\'' +
                 ", mClothingRecurring=" + mClothingRecurring +
-                ", mPhone='" + mPhone + '\'' +
+                ", mPhonePlanned='" + mPhonePlanned + '\'' +
+                ", mPhoneSpent='" + mPhoneSpent + '\'' +
                 ", mPhoneRecurring=" + mPhoneRecurring +
-                ", mEntertainment='" + mEntertainment + '\'' +
-                ", mEntertainmentRecurring=" + mEntertainmentRecurring +
-                ", mGifts='" + mGifts + '\'' +
-                ", mGiftsRecurring=" + mGiftsRecurring +
-                ", mSubscriptions='" + mSubscriptions + '\'' +
-                ", mSubscriptionsRecurring=" + mSubscriptionsRecurring +
-                ", mOther='" + mOther + '\'' +
-                ", mOtherRecurring='" + mOtherRecurring + '\'' +
+                ", mFunMoneyPlanned='" + mFunMoneyPlanned + '\'' +
+                ", mFunMoneySpent='" + mFunMoneySpent + '\'' +
+                ", mFunMoneyRecurring=" + mFunMoneyRecurring +
+                ", mHairCosmeticsPlanned='" + mHairCosmeticsPlanned + '\'' +
+                ", mHairCosmeticsSpent='" + mHairCosmeticsSpent + '\'' +
+                ", mHairCosmeticsRecurring=" + mHairCosmeticsRecurring +
+                ", mOtherPersonalExpenses='" + mOtherPersonalExpenses + '\'' +
                 '}';
     }
 }

@@ -1,0 +1,1256 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 6,
+    "identityHash": "d9f793d97504cabee9130eb4c8bf6751",
+    "entities": [
+      {
+        "tableName": "USER_TABLE",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mUserId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mEmail` TEXT, `mPassword_hash` TEXT, `mFirstName` TEXT, `mLastName` TEXT, `mFirstTimeLogin` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "mUserId",
+            "columnName": "mUserId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mEmail",
+            "columnName": "mEmail",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mPassword_hash",
+            "columnName": "mPassword_hash",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mFirstName",
+            "columnName": "mFirstName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mLastName",
+            "columnName": "mLastName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mFirstTimeLogin",
+            "columnName": "mFirstTimeLogin",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "mUserId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "BUDGET_TABLE",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mBudgetId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUserId` INTEGER NOT NULL, `mGivingId` INTEGER NOT NULL, `mSavingsId` INTEGER NOT NULL, `mHousingId` INTEGER NOT NULL, `mFoodId` INTEGER NOT NULL, `mTransportationId` INTEGER NOT NULL, `mPersonalId` INTEGER NOT NULL, `mLifestyleId` INTEGER NOT NULL, `mHealthId` INTEGER NOT NULL, `mInsuranceId` INTEGER NOT NULL, `mDebtId` INTEGER NOT NULL, `mOtherId` INTEGER NOT NULL, `mPaycheckFrequency` INTEGER NOT NULL, `mTotalRecurringExpenses` TEXT, `mTotalPlannedExpenses` TEXT, `mTotalSpent` TEXT, `mIncome` TEXT, `mExpenseCategories` TEXT, `mMonthlyPayday` TEXT, `mBiweeklyPayday` TEXT, `mWeeklyPayday` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "mBudgetId",
+            "columnName": "mBudgetId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mUserId",
+            "columnName": "mUserId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mGivingId",
+            "columnName": "mGivingId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mSavingsId",
+            "columnName": "mSavingsId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mHousingId",
+            "columnName": "mHousingId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mFoodId",
+            "columnName": "mFoodId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTransportationId",
+            "columnName": "mTransportationId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mPersonalId",
+            "columnName": "mPersonalId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mLifestyleId",
+            "columnName": "mLifestyleId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mHealthId",
+            "columnName": "mHealthId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mInsuranceId",
+            "columnName": "mInsuranceId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mDebtId",
+            "columnName": "mDebtId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOtherId",
+            "columnName": "mOtherId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mPaycheckFrequency",
+            "columnName": "mPaycheckFrequency",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTotalRecurringExpenses",
+            "columnName": "mTotalRecurringExpenses",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalPlannedExpenses",
+            "columnName": "mTotalPlannedExpenses",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalSpent",
+            "columnName": "mTotalSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mIncome",
+            "columnName": "mIncome",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mExpenseCategories",
+            "columnName": "mExpenseCategories",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mMonthlyPayday",
+            "columnName": "mMonthlyPayday",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mBiweeklyPayday",
+            "columnName": "mBiweeklyPayday",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mWeeklyPayday",
+            "columnName": "mWeeklyPayday",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "mBudgetId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "GIVING_TABLE",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mGivingId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUserId` INTEGER NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mChurchPlanned` TEXT, `mChurchSpent` TEXT, `mChurchRecurring` INTEGER NOT NULL, `mCharityPlanned` TEXT, `mCharitySpent` TEXT, `mCharityRecurring` INTEGER NOT NULL, `mOtherGivingExpenses` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "mGivingId",
+            "columnName": "mGivingId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mUserId",
+            "columnName": "mUserId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTotalPlanned",
+            "columnName": "mTotalPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalRecurring",
+            "columnName": "mTotalRecurring",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalSpent",
+            "columnName": "mTotalSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mChurchPlanned",
+            "columnName": "mChurchPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mChurchSpent",
+            "columnName": "mChurchSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mChurchRecurring",
+            "columnName": "mChurchRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCharityPlanned",
+            "columnName": "mCharityPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mCharitySpent",
+            "columnName": "mCharitySpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mCharityRecurring",
+            "columnName": "mCharityRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOtherGivingExpenses",
+            "columnName": "mOtherGivingExpenses",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "mGivingId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "SAVINGS_TABLE",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mSavingsId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUserId` INTEGER NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mEmergencyFundPlanned` TEXT, `mEmergencyFundSpent` TEXT, `mEmergencyFundRecurring` INTEGER NOT NULL, `mOtherSavingsExpenses` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "mSavingsId",
+            "columnName": "mSavingsId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mUserId",
+            "columnName": "mUserId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTotalPlanned",
+            "columnName": "mTotalPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalRecurring",
+            "columnName": "mTotalRecurring",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalSpent",
+            "columnName": "mTotalSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mEmergencyFundPlanned",
+            "columnName": "mEmergencyFundPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mEmergencyFundSpent",
+            "columnName": "mEmergencyFundSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mEmergencyFundRecurring",
+            "columnName": "mEmergencyFundRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOtherSavingsExpenses",
+            "columnName": "mOtherSavingsExpenses",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "mSavingsId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "HOUSING_TABLE",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mHousingId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mMortgageRentPlanned` TEXT, `mMortgageRentSpent` TEXT, `mMortgageRentRecurring` INTEGER NOT NULL, `mWaterPlanned` TEXT, `mWaterSpent` TEXT, `mWaterRecurring` INTEGER NOT NULL, `mNaturalGasPlanned` TEXT, `mNaturalGasSpent` TEXT, `mNaturalGasRecurring` INTEGER NOT NULL, `mElectricityPlanned` TEXT, `mElectricitySpent` TEXT, `mElectricityRecurring` INTEGER NOT NULL, `mCableInternetPlanned` TEXT, `mCableInternetSpent` TEXT, `mCableInternetRecurring` INTEGER NOT NULL, `mOtherHousingExpenses` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "mHousingId",
+            "columnName": "mHousingId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTotalPlanned",
+            "columnName": "mTotalPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalRecurring",
+            "columnName": "mTotalRecurring",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalSpent",
+            "columnName": "mTotalSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mMortgageRentPlanned",
+            "columnName": "mMortgageRentPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mMortgageRentSpent",
+            "columnName": "mMortgageRentSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mMortgageRentRecurring",
+            "columnName": "mMortgageRentRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mWaterPlanned",
+            "columnName": "mWaterPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mWaterSpent",
+            "columnName": "mWaterSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mWaterRecurring",
+            "columnName": "mWaterRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mNaturalGasPlanned",
+            "columnName": "mNaturalGasPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mNaturalGasSpent",
+            "columnName": "mNaturalGasSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mNaturalGasRecurring",
+            "columnName": "mNaturalGasRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mElectricityPlanned",
+            "columnName": "mElectricityPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mElectricitySpent",
+            "columnName": "mElectricitySpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mElectricityRecurring",
+            "columnName": "mElectricityRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCableInternetPlanned",
+            "columnName": "mCableInternetPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mCableInternetSpent",
+            "columnName": "mCableInternetSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mCableInternetRecurring",
+            "columnName": "mCableInternetRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOtherHousingExpenses",
+            "columnName": "mOtherHousingExpenses",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "mHousingId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "FOOD_TABLE",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mFoodId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mGroceriesPlanned` TEXT, `mGroceriesSpent` TEXT, `mGroceriesRecurring` INTEGER NOT NULL, `mRestaurantsPlanned` TEXT, `mRestaurantsSpent` TEXT, `mRestaurantsRecurring` INTEGER NOT NULL, `mOtherSavingsExpenses` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "mFoodId",
+            "columnName": "mFoodId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTotalPlanned",
+            "columnName": "mTotalPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalRecurring",
+            "columnName": "mTotalRecurring",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalSpent",
+            "columnName": "mTotalSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mGroceriesPlanned",
+            "columnName": "mGroceriesPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mGroceriesSpent",
+            "columnName": "mGroceriesSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mGroceriesRecurring",
+            "columnName": "mGroceriesRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mRestaurantsPlanned",
+            "columnName": "mRestaurantsPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mRestaurantsSpent",
+            "columnName": "mRestaurantsSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mRestaurantsRecurring",
+            "columnName": "mRestaurantsRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOtherSavingsExpenses",
+            "columnName": "mOtherSavingsExpenses",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "mFoodId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "TRANSPORTATION_TABLE",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mTransportationId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mGasPlanned` TEXT, `mGasSpent` TEXT, `mGasRecurring` INTEGER NOT NULL, `mMaintenancePlanned` TEXT, `mMaintenanceSpent` TEXT, `mMaintenanceRecurring` INTEGER NOT NULL, `mOtherTransportationExpenses` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "mTransportationId",
+            "columnName": "mTransportationId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTotalPlanned",
+            "columnName": "mTotalPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalRecurring",
+            "columnName": "mTotalRecurring",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalSpent",
+            "columnName": "mTotalSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mGasPlanned",
+            "columnName": "mGasPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mGasSpent",
+            "columnName": "mGasSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mGasRecurring",
+            "columnName": "mGasRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mMaintenancePlanned",
+            "columnName": "mMaintenancePlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mMaintenanceSpent",
+            "columnName": "mMaintenanceSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mMaintenanceRecurring",
+            "columnName": "mMaintenanceRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOtherTransportationExpenses",
+            "columnName": "mOtherTransportationExpenses",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "mTransportationId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "PERSONAL_TABLE",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mPersonalId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mClothingPlanned` TEXT, `mClothingSpent` TEXT, `mClothingRecurring` INTEGER NOT NULL, `mPhonePlanned` TEXT, `mPhoneSpent` TEXT, `mPhoneRecurring` INTEGER NOT NULL, `mFunMoneyPlanned` TEXT, `mFunMoneySpent` TEXT, `mFunMoneyRecurring` INTEGER NOT NULL, `mHairCosmeticsPlanned` TEXT, `mHairCosmeticsSpent` TEXT, `mHairCosmeticsRecurring` INTEGER NOT NULL, `mOtherPersonalExpenses` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "mPersonalId",
+            "columnName": "mPersonalId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTotalPlanned",
+            "columnName": "mTotalPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalRecurring",
+            "columnName": "mTotalRecurring",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalSpent",
+            "columnName": "mTotalSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mClothingPlanned",
+            "columnName": "mClothingPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mClothingSpent",
+            "columnName": "mClothingSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mClothingRecurring",
+            "columnName": "mClothingRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mPhonePlanned",
+            "columnName": "mPhonePlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mPhoneSpent",
+            "columnName": "mPhoneSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mPhoneRecurring",
+            "columnName": "mPhoneRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mFunMoneyPlanned",
+            "columnName": "mFunMoneyPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mFunMoneySpent",
+            "columnName": "mFunMoneySpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mFunMoneyRecurring",
+            "columnName": "mFunMoneyRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mHairCosmeticsPlanned",
+            "columnName": "mHairCosmeticsPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mHairCosmeticsSpent",
+            "columnName": "mHairCosmeticsSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mHairCosmeticsRecurring",
+            "columnName": "mHairCosmeticsRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOtherPersonalExpenses",
+            "columnName": "mOtherPersonalExpenses",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "mPersonalId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "LIFESTYLE_TABLE",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mLifestyleId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mChildCarePlanned` TEXT, `mChildCareSpent` TEXT, `mChildCareRecurring` INTEGER NOT NULL, `mPetCarePlanned` TEXT, `mPetCareSpent` TEXT, `mPetCareRecurring` INTEGER NOT NULL, `mEntertainmentPlanned` TEXT, `mEntertainmentSpent` TEXT, `mEntertainmentRecurring` INTEGER NOT NULL, `mVacationPlanned` TEXT, `mVacationSpent` TEXT, `mVacationRecurring` INTEGER NOT NULL, `mEducationTuitionPlanned` TEXT, `mEducationTuitionSpent` TEXT, `mEducationTuitionRecurring` INTEGER NOT NULL, `mOtherLifestyleExpenses` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "mLifestyleId",
+            "columnName": "mLifestyleId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTotalPlanned",
+            "columnName": "mTotalPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalRecurring",
+            "columnName": "mTotalRecurring",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalSpent",
+            "columnName": "mTotalSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mChildCarePlanned",
+            "columnName": "mChildCarePlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mChildCareSpent",
+            "columnName": "mChildCareSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mChildCareRecurring",
+            "columnName": "mChildCareRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mPetCarePlanned",
+            "columnName": "mPetCarePlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mPetCareSpent",
+            "columnName": "mPetCareSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mPetCareRecurring",
+            "columnName": "mPetCareRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mEntertainmentPlanned",
+            "columnName": "mEntertainmentPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mEntertainmentSpent",
+            "columnName": "mEntertainmentSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mEntertainmentRecurring",
+            "columnName": "mEntertainmentRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mVacationPlanned",
+            "columnName": "mVacationPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mVacationSpent",
+            "columnName": "mVacationSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mVacationRecurring",
+            "columnName": "mVacationRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mEducationTuitionPlanned",
+            "columnName": "mEducationTuitionPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mEducationTuitionSpent",
+            "columnName": "mEducationTuitionSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mEducationTuitionRecurring",
+            "columnName": "mEducationTuitionRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOtherLifestyleExpenses",
+            "columnName": "mOtherLifestyleExpenses",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "mLifestyleId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "HEALTH_TABLE",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mHealthId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mGymPlanned` TEXT, `mGymSpent` TEXT, `mGymRecurring` INTEGER NOT NULL, `mMedicineVitaminsPlanned` TEXT, `mMedicineVitaminsSpent` TEXT, `mMedicineVitaminsRecurring` INTEGER NOT NULL, `mDoctorVisitsPlanned` TEXT, `mDoctorVisitsSpent` TEXT, `mDoctorVisitsRecurring` INTEGER NOT NULL, `mOtherHealthExpenses` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "mHealthId",
+            "columnName": "mHealthId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTotalPlanned",
+            "columnName": "mTotalPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalRecurring",
+            "columnName": "mTotalRecurring",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalSpent",
+            "columnName": "mTotalSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mGymPlanned",
+            "columnName": "mGymPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mGymSpent",
+            "columnName": "mGymSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mGymRecurring",
+            "columnName": "mGymRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mMedicineVitaminsPlanned",
+            "columnName": "mMedicineVitaminsPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mMedicineVitaminsSpent",
+            "columnName": "mMedicineVitaminsSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mMedicineVitaminsRecurring",
+            "columnName": "mMedicineVitaminsRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mDoctorVisitsPlanned",
+            "columnName": "mDoctorVisitsPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mDoctorVisitsSpent",
+            "columnName": "mDoctorVisitsSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mDoctorVisitsRecurring",
+            "columnName": "mDoctorVisitsRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOtherHealthExpenses",
+            "columnName": "mOtherHealthExpenses",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "mHealthId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "INSURANCE_TABLE",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mPersonalId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mHealthInsurancePlanned` TEXT, `mHealthInsuranceSpent` TEXT, `mHealthInsuranceRecurring` INTEGER NOT NULL, `mLifeInsurancePlanned` TEXT, `mLifeInsuranceSpent` TEXT, `mLifeInsuranceRecurring` INTEGER NOT NULL, `mAutoInsurancePlanned` TEXT, `mAutoInsuranceSpent` TEXT, `mAutoInsuranceRecurring` INTEGER NOT NULL, `mHomeownerRenterPlanned` TEXT, `mHomeownerRenterSpent` TEXT, `mHomeownerRenterRecurring` INTEGER NOT NULL, `mOtherInsuranceExpenses` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "mPersonalId",
+            "columnName": "mPersonalId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTotalPlanned",
+            "columnName": "mTotalPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalRecurring",
+            "columnName": "mTotalRecurring",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalSpent",
+            "columnName": "mTotalSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mHealthInsurancePlanned",
+            "columnName": "mHealthInsurancePlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mHealthInsuranceSpent",
+            "columnName": "mHealthInsuranceSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mHealthInsuranceRecurring",
+            "columnName": "mHealthInsuranceRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mLifeInsurancePlanned",
+            "columnName": "mLifeInsurancePlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mLifeInsuranceSpent",
+            "columnName": "mLifeInsuranceSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mLifeInsuranceRecurring",
+            "columnName": "mLifeInsuranceRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mAutoInsurancePlanned",
+            "columnName": "mAutoInsurancePlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mAutoInsuranceSpent",
+            "columnName": "mAutoInsuranceSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mAutoInsuranceRecurring",
+            "columnName": "mAutoInsuranceRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mHomeownerRenterPlanned",
+            "columnName": "mHomeownerRenterPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mHomeownerRenterSpent",
+            "columnName": "mHomeownerRenterSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mHomeownerRenterRecurring",
+            "columnName": "mHomeownerRenterRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOtherInsuranceExpenses",
+            "columnName": "mOtherInsuranceExpenses",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "mPersonalId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "DEBT_TABLE",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mDebtId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mCarPaymentPlanned` TEXT, `mCarPaymentSpent` TEXT, `mCarPaymentRecurring` INTEGER NOT NULL, `mCreditCardPlanned` TEXT, `mCreditCardSpent` TEXT, `mCreditCardRecurring` INTEGER NOT NULL, `mStudentLoanPlanned` TEXT, `mStudentLoanSpent` TEXT, `mStudentLoanRecurring` INTEGER NOT NULL, `mMedicalBillPlanned` TEXT, `mMedicalBillSpent` TEXT, `mMedicalBillRecurring` INTEGER NOT NULL, `mPersonalLoanPlanned` TEXT, `mPersonalLoanSpent` TEXT, `mPersonalLoanRecurring` INTEGER NOT NULL, `mOtherDebtExpenses` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "mDebtId",
+            "columnName": "mDebtId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTotalPlanned",
+            "columnName": "mTotalPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalRecurring",
+            "columnName": "mTotalRecurring",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTotalSpent",
+            "columnName": "mTotalSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mCarPaymentPlanned",
+            "columnName": "mCarPaymentPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mCarPaymentSpent",
+            "columnName": "mCarPaymentSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mCarPaymentRecurring",
+            "columnName": "mCarPaymentRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCreditCardPlanned",
+            "columnName": "mCreditCardPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mCreditCardSpent",
+            "columnName": "mCreditCardSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mCreditCardRecurring",
+            "columnName": "mCreditCardRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mStudentLoanPlanned",
+            "columnName": "mStudentLoanPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mStudentLoanSpent",
+            "columnName": "mStudentLoanSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mStudentLoanRecurring",
+            "columnName": "mStudentLoanRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mMedicalBillPlanned",
+            "columnName": "mMedicalBillPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mMedicalBillSpent",
+            "columnName": "mMedicalBillSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mMedicalBillRecurring",
+            "columnName": "mMedicalBillRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mPersonalLoanPlanned",
+            "columnName": "mPersonalLoanPlanned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mPersonalLoanSpent",
+            "columnName": "mPersonalLoanSpent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mPersonalLoanRecurring",
+            "columnName": "mPersonalLoanRecurring",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOtherDebtExpenses",
+            "columnName": "mOtherDebtExpenses",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "mDebtId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd9f793d97504cabee9130eb4c8bf6751')"
+    ]
+  }
+}

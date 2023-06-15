@@ -1,5 +1,7 @@
 package com.udromero.budget_buddy.db.entities;
 
+import static com.udromero.budget_buddy.Constants.zeroString;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -11,141 +13,175 @@ public class Transportation {
     @PrimaryKey(autoGenerate = true)
     private int mTransportationId;
 
-    // Non-null Attributes
-    private String mTotal;
-    private String mRecurring_total;
+    // Budget Totals
+    private String mTotalPlanned;
+    private String mTotalRecurring;
+    private String mTotalSpent;
 
-    // Other Attributes
-    private String mAutoInsurance;
-    private int mAutoInsuranceRecurring;
-    private String mGasOil;
-    private int mGasOilReccuring;
-    private String mMaitenance;
-    private int mMaitenanceRecurring;
-    private String mCarPayment;
-    private int mCarPaymentRecurring;
-    private String mOther;
-    private String mOtherRecurring;
+    // Attributes
+    private String mGasPlanned;
+    private String mGasSpent;
+    private int mGasRecurring;
 
+    private String mMaintenancePlanned;
+    private String mMaintenanceSpent;
+    private int mMaintenanceRecurring;
 
-    public Transportation(String total, String recurring_total, String autoInsurance, int autoInsuranceRecurring,
-                          String gasOil, int gasOilReccuring, String maitenance, int maitenanceRecurring, String carPayment, int carPaymentRecurring, String other, String otherRecurring) {
-        mTotal = total;
-        mRecurring_total = recurring_total;
-        mAutoInsurance = autoInsurance;
-        mAutoInsuranceRecurring = autoInsuranceRecurring;
-        mGasOil = gasOil;
-        mGasOilReccuring = gasOilReccuring;
-        mMaitenance = maitenance;
-        mMaitenanceRecurring = maitenanceRecurring;
-        mCarPayment = carPayment;
-        mCarPaymentRecurring = carPaymentRecurring;
-        mOther = other;
-        mOtherRecurring = otherRecurring;
+    private String mOtherTransportationExpenses;
+
+    public Transportation(String totalPlanned, String totalRecurring, String totalSpent, String gasPlanned, String gasSpent, int gasRecurring, String maintenancePlanned, String maintenanceSpent, int maintenanceRecurring, String otherTransportationExpenses) {
+        mGasPlanned = gasPlanned;
+        mGasRecurring = gasRecurring;
+        mMaintenancePlanned = maintenancePlanned;
+        mMaintenanceRecurring = maintenanceRecurring;
+        mOtherTransportationExpenses = otherTransportationExpenses;
+
+        // Populate remaining member variables accordingly
+        mTotalPlanned = calculateTotalPlanned();
+        mTotalRecurring = calculateTotalRecurring();
+
+        // Other
+        mTotalSpent = "0";
+        mGasSpent = zeroString;
+        mMaintenanceSpent = zeroString;
     }
 
-    public void setTransportationId(int transportationId) {
-        mTransportationId = transportationId;
+    private String calculateTotalPlanned(){
+        String result;
+
+        double gas = 0;
+        double maitenance = 0;
+
+        if(!mGasPlanned.isEmpty()){
+            gas = Double.parseDouble(mGasPlanned);
+        }
+
+        if(!mMaintenancePlanned.isEmpty()){
+            maitenance = Double.parseDouble(mMaintenancePlanned);
+        }
+
+        double total = gas + maitenance;
+        result = String.valueOf(total);
+
+        return result;
+    }
+
+    public String calculateTotalRecurring(){
+        String result;
+
+        // Amount's for each sub-category
+        double gasAmount = 0;
+        double maintenanceAmount = 0;
+
+        // For each sub-category check whether it's a recurring expense
+        if(mGasRecurring == 1){
+            gasAmount = Double.parseDouble(mGasPlanned);
+        }
+
+        if(mMaintenanceRecurring == 1){
+            maintenanceAmount = Double.parseDouble(mMaintenancePlanned);
+        }
+
+        // Check for no recurring fields being equal to 1, if so just set result = "0"
+        if(mGasRecurring == 0 && mMaintenanceRecurring == 0){
+            result = "0";
+        } else {
+            // add up all amounts into the total
+            double total = gasAmount + maintenanceAmount;
+
+            // set result string to string value of total
+            result = String.valueOf(total);
+        }
+
+        return result;
     }
 
     public int getTransportationId() {
         return mTransportationId;
     }
 
-    public String getTotal() {
-        return mTotal;
+    public void setTransportationId(int transportationId) {
+        mTransportationId = transportationId;
     }
 
-    public void setTotal(String total) {
-        mTotal = total;
+    public String getTotalPlanned() {
+        return mTotalPlanned;
     }
 
-    public String getRecurring_total() {
-        return mRecurring_total;
+    public void setTotalPlanned(String totalPlanned) {
+        mTotalPlanned = totalPlanned;
     }
 
-    public void setRecurring_total(String recurring_total) {
-        mRecurring_total = recurring_total;
+    public String getTotalRecurring() {
+        return mTotalRecurring;
     }
 
-    public String getAutoInsurance() {
-        return mAutoInsurance;
+    public void setTotalRecurring(String totalRecurring) {
+        mTotalRecurring = totalRecurring;
     }
 
-    public void setAutoInsurance(String autoInsurance) {
-        mAutoInsurance = autoInsurance;
+    public String getTotalSpent() {
+        return mTotalSpent;
     }
 
-    public int getAutoInsuranceRecurring() {
-        return mAutoInsuranceRecurring;
+    public void setTotalSpent(String totalSpent) {
+        mTotalSpent = totalSpent;
     }
 
-    public void setAutoInsuranceRecurring(int autoInsuranceRecurring) {
-        mAutoInsuranceRecurring = autoInsuranceRecurring;
+    public String getGasPlanned() {
+        return mGasPlanned;
     }
 
-    public String getGasOil() {
-        return mGasOil;
+    public void setGasPlanned(String gasPlanned) {
+        mGasPlanned = gasPlanned;
     }
 
-    public void setGasOil(String gasOil) {
-        mGasOil = gasOil;
+    public String getGasSpent() {
+        return mGasSpent;
     }
 
-    public int getGasOilReccuring() {
-        return mGasOilReccuring;
+    public void setGasSpent(String gasSpent) {
+        mGasSpent = gasSpent;
     }
 
-    public void setGasOilReccuring(int gasOilReccuring) {
-        mGasOilReccuring = gasOilReccuring;
+    public int getGasRecurring() {
+        return mGasRecurring;
     }
 
-    public String getMaitenance() {
-        return mMaitenance;
+    public void setGasRecurring(int gasRecurring) {
+        mGasRecurring = gasRecurring;
     }
 
-    public void setMaitenance(String maitenance) {
-        mMaitenance = maitenance;
+    public String getMaintenancePlanned() {
+        return mMaintenancePlanned;
     }
 
-    public int getMaitenanceRecurring() {
-        return mMaitenanceRecurring;
+    public void setMaintenancePlanned(String maintenancePlanned) {
+        mMaintenancePlanned = maintenancePlanned;
     }
 
-    public void setMaitenanceRecurring(int maitenanceRecurring) {
-        mMaitenanceRecurring = maitenanceRecurring;
+    public String getMaintenanceSpent() {
+        return mMaintenanceSpent;
     }
 
-    public String getCarPayment() {
-        return mCarPayment;
+    public void setMaintenanceSpent(String maintenanceSpent) {
+        mMaintenanceSpent = maintenanceSpent;
     }
 
-    public void setCarPayment(String carPayment) {
-        mCarPayment = carPayment;
+    public int getMaintenanceRecurring() {
+        return mMaintenanceRecurring;
     }
 
-    public int getCarPaymentRecurring() {
-        return mCarPaymentRecurring;
+    public void setMaintenanceRecurring(int maintenanceRecurring) {
+        mMaintenanceRecurring = maintenanceRecurring;
     }
 
-    public void setCarPaymentRecurring(int carPaymentRecurring) {
-        mCarPaymentRecurring = carPaymentRecurring;
+    public String getOtherTransportationExpenses() {
+        return mOtherTransportationExpenses;
     }
 
-    public String getOther() {
-        return mOther;
-    }
-
-    public void setOther(String other) {
-        mOther = other;
-    }
-
-    public String getOtherRecurring() {
-        return mOtherRecurring;
-    }
-
-    public void setOtherRecurring(String otherRecurring) {
-        mOtherRecurring = otherRecurring;
+    public void setOtherTransportationExpenses(String otherTransportationExpenses) {
+        mOtherTransportationExpenses = otherTransportationExpenses;
     }
 
     @NonNull
@@ -153,18 +189,16 @@ public class Transportation {
     public String toString() {
         return "Transportation{" +
                 "mTransportationId=" + mTransportationId +
-                ", mTotal='" + mTotal + '\'' +
-                ", mRecurring_total='" + mRecurring_total + '\'' +
-                ", mAutoInsurance='" + mAutoInsurance + '\'' +
-                ", mAutoInsuranceRecurring=" + mAutoInsuranceRecurring +
-                ", mGasOil='" + mGasOil + '\'' +
-                ", mGasOilReccuring=" + mGasOilReccuring +
-                ", mMaitenance='" + mMaitenance + '\'' +
-                ", mMaitenanceRecurring=" + mMaitenanceRecurring +
-                ", mCarPayment='" + mCarPayment + '\'' +
-                ", mCarPaymentRecurring=" + mCarPaymentRecurring +
-                ", mOther='" + mOther + '\'' +
-                ", mOtherRecurring='" + mOtherRecurring + '\'' +
+                ", mTotalPlanned='" + mTotalPlanned + '\'' +
+                ", mTotalRecurring='" + mTotalRecurring + '\'' +
+                ", mTotalSpent='" + mTotalSpent + '\'' +
+                ", mGasPlanned='" + mGasPlanned + '\'' +
+                ", mGasSpent='" + mGasSpent + '\'' +
+                ", mGasRecurring=" + mGasRecurring +
+                ", mMaintenancePlanned='" + mMaintenancePlanned + '\'' +
+                ", mMaintenanceSpent='" + mMaintenanceSpent + '\'' +
+                ", mMaintenanceRecurring=" + mMaintenanceRecurring +
+                ", mOtherTransportationExpenses='" + mOtherTransportationExpenses + '\'' +
                 '}';
     }
 }

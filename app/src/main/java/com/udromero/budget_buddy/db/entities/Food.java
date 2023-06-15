@@ -7,64 +7,139 @@ import androidx.room.PrimaryKey;
 import com.udromero.budget_buddy.db.BudgetBuddyDatabase;
 
 @Entity(tableName = BudgetBuddyDatabase.FOOD_TABLE)
-
 public class Food {
     @PrimaryKey(autoGenerate = true)
     private int mFoodId;
 
-    // Non-null Attributes
-    private String mTotal;
-    private String mRecurring_total;
+    // Budget Totals
+    private String mTotalPlanned;
+    private String mTotalRecurring;
+    private String mTotalSpent;
 
-    // Other Attributes
-    private String mGroceries;
+    // Attributes
+    private String mGroceriesPlanned;
+    private String mGroceriesSpent;
     private int mGroceriesRecurring;
-    private String mRestaurants;
-    private int mRestaurantsRecurring;
-    private String mOther;
-    private String mOtherReccuring;
 
-    public Food(String total, String recurring_total, String groceries, int groceriesRecurring, String restaurants, int restaurantsRecurring, String other, String otherReccuring) {
-        mTotal = total;
-        mRecurring_total = recurring_total;
-        mGroceries = groceries;
+    private String mRestaurantsPlanned;
+    private String mRestaurantsSpent;
+    private int mRestaurantsRecurring;
+
+    private String mOtherSavingsExpenses;
+
+    public Food(String groceriesPlanned, int groceriesRecurring, String restaurantsPlanned, int restaurantsRecurring, String otherSavingsExpenses) {
+        mGroceriesPlanned = groceriesPlanned;
         mGroceriesRecurring = groceriesRecurring;
-        mRestaurants = restaurants;
+        mRestaurantsPlanned = restaurantsPlanned;
         mRestaurantsRecurring = restaurantsRecurring;
-        mOther = other;
-        mOtherReccuring = otherReccuring;
+        mOtherSavingsExpenses = otherSavingsExpenses;
+
+        // Populate remaining member variables accordingly
+        mTotalPlanned = calculateTotalPlanned();
+        mTotalRecurring = calculateTotalRecurring();
+
+        // Set all spent values to "0"
+        mTotalSpent = "0";
+        mGroceriesSpent = "0";
+        mRestaurantsSpent = "0";
     }
 
-    public void setFoodId(int foodId) {
-        mFoodId = foodId;
+    private String calculateTotalPlanned(){
+        String result;
+
+        double groceries = 0;
+        double restaurants = 0;
+
+        if(!mGroceriesPlanned.isEmpty()){
+            groceries = Double.parseDouble(mGroceriesPlanned);
+        }
+
+        if(!mRestaurantsPlanned.isEmpty()){
+            restaurants = Double.parseDouble(mRestaurantsPlanned);
+        }
+
+        double total = groceries + restaurants;
+        result = String.valueOf(total);
+
+        return result;
+    }
+
+    public String calculateTotalRecurring(){
+        String result;
+
+        // Amount's for each sub-category
+        double groceriesAmount = 0;
+        double restaurantAmount = 0;
+
+        // For each sub-category check whether it's a recurring expense
+        if(mGroceriesRecurring == 1){
+            groceriesAmount = Double.parseDouble(mGroceriesPlanned);
+        }
+
+        if(mRestaurantsRecurring == 1){
+            restaurantAmount = Double.parseDouble(mRestaurantsPlanned);
+        }
+
+        // Check for no recurring fields being equal to 1, if so just set result = "0"
+        if(mGroceriesRecurring == 0 && mRestaurantsRecurring == 0){
+            result = "0";
+        } else {
+            // add up all amounts into the total
+            double total = groceriesAmount + restaurantAmount;
+
+            // set result string to string value of total
+            result = String.valueOf(total);
+        }
+
+        return result;
     }
 
     public int getFoodId() {
         return mFoodId;
     }
 
-    public String getTotal() {
-        return mTotal;
+    public void setFoodId(int foodId) {
+        mFoodId = foodId;
     }
 
-    public void setTotal(String total) {
-        mTotal = total;
+    public String getTotalPlanned() {
+        return mTotalPlanned;
     }
 
-    public String getRecurring_total() {
-        return mRecurring_total;
+    public void setTotalPlanned(String totalPlanned) {
+        mTotalPlanned = totalPlanned;
     }
 
-    public void setRecurring_total(String recurring_total) {
-        mRecurring_total = recurring_total;
+    public String getTotalRecurring() {
+        return mTotalRecurring;
     }
 
-    public String getGroceries() {
-        return mGroceries;
+    public void setTotalRecurring(String totalRecurring) {
+        mTotalRecurring = totalRecurring;
     }
 
-    public void setGroceries(String groceries) {
-        mGroceries = groceries;
+    public String getTotalSpent() {
+        return mTotalSpent;
+    }
+
+    public void setTotalSpent(String totalSpent) {
+        mTotalSpent = totalSpent;
+    }
+
+    public String getGroceriesPlanned() {
+        return mGroceriesPlanned;
+    }
+
+    public void setGroceriesPlanned(String groceriesPlanned) {
+        mGroceriesPlanned = groceriesPlanned;
+    }
+
+    public String getGroceriesSpent() {
+        return mGroceriesSpent;
+    }
+
+    public void setGroceriesSpent(String groceriesSpent) {
+        mGroceriesSpent = groceriesSpent;
     }
 
     public int getGroceriesRecurring() {
@@ -75,12 +150,20 @@ public class Food {
         mGroceriesRecurring = groceriesRecurring;
     }
 
-    public String getRestaurants() {
-        return mRestaurants;
+    public String getRestaurantsPlanned() {
+        return mRestaurantsPlanned;
     }
 
-    public void setRestaurants(String restaurants) {
-        mRestaurants = restaurants;
+    public void setRestaurantsPlanned(String restaurantsPlanned) {
+        mRestaurantsPlanned = restaurantsPlanned;
+    }
+
+    public String getRestaurantsSpent() {
+        return mRestaurantsSpent;
+    }
+
+    public void setRestaurantsSpent(String restaurantsSpent) {
+        mRestaurantsSpent = restaurantsSpent;
     }
 
     public int getRestaurantsRecurring() {
@@ -91,20 +174,12 @@ public class Food {
         mRestaurantsRecurring = restaurantsRecurring;
     }
 
-    public String getOther() {
-        return mOther;
+    public String getOtherSavingsExpenses() {
+        return mOtherSavingsExpenses;
     }
 
-    public void setOther(String other) {
-        mOther = other;
-    }
-
-    public String getOtherReccuring() {
-        return mOtherReccuring;
-    }
-
-    public void setOtherReccuring(String otherReccuring) {
-        mOtherReccuring = otherReccuring;
+    public void setOtherSavingsExpenses(String otherSavingsExpenses) {
+        mOtherSavingsExpenses = otherSavingsExpenses;
     }
 
     @NonNull
@@ -112,14 +187,16 @@ public class Food {
     public String toString() {
         return "Food{" +
                 "mFoodId=" + mFoodId +
-                ", mTotal='" + mTotal + '\'' +
-                ", mRecurring_total='" + mRecurring_total + '\'' +
-                ", mGroceries='" + mGroceries + '\'' +
+                ", mTotalPlanned='" + mTotalPlanned + '\'' +
+                ", mTotalRecurring='" + mTotalRecurring + '\'' +
+                ", mTotalSpent='" + mTotalSpent + '\'' +
+                ", mGroceriesPlanned='" + mGroceriesPlanned + '\'' +
+                ", mGroceriesSpent='" + mGroceriesSpent + '\'' +
                 ", mGroceriesRecurring=" + mGroceriesRecurring +
-                ", mRestaurants='" + mRestaurants + '\'' +
+                ", mRestaurantsPlanned='" + mRestaurantsPlanned + '\'' +
+                ", mRestaurantsSpent='" + mRestaurantsSpent + '\'' +
                 ", mRestaurantsRecurring=" + mRestaurantsRecurring +
-                ", mOther='" + mOther + '\'' +
-                ", mOtherReccuring='" + mOtherReccuring + '\'' +
+                ", otherSavingsExpenses='" + mOtherSavingsExpenses + '\'' +
                 '}';
     }
 }
