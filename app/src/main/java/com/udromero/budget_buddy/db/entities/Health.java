@@ -13,6 +13,8 @@ public class Health {
     @PrimaryKey(autoGenerate = true)
     private int mHealthId;
 
+    private int mUserId;
+
     // Budget Totals
     private String mTotalPlanned;
     private String mTotalRecurring;
@@ -33,24 +35,21 @@ public class Health {
 
     private String mOtherHealthExpenses;
 
-    public Health(String gymPlanned, int gymRecurring, String medicineVitaminsPlanned, int medicineVitaminsRecurring, String doctorVisitsPlanned, int doctorVisitsRecurring, String otherHealthExpenses) {
+    public Health(int userId, String totalPlanned, String totalRecurring, String totalSpent, String gymPlanned, String gymSpent, int gymRecurring, String medicineVitaminsPlanned, String medicineVitaminsSpent, int medicineVitaminsRecurring, String doctorVisitsPlanned, String doctorVisitsSpent, int doctorVisitsRecurring, String otherHealthExpenses) {
+        mUserId = userId;
+        mTotalPlanned = totalPlanned;
+        mTotalRecurring = totalRecurring;
+        mTotalSpent = totalSpent;
         mGymPlanned = gymPlanned;
+        mGymSpent = gymSpent;
         mGymRecurring = gymRecurring;
         mMedicineVitaminsPlanned = medicineVitaminsPlanned;
+        mMedicineVitaminsSpent = medicineVitaminsSpent;
         mMedicineVitaminsRecurring = medicineVitaminsRecurring;
         mDoctorVisitsPlanned = doctorVisitsPlanned;
+        mDoctorVisitsSpent = doctorVisitsSpent;
         mDoctorVisitsRecurring = doctorVisitsRecurring;
         mOtherHealthExpenses = otherHealthExpenses;
-
-        // Populate remaining member variables accordingly
-        mTotalPlanned = calculateTotalPlanned();
-        mTotalRecurring = calculateTotalRecurring();
-
-        // Set all spent values to "0"
-        mTotalSpent = zeroString;
-        mGymSpent = zeroString;
-        mMedicineVitaminsSpent = zeroString;
-        mDoctorVisitsSpent = zeroString;
     }
 
     private String calculateTotalPlanned(){
@@ -111,6 +110,14 @@ public class Health {
         }
 
         return result;
+    }
+
+    public int getUserId() {
+        return mUserId;
+    }
+
+    public void setUserId(int userId) {
+        mUserId = userId;
     }
 
     public int getHealthId() {

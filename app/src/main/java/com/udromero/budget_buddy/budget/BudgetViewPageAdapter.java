@@ -24,8 +24,7 @@ public class BudgetViewPageAdapter extends FragmentStateAdapter {
                 // TODO: Please enter income before continuing
                 return new GivingFragment();
             case 2:
-                return new OtherFragment();
-//                return new SavingsFragment();
+                return new SavingsFragment();
             case 3:
                 return new HousingFragment();
             case 4:

@@ -2,6 +2,7 @@ package com.udromero.budget_buddy.budget;
 
 import static com.udromero.budget_buddy.Constants.BUDGET_ID_KEY;
 import static com.udromero.budget_buddy.Constants.GIVING;
+import static com.udromero.budget_buddy.Constants.HOUSING_ID_KEY;
 import static com.udromero.budget_buddy.Constants.PREFERENCES_KEY;
 import static com.udromero.budget_buddy.Constants.TAB_INDEX_KEY;
 import static com.udromero.budget_buddy.Constants.TAB_NAME_KEY;
@@ -96,6 +97,7 @@ public class GivingFragment extends Fragment {
     private AdditionalSubCategoryAdapter.RecylcerViewClickListener mListener;
     private ArrayList<AdditionalSubCategoryModel> mAdditionalSubCategories;
     private String titleToUpdateOn = "";
+    private int indexToUpdateOn;
 
     AdditionalSubCategoryAdapter mAdapter;
 
@@ -177,6 +179,8 @@ public class GivingFragment extends Fragment {
             updateRecyclerView(true);
         }
 
+        mTestDisplay.setText(mGiving.toString());
+
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -189,7 +193,7 @@ public class GivingFragment extends Fragment {
                 populateScreen();
                 populateSummarySection();
 
-                mTestDisplay.setText("Budget ID: " + mBudgetId + ", User ID: " + mUserId + ", " + mGiving.toString());
+                 mTestDisplay.setText("Budget ID: " + mBudgetId + ", User ID: " + mUserId + ", " + mGiving.toString());
             }
         });
 
@@ -297,27 +301,57 @@ public class GivingFragment extends Fragment {
             recurring = "[r]";
         }
 
-        for(int i = 0; i < mAdditionalSubCategories.size(); i++){
-            AdditionalSubCategoryModel currSubCat = mAdditionalSubCategories.get(i);
-            if(currSubCat.getTitle().equals(titleToUpdateOn)){
-                currSubCat.setTitle(title);
-                double oldPA = Double.parseDouble(currSubCat.getPlannedAmount());
-                double newPA = Double.parseDouble(plannedAmount);
-                currSubCat.setPlannedAmount(plannedAmount);
-                currSubCat.setRecurring(recurring);
+        AdditionalSubCategoryModel currSubCat = mAdditionalSubCategories.get(indexToUpdateOn);
+        if(currSubCat.getTitle().equals(titleToUpdateOn)){
+            currSubCat.setTitle(title);
+            double oldPA = Double.parseDouble(currSubCat.getPlannedAmount());
+            double newPA = Double.parseDouble(plannedAmount);
+            currSubCat.setPlannedAmount(plannedAmount);
 
-                double currTotal = Double.parseDouble(mGiving.getTotalPlanned());
-                currTotal = currTotal - oldPA + newPA;
-                mGiving.setTotalPlanned(String.valueOf(currTotal));
 
-                if(currSubCat.getRecurring().equals("[r]")){
-                    double recurringTotal = Double.parseDouble(mGiving.getTotalRecurring());
-                    recurringTotal = recurringTotal - oldPA + newPA;
-                    mGiving.setTotalRecurring(String.valueOf(recurringTotal));
-                }
+            double currTotal = Double.parseDouble(mGiving.getTotalPlanned());
+            currTotal = (currTotal - oldPA) + newPA;
+            mGiving.setTotalPlanned(String.valueOf(currTotal));
 
+            double recurringTotal = Double.parseDouble(mGiving.getTotalRecurring());
+
+            if(currSubCat.getRecurring().equals("[r]") && recurring.equals("[r]")){
+                recurringTotal = (recurringTotal - oldPA) + newPA;
+                mGiving.setTotalRecurring(String.valueOf(recurringTotal));
+            } else if (currSubCat.getRecurring().equals("[r]") && recurring.equals("[]")){
+                recurringTotal = recurringTotal - oldPA;
+                mGiving.setTotalRecurring(String.valueOf(recurringTotal));
+            } else if(currSubCat.getRecurring().equals("[]") && recurring.equals("[r]")){
+                recurringTotal += newPA;
+                mGiving.setTotalRecurring(String.valueOf(recurringTotal));
             }
+
+            currSubCat.setRecurring(recurring);
         }
+
+
+
+//        for(int i = 0; i < mAdditionalSubCategories.size(); i++){
+//            AdditionalSubCategoryModel currSubCat = mAdditionalSubCategories.get(i);
+//            if(currSubCat.getTitle().equals(titleToUpdateOn)){
+//                currSubCat.setTitle(title);
+//                double oldPA = Double.parseDouble(currSubCat.getPlannedAmount());
+//                double newPA = Double.parseDouble(plannedAmount);
+//                currSubCat.setPlannedAmount(plannedAmount);
+//                currSubCat.setRecurring(recurring);
+//
+//                double currTotal = Double.parseDouble(mGiving.getTotalPlanned());
+//                currTotal = (currTotal - oldPA) + newPA;
+//                mGiving.setTotalPlanned(String.valueOf(currTotal));
+//
+//                if(currSubCat.getRecurring().equals("[r]")){
+//                    double recurringTotal = Double.parseDouble(mGiving.getTotalRecurring());
+//                    recurringTotal = (recurringTotal - oldPA) + newPA;
+//                    mGiving.setTotalRecurring(String.valueOf(recurringTotal));
+//                }
+//
+//            }
+//        }
 
         mGiving.setOtherGivingExpenses(ListConverter.convertListToString(mAdditionalSubCategories));
         mBudgetBuddyDAO.update(mGiving);
@@ -400,7 +434,7 @@ public class GivingFragment extends Fragment {
 
     private boolean checkForValidIncome(){
         grabLatestUserInfo();
-        if(mBudget.getIncome().equals(nullString)){
+        if(mBudget.getIncome().equals(zeroString)){
             mErrorDisplay.setText(getString(R.string.givingErrorPrompt));
             hideAllOnScreenItems();
             return false;
@@ -410,13 +444,13 @@ public class GivingFragment extends Fragment {
         return true;
     }
 
-    private boolean checkGivingHasBeenPopulated(){
-        if(mGiving.getTotalPlanned().equals(zeroString) && mGiving.getTotalRecurring().equals(zeroString)){
-            return false;
-        }
-
-        return true;
-    }
+//    private boolean checkGivingHasBeenPopulated(){
+//        if(mGiving.getTotalPlanned().equals(zeroString) && mGiving.getTotalRecurring().equals(zeroString)){
+//            return false;
+//        }
+//
+//        return true;
+//    }
 
     private void grabLatestUserInfo(){
         mUserId = mSharedPreferences.getInt(USER_ID_KEY, -1);
@@ -430,7 +464,7 @@ public class GivingFragment extends Fragment {
     private void updateCalculatedRangeDisplay(){
         // 1. Check user has an income in the database
         grabLatestUserInfo();
-        if(mBudget.getIncome().equals(nullString)){
+        if(mBudget.getIncome().equals(zeroString)){
             hideAllOnScreenItems();
             mErrorDisplay.setText(R.string.missingIncomeWarning);
         } else {
@@ -450,9 +484,31 @@ public class GivingFragment extends Fragment {
         mTotalDisplay.setText(getString(R.string.total, ""));
     }
 
+    // CHANGED
     private void pullValuesIntoDatabase(){
         String churchPlanned = mChurchPlannedInputEditText.getText().toString().trim();
         String charityPlanned = mCharityPlannedInputEditText.getText().toString().trim();
+
+        if(charityPlanned.equals("")){
+            if(mGiving.getCharityPlanned().equals(zeroString)){
+                charityPlanned = zeroString;
+            } else {
+                charityPlanned = mGiving.getCharityPlanned();
+            }
+        }
+
+        if(churchPlanned.equals("")){
+            if(mGiving.getChurchPlanned().equals(zeroString)){
+                churchPlanned = zeroString;
+            } else {
+                churchPlanned = mGiving.getChurchPlanned();
+            }
+        }
+
+        mGiving.setCharityPlanned(charityPlanned);
+        mGiving.setChurchPlanned(churchPlanned);
+
+        mBudgetBuddyDAO.update(mGiving);
 
         double church = Double.parseDouble(mGiving.getChurchPlanned());
         double charity = Double.parseDouble(mGiving.getCharityPlanned());
@@ -470,8 +526,6 @@ public class GivingFragment extends Fragment {
         String newRecurringTotal = getRecurringTotal();
         mGiving.setTotalRecurring(newRecurringTotal);
 
-        mGiving.setCharityPlanned(charityPlanned);
-        mGiving.setChurchPlanned(churchPlanned);
         mGiving.setTotalPlanned(stringTotal);
 
         mBudgetBuddyDAO.update(mGiving);
@@ -561,17 +615,17 @@ public class GivingFragment extends Fragment {
 
     private void populateScreen(){
         grabLatestUserInfo();
-        if(!checkGivingHasBeenPopulated()){
-            mSaveButton.setText("SAVE");
-            mTotalDisplay.setText(getString(R.string.total, ""));
-            mRangeCheckDisplay.setText(getString(R.string.rangeCheck, ""));
-            mChurchPlannedInputEditText.setHint("Enter Amount");
-            mCharityPlannedInputEditText.setHint("Enter Amount");
-            mRangeColorButton.setBackgroundTintList(ContextCompat.getColorStateList(getActivity().getApplicationContext(), R.color.gray));
-            return;
-        }
+//        if(!checkGivingHasBeenPopulated()){
+//            mSaveButton.setText("SAVE");
+//            mTotalDisplay.setText(getString(R.string.total, ""));
+//            mRangeCheckDisplay.setText(getString(R.string.rangeCheck, ""));
+//            mChurchPlannedInputEditText.setHint("Enter Amount");
+//            mCharityPlannedInputEditText.setHint("Enter Amount");
+//            mRangeColorButton.setBackgroundTintList(ContextCompat.getColorStateList(getActivity().getApplicationContext(), R.color.gray));
+//            return;
+//        }
 
-        mSaveButton.setText("UPDATE");
+        mSaveButton.setText("SAVE");
 
         boolean currValue;
         currValue = mGiving.getCharityRecurring() == 1;
@@ -582,7 +636,6 @@ public class GivingFragment extends Fragment {
         }
 
         // TODO: SET HINT TO PREVIOUS MONTHS AMOUNT
-
         String churchPlanned = mGiving.getChurchPlanned();
         mChurchPlannedInputEditText.setText(churchPlanned);
          mChurchPlannedInputEditText.setHint(getString(R.string.previous, "n/a"));
@@ -687,7 +740,7 @@ public class GivingFragment extends Fragment {
         }
         String plannedAmount = mOtherPlannedAmountInput.getText().toString().trim();
         boolean recurringBoolean = mOtherRecurring.isChecked();
-        String recurring = nullString;
+        String recurring;
 
         if(recurringBoolean){
             recurring = "[r]";
@@ -754,6 +807,7 @@ public class GivingFragment extends Fragment {
                 }
 
                 titleToUpdateOn = mAdditionalSubCategories.get(position).getTitle();
+                indexToUpdateOn = position;
                 mAddOtherButton.setVisibility(View.INVISIBLE);
                 mUpdateButton.setVisibility(View.VISIBLE);
                 mDeleteButton.setVisibility(View.VISIBLE);

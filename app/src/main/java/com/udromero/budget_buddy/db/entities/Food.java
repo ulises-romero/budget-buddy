@@ -11,6 +11,8 @@ public class Food {
     @PrimaryKey(autoGenerate = true)
     private int mFoodId;
 
+    private int mUserId;
+
     // Budget Totals
     private String mTotalPlanned;
     private String mTotalRecurring;
@@ -27,21 +29,20 @@ public class Food {
 
     private String mOtherSavingsExpenses;
 
-    public Food(String groceriesPlanned, int groceriesRecurring, String restaurantsPlanned, int restaurantsRecurring, String otherSavingsExpenses) {
+    public Food(int userId, String totalPlanned, String totalRecurring, String totalSpent, String groceriesPlanned,
+                String groceriesSpent, int groceriesRecurring, String restaurantsPlanned, String restaurantsSpent,
+                int restaurantsRecurring, String otherSavingsExpenses) {
+        mUserId = userId;
+        mTotalPlanned = totalPlanned;
+        mTotalRecurring = totalRecurring;
+        mTotalSpent = totalSpent;
         mGroceriesPlanned = groceriesPlanned;
+        mGroceriesSpent = groceriesSpent;
         mGroceriesRecurring = groceriesRecurring;
         mRestaurantsPlanned = restaurantsPlanned;
+        mRestaurantsSpent = restaurantsSpent;
         mRestaurantsRecurring = restaurantsRecurring;
         mOtherSavingsExpenses = otherSavingsExpenses;
-
-        // Populate remaining member variables accordingly
-        mTotalPlanned = calculateTotalPlanned();
-        mTotalRecurring = calculateTotalRecurring();
-
-        // Set all spent values to "0"
-        mTotalSpent = "0";
-        mGroceriesSpent = "0";
-        mRestaurantsSpent = "0";
     }
 
     private String calculateTotalPlanned(){
@@ -92,6 +93,14 @@ public class Food {
         }
 
         return result;
+    }
+
+    public int getUserId() {
+        return mUserId;
+    }
+
+    public void setUserId(int userId) {
+        mUserId = userId;
     }
 
     public int getFoodId() {

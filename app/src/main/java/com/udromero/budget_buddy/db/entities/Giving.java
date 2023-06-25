@@ -29,27 +29,21 @@ public class Giving {
 
     private String mOtherGivingExpenses; // split on "," then split each string on "-". EX: "donations-200.00,other-300.00-[r]"
 
-
-    public Giving(int userId, String totalPlanned, String totalRecurring, String totalSpent, String churchPlanned, String churchSpent, int churchRecurring, String charityPlanned, String charitySpent,
-                  int charityRecurring, String otherGivingExpenses) {
+    public Giving(int userId, String totalPlanned, String totalRecurring, String totalSpent, String churchPlanned, String churchSpent, int churchRecurring, String charityPlanned, String charitySpent, int charityRecurring, String otherGivingExpenses) {
         mUserId = userId;
-        mChurchPlanned = churchPlanned;
-        mChurchRecurring = churchRecurring;
-        mCharityPlanned = charityPlanned;
-        mCharityRecurring = charityRecurring;
-        mOtherGivingExpenses = otherGivingExpenses;
-
-        // Populate remaining member variables accordingly
         mTotalPlanned = totalPlanned;
         mTotalRecurring = totalRecurring;
-
-        // Set all spent values to "0"
-        mCharitySpent = "0";
-        mChurchSpent = "0";
-        mTotalSpent = "0";
+        mTotalSpent = totalSpent;
+        mChurchPlanned = churchPlanned;
+        mChurchSpent = churchSpent;
+        mChurchRecurring = churchRecurring;
+        mCharityPlanned = charityPlanned;
+        mCharitySpent = charitySpent;
+        mCharityRecurring = charityRecurring;
+        mOtherGivingExpenses = otherGivingExpenses;
     }
 
-//    public String calculateTotalPlanned(){
+    //    public String calculateTotalPlanned(){
 //        String result;
 //
 //        double church = 0;

@@ -1,172 +1,371 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".budget.SavingsFragment">
-
-    <!-- Logo & Error Display -->
-
-    <ImageView
-        android:id="@+id/savingsPageLogo"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="52dp"
-        android:contentDescription="@string/page_logo"
-        android:src="@drawable/piggy_bank" />
-
-    <Button
-        android:id="@+id/savingsRefreshButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="10dp"
-        android:layout_gravity="right"
-        android:background="@drawable/ic_baseline_refresh_24"
-        android:layout_marginTop="55dp"/>
-
-    <TextView
-        android:id="@+id/savingsErrorDisplay"
-        android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/blank"
-        android:textColor="#FF0000"
-        android:textSize="12sp" />
+        tools:context=".budget.SavingsFragment">
 
-    <!-- Percent Ranges -->
+        <!-- Logo & Error Display -->
 
-    <TextView
-        android:id="@+id/savingsIncomeTotalPercentageRangeDisplay"
-        android:layout_marginTop="100dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/givingRangeDisplay"
-        android:textSize="18sp" />
+        <ImageView
+            android:id="@+id/savings_PageLogo"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="52dp"
+            android:contentDescription="@string/page_logo"
+            android:src="@drawable/piggy_bank" />
 
-    <!-- Top Bar -->
+        <Button
+            android:id="@+id/savings_RefreshButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="right"
+            android:background="@drawable/ic_baseline_refresh_24"
+            android:layout_marginTop="55dp"/>
 
-    <TextView
-        android:id="@+id/savingsUserIncomeCalculatedRangeDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="125dp"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/givingCalculatedRangeDisplay"
-        android:textSize="18sp" />
+        <TextView
+            android:id="@+id/savings_ErrorDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/blank"
+            android:textColor="#FF0000"
+            android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/savingsPlannedAmountDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:paddingEnd="135dp"
-        android:layout_marginTop="165dp"
-        android:text="Planned"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:textSize="20sp" />
+        <!-- Percent Ranges -->
 
-    <TextView
-        android:id="@+id/savingsRecurringDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:paddingEnd="15dp"
-        android:layout_marginTop="165dp"
-        android:text="@string/recurring"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/savings_IncomeTotalPercentageRangeDisplay"
+            android:layout_marginTop="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/givingRangeDisplay"
+            android:textSize="18sp" />
 
-    <!-- Emergency Fund -->
+        <!-- Top Bar -->
 
-    <TextView
-        android:id="@+id/savingsEmergencyFundDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="10dp"
-        android:textAlignment="textStart"
-        android:layout_marginTop="205dp"
-        android:text="Emergency Fund:"
-        android:textColor="#000000"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/savings_UserIncomeCalculatedRangeDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="125dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/givingCalculatedRangeDisplay"
+            android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/savingsEmergencyFundPlannedInputEditText"
-        android:layout_width="95dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginTop="193dp"
-        android:layout_marginEnd="125dp"
-        android:autofillHints=""
-        android:gravity="center"
-        android:hint="@string/inputHint"
-        android:inputType="numberDecimal"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/savings_PlannedAmountDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingEnd="135dp"
+            android:layout_marginTop="165dp"
+            android:text="Planned"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="20sp" />
 
-    <CheckBox
-        android:id="@+id/savingsEmergencyFundRecurringCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginTop="193dp"
-        android:layout_marginEnd="40dp" />
+        <TextView
+            android:id="@+id/savings_RecurringDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingEnd="15dp"
+            android:layout_marginTop="165dp"
+            android:text="@string/recurring"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="20sp" />
 
-    <!-- Save Button -->
-    <Button
-        android:id="@+id/savingsSaveButton"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_gravity="right"
-        android:layout_marginEnd="14dp"
-        android:layout_marginTop="250dp"
-        android:text="@string/save"
-        android:textSize="14sp" />
+        <!-- Emergency Fund -->
 
-    <!-- Summary Section -->
-    <TextView
-        android:id="@+id/savingsRangeCheckDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:textAlignment="textStart"
-        android:layout_marginTop="250dp"
-        android:text="@string/rangeCheck"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/savingsEmergencyFundDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="205dp"
+            android:text="Emergency Fund:"
+            android:textColor="#000000"
+            android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/savingsRangeButton"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_gravity="left"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="250dp"
-        android:text="@string/save"
-        android:enabled="false"
-        android:backgroundTint="#FF0000"
-        android:textSize="18sp" />
+        <EditText
+            android:id="@+id/savingsEmergencyFundPlannedInputEditText"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="193dp"
+            android:layout_marginEnd="125dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="@string/inputHint"
+            android:inputType="numberDecimal"
+            android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/savingsTotalDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="285dp"
-        android:paddingStart="10dp"
-        android:text="@string/total"
-        android:textAlignment="textStart"
-        android:textSize="16sp" />
+        <CheckBox
+            android:id="@+id/savingsEmergencyFundRecurringCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="193dp"
+            android:layout_marginEnd="40dp" />
 
-    <TextView
-        android:id="@+id/savingsTestDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="10dp"
-        android:textAlignment="textStart"
-        android:layout_marginTop="350dp"
-        android:text=""
-        android:textSize="8sp" />
-</FrameLayout>
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/savings_SaveButton"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_gravity="right"
+            android:layout_marginEnd="14dp"
+            android:layout_marginTop="250dp"
+            android:text="@string/save"
+            android:textSize="14sp" />
+
+        <!-- Summary Section -->
+        <TextView
+            android:id="@+id/savings_RangeCheckDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="250dp"
+            android:text="@string/rangeCheck"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/savings_RangeButton"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="left"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="250dp"
+            android:text="@string/save"
+            android:enabled="false"
+            android:backgroundTint="#FF0000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/savings_TotalDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="285dp"
+            android:paddingStart="10dp"
+            android:text="@string/total"
+            android:textAlignment="textStart"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/savingsTestDisplay"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="50dp"
+            android:text=""
+            android:textSize="8sp" />
+
+        <!-- Other Section -->
+
+        <TextView
+            android:id="@+id/givingAddOtherDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="320dp"
+            android:paddingStart="15dp"
+            android:text="Additional Sub-cateogry: "
+            android:textAlignment="textStart"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/savings_OtherErrorDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="306dp"
+            android:paddingStart="15dp"
+            android:text=""
+            android:textAlignment="textStart"
+            android:textColor="#FF0000"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/savings_TestDisplay"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="50dp"
+            android:text=""
+            android:textSize="8sp" />
+
+        <TextView
+            android:id="@+id/savingsTitleDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="350dp"
+            android:text="Title:"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/savings_OtherTitleInputEditText"
+            android:layout_width="wrap_content"
+            android:maxWidth="220dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="336dp"
+            android:layout_marginStart="50dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="Enter Title"
+            android:inputType="textPersonName"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/savingsPlannedDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="380dp"
+            android:text="Planned:"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/savings_OtherPlannedInputEditText"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="371dp"
+            android:layout_marginStart="77dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="Amount"
+            android:inputType="numberDecimal"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/savingsOtherRecurringDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="165dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="380dp"
+            android:text="Recurring?"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/savings_OtherRecurringCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginStart="235dp"
+            android:layout_marginTop="368dp" />
+
+        <Button
+            android:id="@+id/savings_AddButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="350dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/ic_baseline_add_circle_24"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/savings_UpdateButton"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="330dp"
+            android:text="save"
+            android:visibility="invisible"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/savings_DeleteButton"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="370dp"
+            android:text="delete"
+            android:backgroundTint="#FF0000"
+            android:visibility="invisible"
+            android:textSize="9sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="410dp">
+            <TableLayout
+                android:id="@+id/savingsOtherTableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+
+                android:shrinkColumns="1,2,3,4,5"
+                android:stretchColumns="1,2,3,4,5">
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="105dp"
+                        android:layout_column="1"
+                        android:textColor="#000000"
+                        android:gravity="left"
+                        android:padding="8dp"
+                        android:text="Title"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_column="1"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:textColor="#000000"
+                        android:text="PA($)"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_column="1"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:textColor="#000000"
+                        android:text="R"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_column="1"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Update/Delete"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/savings_OtherRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableLayout>
+        </LinearLayout>
+    </FrameLayout>
+    </ScrollView>

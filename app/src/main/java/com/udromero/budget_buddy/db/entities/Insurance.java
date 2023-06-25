@@ -11,7 +11,9 @@ import com.udromero.budget_buddy.db.BudgetBuddyDatabase;
 @Entity(tableName = BudgetBuddyDatabase.INSURANCE_TABLE)
 public class Insurance {
     @PrimaryKey(autoGenerate = true)
-    private int mPersonalId;
+    private int mInsuranceId;
+
+    private int mUserId;
 
     // Budget Totals
     private String mTotalPlanned;
@@ -37,27 +39,24 @@ public class Insurance {
 
     private String mOtherInsuranceExpenses;
 
-    public Insurance(String healthInsurancePlanned, int healthInsuranceRecurring, String lifeInsurancePlanned, int lifeInsuranceRecurring, String autoInsurancePlanned, int autoInsuranceRecurring, String homeownerRenterPlanned, int homeownerRenterRecurring, String otherInsuranceExpenses) {
+    public Insurance(int userId, String totalPlanned, String totalRecurring, String totalSpent, String healthInsurancePlanned, String healthInsuranceSpent, int healthInsuranceRecurring, String lifeInsurancePlanned, String lifeInsuranceSpent, int lifeInsuranceRecurring, String autoInsurancePlanned, String autoInsuranceSpent, int autoInsuranceRecurring, String homeownerRenterPlanned, String homeownerRenterSpent, int homeownerRenterRecurring, String otherInsuranceExpenses) {
+        mUserId = userId;
+        mTotalPlanned = totalPlanned;
+        mTotalRecurring = totalRecurring;
+        mTotalSpent = totalSpent;
         mHealthInsurancePlanned = healthInsurancePlanned;
+        mHealthInsuranceSpent = healthInsuranceSpent;
         mHealthInsuranceRecurring = healthInsuranceRecurring;
         mLifeInsurancePlanned = lifeInsurancePlanned;
+        mLifeInsuranceSpent = lifeInsuranceSpent;
         mLifeInsuranceRecurring = lifeInsuranceRecurring;
         mAutoInsurancePlanned = autoInsurancePlanned;
+        mAutoInsuranceSpent = autoInsuranceSpent;
         mAutoInsuranceRecurring = autoInsuranceRecurring;
         mHomeownerRenterPlanned = homeownerRenterPlanned;
+        mHomeownerRenterSpent = homeownerRenterSpent;
         mHomeownerRenterRecurring = homeownerRenterRecurring;
         mOtherInsuranceExpenses = otherInsuranceExpenses;
-
-        // Populate remaining member variables accordingly
-        mTotalPlanned = calculateTotalPlanned();
-        mTotalRecurring = calculateTotalRecurring();
-
-        // Set all spent values to "0"
-        mTotalSpent = "0";
-        mHealthInsuranceSpent = zeroString;
-        mLifeInsuranceSpent = zeroString;
-        mAutoInsuranceSpent = zeroString;
-        mHomeownerRenterSpent = zeroString;
     }
 
     private String calculateTotalPlanned(){
@@ -131,12 +130,20 @@ public class Insurance {
         return result;
     }
 
-    public int getPersonalId() {
-        return mPersonalId;
+    public int getInsuranceId() {
+        return mInsuranceId;
     }
 
-    public void setPersonalId(int personalId) {
-        mPersonalId = personalId;
+    public void setInsuranceId(int insuranceId) {
+        mInsuranceId = insuranceId;
+    }
+
+    public int getUserId() {
+        return mUserId;
+    }
+
+    public void setUserId(int userId) {
+        mUserId = userId;
     }
 
     public String getTotalPlanned() {
@@ -271,7 +278,7 @@ public class Insurance {
     @Override
     public String toString() {
         return "Insurance{" +
-                "mPersonalId=" + mPersonalId +
+                "mInsuranceId=" + mInsuranceId +
                 ", mTotalPlanned='" + mTotalPlanned + '\'' +
                 ", mTotalRecurring='" + mTotalRecurring + '\'' +
                 ", mTotalSpent='" + mTotalSpent + '\'' +

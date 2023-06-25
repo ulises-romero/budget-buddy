@@ -13,6 +13,8 @@ public class Housing {
     @PrimaryKey(autoGenerate = true)
     private int mHousingId;
 
+    private int mUserId;
+
     // Non-null Attributes
     private String mTotalPlanned;
     private String mTotalRecurring;
@@ -41,30 +43,27 @@ public class Housing {
 
     private String mOtherHousingExpenses;
 
-    public Housing(String mortgageRentPlanned, int mortgageRentRecurring, String waterPlanned, int waterRecurring, String naturalGasPlanned, int naturalGasRecurring, String electricityPlanned, int electricityRecurring, String cableInternetPlanned, int cableInternetRecurring, String otherHousingExpenses) {
+    public Housing(int userId, String totalPlanned, String totalRecurring, String totalSpent, String mortgageRentPlanned, String mortgageRentSpent, int mortgageRentRecurring, String waterPlanned, String waterSpent, int waterRecurring, String naturalGasPlanned, String naturalGasSpent, int naturalGasRecurring, String electricityPlanned, String electricitySpent, int electricityRecurring, String cableInternetPlanned, String cableInternetSpent, int cableInternetRecurring, String otherHousingExpenses) {
+        mUserId = userId;
+        mTotalPlanned = totalPlanned;
+        mTotalRecurring = totalRecurring;
+        mTotalSpent = totalSpent;
         mMortgageRentPlanned = mortgageRentPlanned;
+        mMortgageRentSpent = mortgageRentSpent;
         mMortgageRentRecurring = mortgageRentRecurring;
         mWaterPlanned = waterPlanned;
+        mWaterSpent = waterSpent;
         mWaterRecurring = waterRecurring;
         mNaturalGasPlanned = naturalGasPlanned;
+        mNaturalGasSpent = naturalGasSpent;
         mNaturalGasRecurring = naturalGasRecurring;
         mElectricityPlanned = electricityPlanned;
+        mElectricitySpent = electricitySpent;
         mElectricityRecurring = electricityRecurring;
         mCableInternetPlanned = cableInternetPlanned;
+        mCableInternetSpent = cableInternetSpent;
         mCableInternetRecurring = cableInternetRecurring;
         mOtherHousingExpenses = otherHousingExpenses;
-
-        // Populate remaining member variables accordingly
-        mTotalPlanned = calculateTotalPlanned();
-        mTotalRecurring = calculateTotalRecurring();
-
-        // Set all spent values to "0"
-        mTotalSpent = "0";
-        mMortgageRentSpent = "0";
-        mWaterSpent = zeroString;
-        mNaturalGasSpent = zeroString;
-        mElectricitySpent = zeroString;
-        mCableInternetSpent = zeroString;
     }
 
     private String calculateTotalPlanned(){
@@ -147,6 +146,14 @@ public class Housing {
         }
 
         return result;
+    }
+
+    public int getUserId() {
+        return mUserId;
+    }
+
+    public void setUserId(int userId) {
+        mUserId = userId;
     }
 
     public int getHousingId() {

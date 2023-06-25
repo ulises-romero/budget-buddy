@@ -1,16 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".QuickExpenseFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/monthlyTextView"
-        android:gravity="center"
+    android:layout_height="match_parent">
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/ezexpense" />
+        tools:context=".QuickExpenseFragment">
 
-</FrameLayout>
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:id="@+id/ezTitleDisplay"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:text="@string/ezexpense" />
+
+        <TextView
+            android:id="@+id/ezPromptDisplay"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#FF0000"
+            android:layout_marginTop="55dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/ezCategoryDisplay"
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="75dp"
+            android:layout_marginStart="40dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:text="Category:" />
+
+        <Spinner
+            android:id="@+id/ezCategorySpinner"
+            android:layout_gravity="left"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="110dp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/ezSubCatDisplay"
+            android:layout_gravity="right"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="75dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:text="Sub-Category:" />
+
+        <Spinner
+            android:id="@+id/ezSubCatSpinner"
+            android:layout_gravity="right"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="110dp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/ezEnterExpenseInformationDisplay"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="175dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:text="Expense Information:" />
+
+
+        <TextView
+        android:id="@+id/ezEnterExpenseAmountDisplay"
+        android:layout_gravity="left"
+        android:layout_marginStart="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="210dp"
+        android:textSize="20sp"
+        android:text="Amount:" />
+
+        <EditText
+            android:id="@+id/ezExpenseAmountInputEditText"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="90dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="($)"
+            android:inputType="numberDecimal"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/ezEnterExpenseDescDisplay"
+            android:layout_gravity="left"
+            android:layout_marginStart="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="250dp"
+            android:textSize="20sp"
+            android:text="Description:" />
+
+        <EditText
+            android:id="@+id/ezExpenseDescInputEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginStart="78dp"
+            android:layout_marginTop="280dp"
+            android:autofillHints=""
+            android:gravity="left"
+            android:hint="Enter brief description"
+            android:inputType="textLongMessage"
+            android:maxWidth="210dp"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/ezChargeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="charge"
+            android:textSize="14sp"
+            android:layout_marginTop="330dp"/>
+
+        <Button
+            android:id="@+id/ezUpdateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginEnd="75dp"
+            android:text="cancel"
+            android:textSize="14sp"
+            android:visibility="invisible"
+            android:layout_marginTop="330dp"/>
+
+        <Button
+            android:id="@+id/ezDeleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginStart="75dp"
+            android:visibility="invisible"
+            android:text="delete"
+            android:backgroundTint="#FF0000"
+            android:textSize="14sp"
+            android:layout_marginTop="330dp"/>
+
+        <TextView
+            android:id="@+id/ezEnterExpenseHistoryDisplay"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="385dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:text="Expense History" />
+
+        <TextView
+            android:id="@+id/ezEnterExpenseHistoryPromptDisplay"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="410dp"
+            android:textSize="14sp"
+            android:text="(click any record to modify)" />
+
+        <TableLayout
+            android:id="@+id/givingOtherTableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_marginTop="430dp"
+            android:shrinkColumns="1,2,3,4,5"
+            android:stretchColumns="1,2,3,4,5">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="105dp"
+                    android:layout_column="1"
+                    android:textColor="#000000"
+                    android:gravity="left"
+                    android:padding="8dp"
+                    android:layout_marginStart="10dp"
+                    android:text="Description"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="105dp"
+                    android:layout_column="1"
+                    android:textColor="#000000"
+                    android:gravity="left"
+                    android:padding="8dp"
+                    android:text="Category"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_column="1"
+                    android:gravity="left"
+                    android:padding="8dp"
+                    android:textColor="#000000"
+                    android:text="PA($)"
+                    android:layout_marginEnd="10dp"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </TableRow>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ezRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </TableLayout>
+
+    </FrameLayout>
+</ScrollView>

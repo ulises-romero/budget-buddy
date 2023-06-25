@@ -13,6 +13,8 @@ public class Transportation {
     @PrimaryKey(autoGenerate = true)
     private int mTransportationId;
 
+    private int mUserId;
+
     // Budget Totals
     private String mTotalPlanned;
     private String mTotalRecurring;
@@ -29,21 +31,20 @@ public class Transportation {
 
     private String mOtherTransportationExpenses;
 
-    public Transportation(String totalPlanned, String totalRecurring, String totalSpent, String gasPlanned, String gasSpent, int gasRecurring, String maintenancePlanned, String maintenanceSpent, int maintenanceRecurring, String otherTransportationExpenses) {
+    public Transportation(int userId, String totalPlanned, String totalRecurring, String totalSpent, String gasPlanned,
+                          String gasSpent, int gasRecurring, String maintenancePlanned, String maintenanceSpent,
+                          int maintenanceRecurring, String otherTransportationExpenses) {
+        mUserId = userId;
+        mTotalPlanned = totalPlanned;
+        mTotalRecurring = totalRecurring;
+        mTotalSpent = totalSpent;
         mGasPlanned = gasPlanned;
+        mGasSpent = gasSpent;
         mGasRecurring = gasRecurring;
         mMaintenancePlanned = maintenancePlanned;
+        mMaintenanceSpent = maintenanceSpent;
         mMaintenanceRecurring = maintenanceRecurring;
         mOtherTransportationExpenses = otherTransportationExpenses;
-
-        // Populate remaining member variables accordingly
-        mTotalPlanned = calculateTotalPlanned();
-        mTotalRecurring = calculateTotalRecurring();
-
-        // Other
-        mTotalSpent = "0";
-        mGasSpent = zeroString;
-        mMaintenanceSpent = zeroString;
     }
 
     private String calculateTotalPlanned(){
@@ -94,6 +95,14 @@ public class Transportation {
         }
 
         return result;
+    }
+
+    public int getUserId() {
+        return mUserId;
+    }
+
+    public void setUserId(int userId) {
+        mUserId = userId;
     }
 
     public int getTransportationId() {

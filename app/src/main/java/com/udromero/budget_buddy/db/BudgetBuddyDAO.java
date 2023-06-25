@@ -7,9 +7,13 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.udromero.budget_buddy.db.entities.Budget;
+import com.udromero.budget_buddy.db.entities.Debt;
 import com.udromero.budget_buddy.db.entities.Food;
 import com.udromero.budget_buddy.db.entities.Giving;
+import com.udromero.budget_buddy.db.entities.Health;
 import com.udromero.budget_buddy.db.entities.Housing;
+import com.udromero.budget_buddy.db.entities.Insurance;
+import com.udromero.budget_buddy.db.entities.Lifestyle;
 import com.udromero.budget_buddy.db.entities.Other;
 import com.udromero.budget_buddy.db.entities.Personal;
 import com.udromero.budget_buddy.db.entities.Savings;
@@ -96,6 +100,9 @@ public interface BudgetBuddyDAO {
     @Query("UPDATE " + BudgetBuddyDatabase.BUDGET_TABLE + " SET mGivingId=:givingId WHERE mUserId=:userId")
     void updateBudgetGivingIdByUserId(int givingId, int userId);
 
+    @Query("UPDATE " + BudgetBuddyDatabase.BUDGET_TABLE + " SET mTotalSpent=:totalSpent WHERE mUserId=:userId")
+    void updateBudgetTotalSpentByUserId(String totalSpent, int userId);
+
     // [TABLES/ENTITIES/EXPENSE CATEGORIES]
 
     // [GIVING]
@@ -110,6 +117,12 @@ public interface BudgetBuddyDAO {
 
     @Query("SELECT * FROM " + BudgetBuddyDatabase.GIVING_TABLE + " WHERE mUserId = :userId")
     Giving getGivingExpensesByUserId(int userId);
+
+    @Query("SELECT * FROM " + BudgetBuddyDatabase.GIVING_TABLE + " WHERE mGivingId = :givingId")
+    Giving getGivingExpensesByGivingId(int givingId);
+
+    @Query("UPDATE " + BudgetBuddyDatabase.GIVING_TABLE + " SET mTotalSpent=:totalSpent WHERE mGivingId=:givingId")
+    void updateGivingTotalSpentByGivingId(String totalSpent, int givingId);
 
     // Church
 
@@ -145,6 +158,9 @@ public interface BudgetBuddyDAO {
     @Delete
     void delete(Savings...savings);
 
+    @Query("SELECT * FROM " + BudgetBuddyDatabase.SAVINGS_TABLE + " WHERE mSavingsId = :savingsId")
+    Savings getSavingsExpensesById(int savingsId);
+
     @Query("SELECT * FROM " + BudgetBuddyDatabase.SAVINGS_TABLE + " WHERE mUserId = :userId")
     Savings getSavingsExpensesByUserId(int userId);
 
@@ -162,6 +178,9 @@ public interface BudgetBuddyDAO {
     @Query("SELECT * FROM " + BudgetBuddyDatabase.FOOD_TABLE + " WHERE mFoodId = :foodId")
     Food getFoodExpensesById(int foodId);
 
+    @Query("SELECT * FROM " + BudgetBuddyDatabase.FOOD_TABLE + " WHERE mUserId= :userId")
+    Food getFoodExpensesByUserId(int userId);
+
     // Housing
     @Insert
     void insert(Housing...housings);
@@ -174,6 +193,9 @@ public interface BudgetBuddyDAO {
 
     @Query("SELECT * FROM " + BudgetBuddyDatabase.HOUSING_TABLE + " WHERE mHousingId = :housingId")
     Housing getHousingExpensesById(int housingId);
+
+    @Query("SELECT * FROM " + BudgetBuddyDatabase.HOUSING_TABLE + " WHERE mUserId= :userId")
+    Housing getHousingExpensesByUserId(int userId);
 
     // Personal
     @Insert
@@ -188,6 +210,9 @@ public interface BudgetBuddyDAO {
     @Query("SELECT * FROM " + BudgetBuddyDatabase.PERSONAL_TABLE + " WHERE mPersonalId= :personalId")
     Personal getPersonalExpensesById(int personalId);
 
+    @Query("SELECT * FROM " + BudgetBuddyDatabase.PERSONAL_TABLE + " WHERE mUserId= :userId")
+    Personal getPersonalExpensesByUserId(int userId);
+
     // Transportation
     @Insert
     void insert(Transportation...transportations);
@@ -201,5 +226,61 @@ public interface BudgetBuddyDAO {
     @Query("SELECT * FROM " + BudgetBuddyDatabase.TRANSPORTATION_TABLE + " WHERE mTransportationId= :transportationId")
     Transportation getTransportationExpensesById(int transportationId);
 
+    @Query("SELECT * FROM " + BudgetBuddyDatabase.TRANSPORTATION_TABLE + " WHERE mUserId= :userId")
+    Transportation getTransportationExpensesByUserId(int userId);
+
+    // LIFESTYLE
+
+    @Insert
+    void insert(Lifestyle...lifestyles);
+
+    @Update
+    void update(Lifestyle...lifestyles);
+
+    @Delete
+    void delete(Lifestyle...lifestyles);
+
+    @Query("SELECT * FROM " + BudgetBuddyDatabase.LIFESTYLE_TABLE + " WHERE mUserId= :userId")
+    Lifestyle getLifestyleExpensesByUserId(int userId);
+
+
+    // HEALTH
+    @Insert
+    void insert(Health...healths);
+
+    @Update
+    void update(Health...healths);
+
+    @Delete
+    void delete(Health...healths);
+
+    @Query("SELECT * FROM " + BudgetBuddyDatabase.HEALTH_TABLE + " WHERE mUserId= :userId")
+    Health getHealthExpensesByUserId(int userId);
+
+    // INSURANCE
+    @Insert
+    void insert(Insurance...insurances);
+
+    @Update
+    void update(Insurance...insurances);
+
+    @Delete
+    void delete(Insurance...insurances);
+
+    @Query("SELECT * FROM " + BudgetBuddyDatabase.INSURANCE_TABLE + " WHERE mUserId= :userId")
+    Insurance getInsuranceExpensesByUserId(int userId);
+
+    // DEBT
+    @Insert
+    void insert(Debt...debts);
+
+    @Update
+    void update(Debt...debts);
+
+    @Delete
+    void delete(Debt...debts);
+
+    @Query("SELECT * FROM " + BudgetBuddyDatabase.DEBT_TABLE + " WHERE mUserId= :userId")
+    Debt getDebtExpensesByUserId(int userId);
 
 }
