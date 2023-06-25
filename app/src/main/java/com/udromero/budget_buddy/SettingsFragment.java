@@ -2,10 +2,21 @@ package com.udromero.budget_buddy;
 
 import static com.udromero.budget_buddy.Constants.BUDGET_ID_KEY;
 import static com.udromero.budget_buddy.Constants.DAY_PAYDAY_INT_KEY;
+import static com.udromero.budget_buddy.Constants.DEBT_ID_KEY;
+import static com.udromero.budget_buddy.Constants.EXPENSES_KEY;
+import static com.udromero.budget_buddy.Constants.FOOD_ID_KEY;
+import static com.udromero.budget_buddy.Constants.GIVING;
 import static com.udromero.budget_buddy.Constants.GIVING_ID_KEY;
+import static com.udromero.budget_buddy.Constants.HEALTH_ID_KEY;
+import static com.udromero.budget_buddy.Constants.HOUSING_ID_KEY;
+import static com.udromero.budget_buddy.Constants.INSURANCE_ID_KEY;
+import static com.udromero.budget_buddy.Constants.LIFESTYLE_ID_KEY;
 import static com.udromero.budget_buddy.Constants.LOGGED_IN_KEY;
 import static com.udromero.budget_buddy.Constants.MONTH_PAYDAY_INT_KEY;
+import static com.udromero.budget_buddy.Constants.PERSONAL_ID_KEY;
 import static com.udromero.budget_buddy.Constants.PREFERENCES_KEY;
+import static com.udromero.budget_buddy.Constants.SAVINGS_ID_KEY;
+import static com.udromero.budget_buddy.Constants.TRANSPORTATION_ID_KEY;
 import static com.udromero.budget_buddy.Constants.USER_ID_KEY;
 import static com.udromero.budget_buddy.Constants.YEAR_PAYDAY_INT_KEY;
 
@@ -28,7 +39,16 @@ import android.widget.Toast;
 import com.udromero.budget_buddy.db.BudgetBuddyDAO;
 import com.udromero.budget_buddy.db.BudgetBuddyDatabase;
 import com.udromero.budget_buddy.db.entities.Budget;
+import com.udromero.budget_buddy.db.entities.Debt;
+import com.udromero.budget_buddy.db.entities.Food;
 import com.udromero.budget_buddy.db.entities.Giving;
+import com.udromero.budget_buddy.db.entities.Health;
+import com.udromero.budget_buddy.db.entities.Housing;
+import com.udromero.budget_buddy.db.entities.Insurance;
+import com.udromero.budget_buddy.db.entities.Lifestyle;
+import com.udromero.budget_buddy.db.entities.Personal;
+import com.udromero.budget_buddy.db.entities.Savings;
+import com.udromero.budget_buddy.db.entities.Transportation;
 import com.udromero.budget_buddy.db.entities.User;
 import com.udromero.budget_buddy.login.LoginActivity;
 
@@ -58,8 +78,10 @@ public class SettingsFragment extends Fragment {
     Budget mBudget;
     int mBudgetId;
 
-    Giving mGiving;
-    int mGivingId;
+    Giving mGiving; Savings mSavings; Housing mHousing; Food mFood;
+    Transportation mTransportation; Personal mPersonal; Lifestyle mLifestyle;
+    Health mHealth; Insurance mInsurance; Debt mDebt;
+    int mGivingId; int mSavingsId; int mHousingId; int mFoodId; int mTransportationId; int mPersonalId; int mLifestyleId; int mHealthId; int mInsuranceId; int mDebtId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,7 +130,45 @@ public class SettingsFragment extends Fragment {
                 mGiving = mBudgetBuddyDAO.getGivingExpensesByUserId(mUserId);
                 mBudgetBuddyDAO.delete(mGiving);
 
+                mSavings = mBudgetBuddyDAO.getSavingsExpensesByUserId(mUserId);
+                mBudgetBuddyDAO.delete(mSavings);
+
+                mHousing = mBudgetBuddyDAO.getHousingExpensesByUserId(mUserId);
+                mBudgetBuddyDAO.delete(mHousing);
+
+                mFood = mBudgetBuddyDAO.getFoodExpensesByUserId(mUserId);
+                mBudgetBuddyDAO.delete(mFood);
+
+                mTransportation = mBudgetBuddyDAO.getTransportationExpensesByUserId(mUserId);
+                mBudgetBuddyDAO.delete(mTransportation);
+
+                mPersonal = mBudgetBuddyDAO.getPersonalExpensesByUserId(mUserId);
+                mBudgetBuddyDAO.delete(mPersonal);
+
+                mLifestyle = mBudgetBuddyDAO.getLifestyleExpensesByUserId(mUserId);
+                mBudgetBuddyDAO.delete(mLifestyle);
+
+                mHealth = mBudgetBuddyDAO.getHealthExpensesByUserId(mUserId);
+                mBudgetBuddyDAO.delete(mHealth);
+
+                mInsurance = mBudgetBuddyDAO.getInsuranceExpensesByUserId(mUserId);
+                mBudgetBuddyDAO.delete(mInsurance);
+
+                mDebt = mBudgetBuddyDAO.getDebtExpensesByUserId(mDebtId);
+                mBudgetBuddyDAO.delete(mDebt);
+
                 SharedPreferences.Editor editor = userSharedPreferences.edit();
+                editor.putString(EXPENSES_KEY, "");
+                editor.putInt(GIVING_ID_KEY, -1);
+                editor.putInt(SAVINGS_ID_KEY, -1);
+                editor.putInt(HOUSING_ID_KEY, -1);
+                editor.putInt(FOOD_ID_KEY, -1);
+                editor.putInt(TRANSPORTATION_ID_KEY, -1);
+                editor.putInt(PERSONAL_ID_KEY, -1);
+                editor.putInt(LIFESTYLE_ID_KEY, -1);
+                editor.putInt(HEALTH_ID_KEY, -1);
+                editor.putInt(INSURANCE_ID_KEY, -1);
+                editor.putInt(DEBT_ID_KEY, -1);
                 editor.putInt(MONTH_PAYDAY_INT_KEY, 0);
                 editor.putInt(DAY_PAYDAY_INT_KEY, 0);
                 editor.putInt(YEAR_PAYDAY_INT_KEY, 0);

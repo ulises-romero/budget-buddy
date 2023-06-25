@@ -42,7 +42,7 @@ public class Budget {
     private String mBiweeklyPayday = nullString;
     private String mWeeklyPayday = nullString;
 
-    public Budget(int userId, int givingId, int savingsId, int housingId, int foodId, int transportationId, int personalId, int lifestyleId, int healthId, int insuranceId, int debtId) {
+    public Budget(int userId, int givingId, int savingsId, int housingId, int foodId, int transportationId, int personalId, int lifestyleId, int healthId, int insuranceId, int debtId, int otherId, int paycheckFrequency, String totalRecurringExpenses, String totalPlannedExpenses, String totalSpent, String income, String expenseCategories, String monthlyPayday, String biweeklyPayday, String weeklyPayday) {
         mUserId = userId;
         mGivingId = givingId;
         mSavingsId = savingsId;
@@ -54,12 +54,16 @@ public class Budget {
         mHealthId = healthId;
         mInsuranceId = insuranceId;
         mDebtId = debtId;
-        mOtherId = nullInt;
-
-        mPaycheckFrequency = 0;
-        mTotalRecurringExpenses = "0";
-        mTotalPlannedExpenses = "0";
-        mTotalSpent = "0";
+        mOtherId = otherId;
+        mPaycheckFrequency = paycheckFrequency;
+        mTotalRecurringExpenses = totalRecurringExpenses;
+        mTotalPlannedExpenses = totalPlannedExpenses;
+        mTotalSpent = totalSpent;
+        mIncome = income;
+        mExpenseCategories = expenseCategories;
+        mMonthlyPayday = monthlyPayday;
+        mBiweeklyPayday = biweeklyPayday;
+        mWeeklyPayday = weeklyPayday;
     }
 
     public int getBudgetId() {

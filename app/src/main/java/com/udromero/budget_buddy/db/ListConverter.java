@@ -13,8 +13,8 @@ import static com.udromero.budget_buddy.Constants.SAVINGS;
 import static com.udromero.budget_buddy.Constants.TRANSPORTATION;
 import static com.udromero.budget_buddy.Constants.nullString;
 
-import com.udromero.budget_buddy.recyclerView.AdditionalSubCategoryAdapter;
 import com.udromero.budget_buddy.recyclerView.AdditionalSubCategoryModel;
+import com.udromero.budget_buddy.recyclerView.ezExpenseRecyclerView.EzExpenseModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,6 +26,54 @@ public class ListConverter {
     static final List<Character> validExpenseCharacters = Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.');
 
     static String expensesErrorCause = nullString;
+
+    public static String convertExpenseListToString(ArrayList<EzExpenseModel> expenseList){
+        String result = "";
+
+        for(int i = 0; i < expenseList.size(); i++){
+            EzExpenseModel currExpense = expenseList.get(i);
+
+            // Not a date section
+            if(!currExpense.getDate().equals(" ")){
+                if(i + 1 < expenseList.size()){
+                    if(!expenseList.get(i + 1).getDate().equals(" ")){
+                        expenseList.remove(i);
+                    } else {
+                        if(result.equals("")){
+                            result = currExpense.getDate() + "- - - - ";
+                        } else {
+                            result += "," + currExpense.getDate() + "- - - - ";
+                        }
+                    }
+                } else {
+                    expenseList.remove(i);
+                }
+            } else {
+                if(result.equals("")){
+                    result = " -" + currExpense.getDescription() + "-" + currExpense.getCategory() + "-" + currExpense.getSubCategory() + "-" + currExpense.getPlannedAmount();
+                } else {
+                    result += ", -" + currExpense.getDescription() + "-" + currExpense.getCategory() + "-" + currExpense.getSubCategory() + "-" + currExpense.getPlannedAmount();
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static List<String> convertOtherExpensesToSubCatTitlesList(String otherExpenses){
+        List<String> results = new ArrayList<>();
+        List<String> other = convertStringToList(otherExpenses);
+
+        if(otherExpenses.equals("")){
+            return results;
+        }
+
+        for(int i = 0; i < other.size(); i+=3){
+            results.add(other.get(i));
+        }
+
+        return results;
+    }
 
     public static String convertListToString(List<AdditionalSubCategoryModel> currList){
         String result = "";
@@ -52,7 +100,8 @@ public class ListConverter {
 //        }
 
         if(!checkValidString(expenses)){
-            results.add("BAD EXPENSES INPUT: " + expensesErrorCause);
+            // results.add("BAD EXPENSES INPUT: " + expensesErrorCause);
+            results.add(expensesErrorCause);
             expensesErrorCause = nullString;
             return results;
         }
@@ -67,6 +116,32 @@ public class ListConverter {
         }
 
         return results;
+    }
+
+    public static ArrayList<EzExpenseModel> convertExpensesStringToList(String expenses){
+        // 1. Parsing the list, place all non reccuring before the [R] string everything after is reccuring cats follwoed by their expenses\
+        List<String> results = new ArrayList<>();
+        ArrayList<EzExpenseModel> resultsFinal = new ArrayList<>();
+
+        String[] expenseValues = expenses.split(",");
+
+        if(expenseValues.length == 1){
+            return resultsFinal;
+        }
+
+        for(String value : expenseValues){
+            String[] values = value.split("-");
+            results.add(values[0]); // date
+            results.add(values[1]); // desc
+            results.add(values[2]); // cat
+            results.add(values[3]); // sub cat
+            // planned amount
+
+            EzExpenseModel currExpense = new EzExpenseModel(values[0], values[1], values[2], values[3], values[4]);
+            resultsFinal.add(currExpense);
+        }
+
+        return resultsFinal;
     }
 
     private static boolean checkValidString(String expenses){

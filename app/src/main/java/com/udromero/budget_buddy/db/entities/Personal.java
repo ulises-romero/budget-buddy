@@ -13,6 +13,8 @@ public class Personal {
     @PrimaryKey(autoGenerate = true)
     private int mPersonalId;
 
+    private int mUserId;
+
     // Budget Totals
     private String mTotalPlanned;
     private String mTotalRecurring;
@@ -37,27 +39,24 @@ public class Personal {
 
     private String mOtherPersonalExpenses;
 
-    public Personal(String totalPlanned, String totalRecurring, String totalSpent, String clothingPlanned, String clothingSpent, int clothingRecurring, String phonePlanned, String phoneSpent, int phoneRecurring, String funMoneyPlanned, String funMoneySpent, int funMoneyRecurring, String hairCosmeticsPlanned, String hairCosmeticsSpent, int hairCosmeticsRecurring, String otherPersonalExpenses) {
+    public Personal(int userId, String totalPlanned, String totalRecurring, String totalSpent, String clothingPlanned, String clothingSpent, int clothingRecurring, String phonePlanned, String phoneSpent, int phoneRecurring, String funMoneyPlanned, String funMoneySpent, int funMoneyRecurring, String hairCosmeticsPlanned, String hairCosmeticsSpent, int hairCosmeticsRecurring, String otherPersonalExpenses) {
+        mUserId = userId;
+        mTotalPlanned = totalPlanned;
+        mTotalRecurring = totalRecurring;
+        mTotalSpent = totalSpent;
         mClothingPlanned = clothingPlanned;
+        mClothingSpent = clothingSpent;
         mClothingRecurring = clothingRecurring;
         mPhonePlanned = phonePlanned;
+        mPhoneSpent = phoneSpent;
         mPhoneRecurring = phoneRecurring;
         mFunMoneyPlanned = funMoneyPlanned;
+        mFunMoneySpent = funMoneySpent;
         mFunMoneyRecurring = funMoneyRecurring;
         mHairCosmeticsPlanned = hairCosmeticsPlanned;
+        mHairCosmeticsSpent = hairCosmeticsSpent;
         mHairCosmeticsRecurring = hairCosmeticsRecurring;
         mOtherPersonalExpenses = otherPersonalExpenses;
-
-        // Populate remaining member variables accordingly
-        mTotalPlanned = calculateTotalPlanned();
-        mTotalRecurring = calculateTotalRecurring();
-
-        // Set all spent values to "0"
-        mTotalSpent = "0";
-        mClothingSpent = zeroString;
-        mPhoneSpent = zeroString;
-        mFunMoneySpent = zeroString;
-        mHairCosmeticsSpent = zeroString;
     }
 
     private String calculateTotalPlanned(){
@@ -129,6 +128,14 @@ public class Personal {
         }
 
         return result;
+    }
+
+    public int getUserId() {
+        return mUserId;
+    }
+
+    public void setUserId(int userId) {
+        mUserId = userId;
     }
 
     public int getPersonalId() {

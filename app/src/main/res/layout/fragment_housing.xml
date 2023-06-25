@@ -1,16 +1,495 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".budget.HousingFragment">
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".budget.HousingFragment">
 
-    <ImageView
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_baseline_house_24" />
+        <!-- Logo & Error Display -->
+        <Button
+            android:id="@+id/housing_RefreshButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="right"
+            android:background="@drawable/ic_baseline_refresh_24"
+            android:layout_marginTop="55dp"/>
+
+        <TextView
+            android:id="@+id/housing_ErrorDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+            android:text="@string/blank"
+            android:textColor="#FF0000"
+            android:textSize="12sp" />
+
+        <!-- Percent Ranges -->
+
+        <TextView
+            android:id="@+id/housing_IncomeTotalPercentageRangeDisplay"
+            android:layout_marginTop="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Goal: 25–35%"
+            android:textSize="18sp" />
+
+        <!-- Top Bar -->
+
+        <TextView
+            android:id="@+id/housing_UserIncomeCalculatedRangeDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="125dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/givingCalculatedRangeDisplay"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/housing_PlannedAmountDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingEnd="135dp"
+            android:layout_marginTop="165dp"
+            android:text="Planned"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/housing_RecurringDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="165dp"
+            android:paddingEnd="15dp"
+            android:text="@string/recurring"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <!-- [Unique] -->
+        <ImageView
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_baseline_house_24"
+            android:contentDescription="@string/page_logo"/>
+
+        <!-- Cat 1 -->
+        <TextView
+            android:id="@+id/housing_MortgageRentDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="205dp"
+            android:text="Mortgage/Rent:"
+            android:textColor="#000000"
+            android:textSize="16sp" />
 
 
-</FrameLayout>
+        <EditText
+            android:id="@+id/housing_MortgageRentPlannedInputEditText"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="193dp"
+            android:layout_marginEnd="125dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="@string/inputHint"
+            android:inputType="numberDecimal"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/housing_MortgageRentRecurringCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="193dp"
+            android:layout_marginEnd="40dp" />
+
+        <!-- Cat 2 -->
+        <TextView
+            android:id="@+id/housing_WaterDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="245dp"
+            android:text="Water:"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/housing_WaterPlannedInputEditText"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="233dp"
+            android:layout_marginEnd="125dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="@string/inputHint"
+            android:inputType="numberDecimal"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/housing_WaterRecurringCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="233dp"
+            android:layout_marginEnd="40dp" />
+
+        <!-- Cat 3 -->
+        <TextView
+            android:id="@+id/housing_GasDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="285dp"
+            android:text="Natural Gas:"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/housing_GasPlannedInputEditText"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="273dp"
+            android:layout_marginEnd="125dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="@string/inputHint"
+            android:inputType="numberDecimal"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/housing_GasRecurringCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="273dp"
+            android:layout_marginEnd="40dp" />
+
+        <!-- Cat 4 -->
+        <TextView
+            android:id="@+id/housing_ElectricityDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="325dp"
+            android:text="Electricity:"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/housing_ElectricityPlannedInputEditText"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="313dp"
+            android:layout_marginEnd="125dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="@string/inputHint"
+            android:inputType="numberDecimal"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/housing_ElectricityRecurringCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="313dp"
+            android:layout_marginEnd="40dp" />
+
+        <!-- Cat 5 -->
+        <TextView
+            android:id="@+id/housing_CableInternetDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="365dp"
+            android:text="Cable/Internet:"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/housing_CableInternetPlannedInputEditText"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="353dp"
+            android:layout_marginEnd="125dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="@string/inputHint"
+            android:inputType="numberDecimal"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/housing_CableInternetRecurringCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="353dp"
+            android:layout_marginEnd="40dp" />
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/housing_SaveButton"
+            android:layout_width="100dp"
+            android:layout_height="65dp"
+            android:layout_gravity="right"
+            android:layout_marginEnd="14dp"
+            android:layout_marginTop="410dp"
+            android:text="@string/save"
+            android:textSize="15sp" />
+
+        <!-- Summary Section -->
+
+        <Button
+            android:id="@+id/housing_RangeButton"
+            android:layout_width="18dp"
+            android:layout_height="25dp"
+            android:layout_gravity="left"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="410dp"
+            android:text="@string/save"
+            android:enabled="false"
+            android:backgroundTint="#FF0000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/housing_RangeCheckDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="410dp"
+            android:text="@string/rangeCheck"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/housing_TotalDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="445dp"
+            android:paddingStart="15dp"
+            android:text="@string/total"
+            android:textAlignment="textStart"
+            android:textSize="16sp" />
+
+        <!-- Other Section -->
+
+        <TextView
+            android:id="@+id/housing_OtherErrorDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="466dp"
+            android:paddingStart="15dp"
+            android:textStyle="bold"
+            android:text=""
+            android:textColor="#FF0000"
+            android:textAlignment="textStart"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/housing_AddOtherDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="480dp"
+            android:paddingStart="15dp"
+            android:textStyle="bold"
+            android:text="Additional Sub-cateogry: "
+            android:textColor="#000000"
+            android:textAlignment="textStart"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/housing_TestDisplay"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="50dp"
+            android:text=""
+            android:textSize="8sp" />
+
+        <TextView
+            android:id="@+id/housing_TitleDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="510dp"
+            android:text="Title:"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/housing_OtherTitleInputEditText"
+            android:layout_width="wrap_content"
+            android:maxWidth="220dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="496dp"
+            android:layout_marginStart="50dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="Enter Title"
+            android:inputType="textPersonName"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/housing_PlannedDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="540dp"
+            android:text="Planned:"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/housing_OtherPlannedInputEditText"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="531dp"
+            android:layout_marginStart="77dp"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="Amount"
+            android:inputType="numberDecimal"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/housing_OtherRecurringDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="165dp"
+            android:textAlignment="textStart"
+            android:layout_marginTop="540dp"
+            android:text="Recurring?"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/housing_OtherRecurringCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginStart="235dp"
+            android:layout_marginTop="528dp" />
+
+        <Button
+            android:id="@+id/housing_AddButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="510dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/ic_baseline_add_circle_24"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/housing_UpdateButton"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="490dp"
+            android:text="save"
+            android:visibility="invisible"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/housing_DeleteButton"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="530dp"
+            android:text="delete"
+            android:backgroundTint="#FF0000"
+            android:visibility="invisible"
+            android:textSize="9sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="570dp">
+            <TableLayout
+                android:id="@+id/housing_OtherTableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+
+                android:shrinkColumns="1,2,3,4,5"
+                android:stretchColumns="1,2,3,4,5">
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="105dp"
+                        android:layout_column="1"
+                        android:textColor="#000000"
+                        android:gravity="left"
+                        android:padding="8dp"
+                        android:text="Title"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_column="1"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:textColor="#000000"
+                        android:text="PA($)"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_column="1"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:textColor="#000000"
+                        android:text="R"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_column="1"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Update/Delete"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+
+
+                </TableRow>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/housing_OtherRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableLayout>
+        </LinearLayout>
+    </FrameLayout>
+</ScrollView>

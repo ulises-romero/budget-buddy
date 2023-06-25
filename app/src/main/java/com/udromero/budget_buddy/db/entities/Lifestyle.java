@@ -13,6 +13,8 @@ public class Lifestyle {
     @PrimaryKey(autoGenerate = true)
     private int mLifestyleId;
 
+    private int mUserId;
+
     // Budget Totals
     private String mTotalPlanned;
     private String mTotalRecurring;
@@ -41,30 +43,27 @@ public class Lifestyle {
 
     private String mOtherLifestyleExpenses;
 
-    public Lifestyle(String childCarePlanned, int childCareRecurring, String petCarePlanned, int petCareRecurring, String entertainmentPlanned, int entertainmentRecurring, String vacationPlanned, int vacationRecurring, String educationTuitionPlanned, int educationTuitionRecurring, String otherLifestyleExpenses) {
+    public Lifestyle(int userId, String totalPlanned, String totalRecurring, String totalSpent, String childCarePlanned, String childCareSpent, int childCareRecurring, String petCarePlanned, String petCareSpent, int petCareRecurring, String entertainmentPlanned, String entertainmentSpent, int entertainmentRecurring, String vacationPlanned, String vacationSpent, int vacationRecurring, String educationTuitionPlanned, String educationTuitionSpent, int educationTuitionRecurring, String otherLifestyleExpenses) {
+        mUserId = userId;
+        mTotalPlanned = totalPlanned;
+        mTotalRecurring = totalRecurring;
+        mTotalSpent = totalSpent;
         mChildCarePlanned = childCarePlanned;
+        mChildCareSpent = childCareSpent;
         mChildCareRecurring = childCareRecurring;
         mPetCarePlanned = petCarePlanned;
+        mPetCareSpent = petCareSpent;
         mPetCareRecurring = petCareRecurring;
         mEntertainmentPlanned = entertainmentPlanned;
+        mEntertainmentSpent = entertainmentSpent;
         mEntertainmentRecurring = entertainmentRecurring;
         mVacationPlanned = vacationPlanned;
+        mVacationSpent = vacationSpent;
         mVacationRecurring = vacationRecurring;
         mEducationTuitionPlanned = educationTuitionPlanned;
+        mEducationTuitionSpent = educationTuitionSpent;
         mEducationTuitionRecurring = educationTuitionRecurring;
         mOtherLifestyleExpenses = otherLifestyleExpenses;
-
-        // Populate remaining member variables accordingly
-        mTotalPlanned = calculateTotalPlanned();
-        mTotalRecurring = calculateTotalRecurring();
-
-        // Set all spent values to "0"
-        mTotalSpent = zeroString;
-        mChildCareSpent = zeroString;
-        mPetCareSpent = zeroString;
-        mEntertainmentSpent = zeroString;
-        mVacationSpent = zeroString;
-        mEducationTuitionSpent = zeroString;
     }
 
     private String calculateTotalPlanned(){
@@ -147,6 +146,14 @@ public class Lifestyle {
         }
 
         return result;
+    }
+
+    public int getUserId() {
+        return mUserId;
+    }
+
+    public void setUserId(int userId) {
+        mUserId = userId;
     }
 
     public int getLifestyleId() {

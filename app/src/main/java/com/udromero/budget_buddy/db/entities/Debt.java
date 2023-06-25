@@ -13,6 +13,8 @@ public class Debt {
     @PrimaryKey(autoGenerate = true)
     private int mDebtId;
 
+    private int mUserId;
+
     // Budget Totals
     private String mTotalPlanned;
     private String mTotalRecurring;
@@ -41,30 +43,27 @@ public class Debt {
 
     private String mOtherDebtExpenses;
 
-    public Debt(String totalPlanned, String totalRecurring, String totalSpent, String carPaymentPlanned, String carPaymentSpent, int carPaymentRecurring, String creditCardPlanned, String creditCardSpent, int creditCardRecurring, String studentLoanPlanned, String studentLoanSpent, int studentLoanRecurring, String medicalBillPlanned, String medicalBillSpent, int medicalBillRecurring, String personalLoanPlanned, String personalLoanSpent, int personalLoanRecurring, String otherDebtExpenses) {
+    public Debt(int userId, String totalPlanned, String totalRecurring, String totalSpent, String carPaymentPlanned, String carPaymentSpent, int carPaymentRecurring, String creditCardPlanned, String creditCardSpent, int creditCardRecurring, String studentLoanPlanned, String studentLoanSpent, int studentLoanRecurring, String medicalBillPlanned, String medicalBillSpent, int medicalBillRecurring, String personalLoanPlanned, String personalLoanSpent, int personalLoanRecurring, String otherDebtExpenses) {
+        mUserId = userId;
+        mTotalPlanned = totalPlanned;
+        mTotalRecurring = totalRecurring;
+        mTotalSpent = totalSpent;
         mCarPaymentPlanned = carPaymentPlanned;
+        mCarPaymentSpent = carPaymentSpent;
         mCarPaymentRecurring = carPaymentRecurring;
         mCreditCardPlanned = creditCardPlanned;
+        mCreditCardSpent = creditCardSpent;
         mCreditCardRecurring = creditCardRecurring;
         mStudentLoanPlanned = studentLoanPlanned;
+        mStudentLoanSpent = studentLoanSpent;
         mStudentLoanRecurring = studentLoanRecurring;
         mMedicalBillPlanned = medicalBillPlanned;
+        mMedicalBillSpent = medicalBillSpent;
         mMedicalBillRecurring = medicalBillRecurring;
         mPersonalLoanPlanned = personalLoanPlanned;
+        mPersonalLoanSpent = personalLoanSpent;
         mPersonalLoanRecurring = personalLoanRecurring;
         mOtherDebtExpenses = otherDebtExpenses;
-
-        // Populate remaining member variables accordingly
-        mTotalPlanned = calculateTotalPlanned();
-        mTotalRecurring = calculateTotalRecurring();
-
-        // Set all spent values to "0"
-        mTotalSpent = "0";
-        mCarPaymentSpent = zeroString;
-        mCreditCardSpent = zeroString;
-        mStudentLoanSpent = zeroString;
-        mMedicalBillSpent = zeroString;
-        mPersonalLoanSpent = zeroString;
     }
 
     private String calculateTotalPlanned(){
@@ -146,6 +145,14 @@ public class Debt {
         }
 
         return result;
+    }
+
+    public int getUserId() {
+        return mUserId;
+    }
+
+    public void setUserId(int userId) {
+        mUserId = userId;
     }
 
     public int getDebtId() {

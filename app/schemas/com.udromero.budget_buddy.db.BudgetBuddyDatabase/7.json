@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 7,
-    "identityHash": "d9f793d97504cabee9130eb4c8bf6751",
+    "identityHash": "54e13eb56060f3a3f5fa37a50128e37d",
     "entities": [
       {
         "tableName": "USER_TABLE",
@@ -356,11 +356,17 @@
       },
       {
         "tableName": "HOUSING_TABLE",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mHousingId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mMortgageRentPlanned` TEXT, `mMortgageRentSpent` TEXT, `mMortgageRentRecurring` INTEGER NOT NULL, `mWaterPlanned` TEXT, `mWaterSpent` TEXT, `mWaterRecurring` INTEGER NOT NULL, `mNaturalGasPlanned` TEXT, `mNaturalGasSpent` TEXT, `mNaturalGasRecurring` INTEGER NOT NULL, `mElectricityPlanned` TEXT, `mElectricitySpent` TEXT, `mElectricityRecurring` INTEGER NOT NULL, `mCableInternetPlanned` TEXT, `mCableInternetSpent` TEXT, `mCableInternetRecurring` INTEGER NOT NULL, `mOtherHousingExpenses` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mHousingId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUserId` INTEGER NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mMortgageRentPlanned` TEXT, `mMortgageRentSpent` TEXT, `mMortgageRentRecurring` INTEGER NOT NULL, `mWaterPlanned` TEXT, `mWaterSpent` TEXT, `mWaterRecurring` INTEGER NOT NULL, `mNaturalGasPlanned` TEXT, `mNaturalGasSpent` TEXT, `mNaturalGasRecurring` INTEGER NOT NULL, `mElectricityPlanned` TEXT, `mElectricitySpent` TEXT, `mElectricityRecurring` INTEGER NOT NULL, `mCableInternetPlanned` TEXT, `mCableInternetSpent` TEXT, `mCableInternetRecurring` INTEGER NOT NULL, `mOtherHousingExpenses` TEXT)",
         "fields": [
           {
             "fieldPath": "mHousingId",
             "columnName": "mHousingId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mUserId",
+            "columnName": "mUserId",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -490,11 +496,17 @@
       },
       {
         "tableName": "FOOD_TABLE",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mFoodId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mGroceriesPlanned` TEXT, `mGroceriesSpent` TEXT, `mGroceriesRecurring` INTEGER NOT NULL, `mRestaurantsPlanned` TEXT, `mRestaurantsSpent` TEXT, `mRestaurantsRecurring` INTEGER NOT NULL, `mOtherSavingsExpenses` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mFoodId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUserId` INTEGER NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mGroceriesPlanned` TEXT, `mGroceriesSpent` TEXT, `mGroceriesRecurring` INTEGER NOT NULL, `mRestaurantsPlanned` TEXT, `mRestaurantsSpent` TEXT, `mRestaurantsRecurring` INTEGER NOT NULL, `mOtherSavingsExpenses` TEXT)",
         "fields": [
           {
             "fieldPath": "mFoodId",
             "columnName": "mFoodId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mUserId",
+            "columnName": "mUserId",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -570,11 +582,17 @@
       },
       {
         "tableName": "TRANSPORTATION_TABLE",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mTransportationId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mGasPlanned` TEXT, `mGasSpent` TEXT, `mGasRecurring` INTEGER NOT NULL, `mMaintenancePlanned` TEXT, `mMaintenanceSpent` TEXT, `mMaintenanceRecurring` INTEGER NOT NULL, `mOtherTransportationExpenses` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mTransportationId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUserId` INTEGER NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mGasPlanned` TEXT, `mGasSpent` TEXT, `mGasRecurring` INTEGER NOT NULL, `mMaintenancePlanned` TEXT, `mMaintenanceSpent` TEXT, `mMaintenanceRecurring` INTEGER NOT NULL, `mOtherTransportationExpenses` TEXT)",
         "fields": [
           {
             "fieldPath": "mTransportationId",
             "columnName": "mTransportationId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mUserId",
+            "columnName": "mUserId",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -650,11 +668,17 @@
       },
       {
         "tableName": "PERSONAL_TABLE",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mPersonalId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mClothingPlanned` TEXT, `mClothingSpent` TEXT, `mClothingRecurring` INTEGER NOT NULL, `mPhonePlanned` TEXT, `mPhoneSpent` TEXT, `mPhoneRecurring` INTEGER NOT NULL, `mFunMoneyPlanned` TEXT, `mFunMoneySpent` TEXT, `mFunMoneyRecurring` INTEGER NOT NULL, `mHairCosmeticsPlanned` TEXT, `mHairCosmeticsSpent` TEXT, `mHairCosmeticsRecurring` INTEGER NOT NULL, `mOtherPersonalExpenses` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mPersonalId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUserId` INTEGER NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mClothingPlanned` TEXT, `mClothingSpent` TEXT, `mClothingRecurring` INTEGER NOT NULL, `mPhonePlanned` TEXT, `mPhoneSpent` TEXT, `mPhoneRecurring` INTEGER NOT NULL, `mFunMoneyPlanned` TEXT, `mFunMoneySpent` TEXT, `mFunMoneyRecurring` INTEGER NOT NULL, `mHairCosmeticsPlanned` TEXT, `mHairCosmeticsSpent` TEXT, `mHairCosmeticsRecurring` INTEGER NOT NULL, `mOtherPersonalExpenses` TEXT)",
         "fields": [
           {
             "fieldPath": "mPersonalId",
             "columnName": "mPersonalId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mUserId",
+            "columnName": "mUserId",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -766,11 +790,17 @@
       },
       {
         "tableName": "LIFESTYLE_TABLE",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mLifestyleId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mChildCarePlanned` TEXT, `mChildCareSpent` TEXT, `mChildCareRecurring` INTEGER NOT NULL, `mPetCarePlanned` TEXT, `mPetCareSpent` TEXT, `mPetCareRecurring` INTEGER NOT NULL, `mEntertainmentPlanned` TEXT, `mEntertainmentSpent` TEXT, `mEntertainmentRecurring` INTEGER NOT NULL, `mVacationPlanned` TEXT, `mVacationSpent` TEXT, `mVacationRecurring` INTEGER NOT NULL, `mEducationTuitionPlanned` TEXT, `mEducationTuitionSpent` TEXT, `mEducationTuitionRecurring` INTEGER NOT NULL, `mOtherLifestyleExpenses` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mLifestyleId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUserId` INTEGER NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mChildCarePlanned` TEXT, `mChildCareSpent` TEXT, `mChildCareRecurring` INTEGER NOT NULL, `mPetCarePlanned` TEXT, `mPetCareSpent` TEXT, `mPetCareRecurring` INTEGER NOT NULL, `mEntertainmentPlanned` TEXT, `mEntertainmentSpent` TEXT, `mEntertainmentRecurring` INTEGER NOT NULL, `mVacationPlanned` TEXT, `mVacationSpent` TEXT, `mVacationRecurring` INTEGER NOT NULL, `mEducationTuitionPlanned` TEXT, `mEducationTuitionSpent` TEXT, `mEducationTuitionRecurring` INTEGER NOT NULL, `mOtherLifestyleExpenses` TEXT)",
         "fields": [
           {
             "fieldPath": "mLifestyleId",
             "columnName": "mLifestyleId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mUserId",
+            "columnName": "mUserId",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -900,11 +930,17 @@
       },
       {
         "tableName": "HEALTH_TABLE",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mHealthId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mGymPlanned` TEXT, `mGymSpent` TEXT, `mGymRecurring` INTEGER NOT NULL, `mMedicineVitaminsPlanned` TEXT, `mMedicineVitaminsSpent` TEXT, `mMedicineVitaminsRecurring` INTEGER NOT NULL, `mDoctorVisitsPlanned` TEXT, `mDoctorVisitsSpent` TEXT, `mDoctorVisitsRecurring` INTEGER NOT NULL, `mOtherHealthExpenses` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mHealthId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUserId` INTEGER NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mGymPlanned` TEXT, `mGymSpent` TEXT, `mGymRecurring` INTEGER NOT NULL, `mMedicineVitaminsPlanned` TEXT, `mMedicineVitaminsSpent` TEXT, `mMedicineVitaminsRecurring` INTEGER NOT NULL, `mDoctorVisitsPlanned` TEXT, `mDoctorVisitsSpent` TEXT, `mDoctorVisitsRecurring` INTEGER NOT NULL, `mOtherHealthExpenses` TEXT)",
         "fields": [
           {
             "fieldPath": "mHealthId",
             "columnName": "mHealthId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mUserId",
+            "columnName": "mUserId",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -998,11 +1034,17 @@
       },
       {
         "tableName": "INSURANCE_TABLE",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mPersonalId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mHealthInsurancePlanned` TEXT, `mHealthInsuranceSpent` TEXT, `mHealthInsuranceRecurring` INTEGER NOT NULL, `mLifeInsurancePlanned` TEXT, `mLifeInsuranceSpent` TEXT, `mLifeInsuranceRecurring` INTEGER NOT NULL, `mAutoInsurancePlanned` TEXT, `mAutoInsuranceSpent` TEXT, `mAutoInsuranceRecurring` INTEGER NOT NULL, `mHomeownerRenterPlanned` TEXT, `mHomeownerRenterSpent` TEXT, `mHomeownerRenterRecurring` INTEGER NOT NULL, `mOtherInsuranceExpenses` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mInsuranceId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUserId` INTEGER NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mHealthInsurancePlanned` TEXT, `mHealthInsuranceSpent` TEXT, `mHealthInsuranceRecurring` INTEGER NOT NULL, `mLifeInsurancePlanned` TEXT, `mLifeInsuranceSpent` TEXT, `mLifeInsuranceRecurring` INTEGER NOT NULL, `mAutoInsurancePlanned` TEXT, `mAutoInsuranceSpent` TEXT, `mAutoInsuranceRecurring` INTEGER NOT NULL, `mHomeownerRenterPlanned` TEXT, `mHomeownerRenterSpent` TEXT, `mHomeownerRenterRecurring` INTEGER NOT NULL, `mOtherInsuranceExpenses` TEXT)",
         "fields": [
           {
-            "fieldPath": "mPersonalId",
-            "columnName": "mPersonalId",
+            "fieldPath": "mInsuranceId",
+            "columnName": "mInsuranceId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mUserId",
+            "columnName": "mUserId",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -1106,7 +1148,7 @@
         "primaryKey": {
           "autoGenerate": true,
           "columnNames": [
-            "mPersonalId"
+            "mInsuranceId"
           ]
         },
         "indices": [],
@@ -1114,11 +1156,17 @@
       },
       {
         "tableName": "DEBT_TABLE",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mDebtId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mCarPaymentPlanned` TEXT, `mCarPaymentSpent` TEXT, `mCarPaymentRecurring` INTEGER NOT NULL, `mCreditCardPlanned` TEXT, `mCreditCardSpent` TEXT, `mCreditCardRecurring` INTEGER NOT NULL, `mStudentLoanPlanned` TEXT, `mStudentLoanSpent` TEXT, `mStudentLoanRecurring` INTEGER NOT NULL, `mMedicalBillPlanned` TEXT, `mMedicalBillSpent` TEXT, `mMedicalBillRecurring` INTEGER NOT NULL, `mPersonalLoanPlanned` TEXT, `mPersonalLoanSpent` TEXT, `mPersonalLoanRecurring` INTEGER NOT NULL, `mOtherDebtExpenses` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mDebtId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUserId` INTEGER NOT NULL, `mTotalPlanned` TEXT, `mTotalRecurring` TEXT, `mTotalSpent` TEXT, `mCarPaymentPlanned` TEXT, `mCarPaymentSpent` TEXT, `mCarPaymentRecurring` INTEGER NOT NULL, `mCreditCardPlanned` TEXT, `mCreditCardSpent` TEXT, `mCreditCardRecurring` INTEGER NOT NULL, `mStudentLoanPlanned` TEXT, `mStudentLoanSpent` TEXT, `mStudentLoanRecurring` INTEGER NOT NULL, `mMedicalBillPlanned` TEXT, `mMedicalBillSpent` TEXT, `mMedicalBillRecurring` INTEGER NOT NULL, `mPersonalLoanPlanned` TEXT, `mPersonalLoanSpent` TEXT, `mPersonalLoanRecurring` INTEGER NOT NULL, `mOtherDebtExpenses` TEXT)",
         "fields": [
           {
             "fieldPath": "mDebtId",
             "columnName": "mDebtId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mUserId",
+            "columnName": "mUserId",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -1250,7 +1298,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd9f793d97504cabee9130eb4c8bf6751')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '54e13eb56060f3a3f5fa37a50128e37d')"
     ]
   }
 }

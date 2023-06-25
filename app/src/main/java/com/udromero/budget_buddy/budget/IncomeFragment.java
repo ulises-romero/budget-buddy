@@ -245,11 +245,18 @@ public class IncomeFragment extends Fragment {
         mUserId = mSharedPreferences.getInt(USER_ID_KEY, -1);
         mUser = mBudgetBuddyDAO.getUserByUserId(mUserId);
 
+//        mBudgetId = mSharedPreferences.getInt(BUDGET_ID_KEY, -1);
         mBudget = mBudgetBuddyDAO.getBudgetByUserId(mUserId);
         mBudgetId = mBudget.getBudgetId();
 
         if(mUser == null){
             Toast.makeText(this.getActivity().getApplicationContext(), "FATAL ERROR: Logging out...", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this.getActivity().getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+        }
+
+        if(mBudget == null){
+            Toast.makeText(this.getActivity().getApplicationContext(), "FATAL ERROR: Bad Budget, Logging out...", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this.getActivity().getApplicationContext(), LoginActivity.class);
             startActivity(intent);
         }
